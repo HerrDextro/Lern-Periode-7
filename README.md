@@ -1,9 +1,6 @@
 # Lern-Periode-7
 Janky Graphic engine in console cursed creation thing
-
-
-# Lern-Periode 2
-25.10 bis 20.12
+*25.10 bis 20.12*
 
 Grob-Planung
 Ich werde mit Alexander Straub ein Projekt machen.
