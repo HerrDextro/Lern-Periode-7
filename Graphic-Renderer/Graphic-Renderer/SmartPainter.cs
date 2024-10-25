@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 
 namespace Graphic_Renderer
 {
@@ -7,22 +7,36 @@ namespace Graphic_Renderer
         string[,] pixel;
 
         // Constructor
-        public SPainter()
+        public SPainter(int width, int height)
         {
-            pixel = new string[120, 100];
-            pixel = populateList(pixel, "000000");
+            pixel = new string[width,height];
+            pixel = populateList(pixel, "Black");
         }
 
         public void renderFrame()
         {
-            // This will print the 2D array in a grid format
-            for (int i = 0; i < pixel.GetLength(0); i++)
+            for (int i = 0; i < pixel.GetLength(1); i++)
             {
-                for (int j = 0; j < pixel.GetLength(1); j++)
+                for (int j = 0; j < pixel.GetLength(0); j++)
                 {
-                    Console.Write(pixel[i, j] + " ");
+                    setColor(pixel[j, i]);
+                    Console.Write("█");
                 }
                 Console.WriteLine();
+            }
+        }
+        public void changePixel(string color, int xpos, int ypos)
+        {
+            pixel[xpos, ypos] = color;
+        }
+        public void fillRectangle(string color,int xstart, int ystart, int xsize, int ysize)
+        {
+            for (int i = 0; i < xsize; i++)
+            {
+                for (int j = 0;j < ysize; j++)
+                {
+                    pixel[i+xstart,j+ystart] = color;
+                }
             }
         }
 
@@ -36,6 +50,17 @@ namespace Graphic_Renderer
                 }
             }
             return list;
+        }
+        private void setColor(string color)
+        {
+            try
+            {
+                Console.ForegroundColor = (ConsoleColor)Enum.Parse(typeof(ConsoleColor), color, true);
+            }
+            catch (ArgumentException)
+            {
+                Console.ForegroundColor = ConsoleColor.White; // Default color if the string is invalid
+            }
         }
     }
 }

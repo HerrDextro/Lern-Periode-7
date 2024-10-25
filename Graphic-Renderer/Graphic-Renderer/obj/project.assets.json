@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\alex\\source\\repos\\Graphic-Renderer\\Graphic-Renderer\\Graphic-Renderer.csproj",
+      "projectUniqueName": "C:\\Users\\alex\\Source\\Repos\\HerrDextro\\Lern-Periode-7\\Graphic-Renderer\\Graphic-Renderer\\Graphic-Renderer.csproj",
       "projectName": "Graphic-Renderer",
-      "projectPath": "C:\\Users\\alex\\source\\repos\\Graphic-Renderer\\Graphic-Renderer\\Graphic-Renderer.csproj",
+      "projectPath": "C:\\Users\\alex\\Source\\Repos\\HerrDextro\\Lern-Periode-7\\Graphic-Renderer\\Graphic-Renderer\\Graphic-Renderer.csproj",
       "packagesPath": "C:\\Users\\alex\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\alex\\source\\repos\\Graphic-Renderer\\Graphic-Renderer\\obj\\",
+      "outputPath": "C:\\Users\\alex\\Source\\Repos\\HerrDextro\\Lern-Periode-7\\Graphic-Renderer\\Graphic-Renderer\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\alex\\AppData\\Roaming\\NuGet\\NuGet.Config",
