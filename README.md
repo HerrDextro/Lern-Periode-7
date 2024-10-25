@@ -11,6 +11,9 @@ Ich werde mit Alexander Straub ein Projekt machen.
 
 Heute haben wir ein Framework gemacht, um mit dem █-Character in der Konsole einzelne Pixel zu setzen. Das Ziel ist es, eine Art Graphics Engine zu machen, die Daten von einem 2-D-Array nehmen kann (Position x, y und Farbe in string) und sie dann wiedergeben kann. Wir möchten, dass die Linien in der Konsole einzeln geupdated werden, damit es nicht bei jedem Update kurz schwarz wird. Schlussendlich soll dieses Graphics Engine dazu dienen, Konsolenspiele zu machen.
 
+![WhatsApp Image 2024-10-25 at 11 54 29_193456d3](https://github.com/user-attachments/assets/43b10365-5701-49b1-8741-d234af51c088)
+
+
 
 1.11.2024
 - [ ] Funktion um Linien individuell zu refreshen
@@ -23,3 +26,4 @@ Heute haben wir ein Framework gemacht, um mit dem █-Character in der Konsole e
 ☝️ Vergessen Sie nicht, bis einen ersten Code auf github hochzuladen
 
 ...
+
