@@ -13,6 +13,9 @@ Heute haben wir ein Framework gemacht, um mit dem █-Character in der Konsole e
 
 ![WhatsApp Image 2024-10-25 at 11 54 29_193456d3](https://github.com/user-attachments/assets/43b10365-5701-49b1-8741-d234af51c088)
 
+![WhatsApp Bild 2024-10-25 um 15 16 54_31aa9c01](https://github.com/user-attachments/assets/37c5155d-e5b5-4095-9eb4-40d2001cfa32)
+
+
 
 
 1.11.2024
