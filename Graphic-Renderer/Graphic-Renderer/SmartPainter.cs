@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.Marshalling;
@@ -15,6 +16,7 @@ namespace Graphic_Renderer
 
         [DllImport("user32.dll")]
         private static extern short GetAsyncKeyState(int vKey);
+
 
         // Letters
         public const int A = 0x41;
@@ -76,6 +78,8 @@ namespace Graphic_Renderer
         // Constructor
         public SPainter(int width, int height,string color)
         {
+            width *= 2;
+
             defaultBGColor = color;
             
             pixel = new string[width,height];
@@ -88,7 +92,8 @@ namespace Graphic_Renderer
 
             defaultTextColor = "White";
 
-            
+
+
         }
         public void updateFrame()
         {
@@ -146,12 +151,11 @@ namespace Graphic_Renderer
             }
             pixelLast = pixel.Clone() as string[,];
         }
-        public void writeText(string text,string color, int xpos, int ypos)
+        public void writeText(string text, int xpos, int ypos)
         {
             for (int i = 0; i < text.Length; i++)
             {
                 charType[xpos + i, ypos] = Convert.ToString(text[i]);
-                //pixel[xpos + i,ypos] = color;
             }
         }
         public void changeTextColor(string color)
@@ -166,6 +170,8 @@ namespace Graphic_Renderer
         public void fillRectangle(string color,int xstart, int ystart, int xsize, int ysize)
         {
             xsize *= 2;
+            xstart *= 2;
+
             for (int i = 0; i < xsize; i++)
             {
                 for (int j = 0;j < ysize; j++)
@@ -184,8 +190,7 @@ namespace Graphic_Renderer
         public void saveImage(int xstart, int ystart, int xsize, int ysize,string filepath)
         {
             xsize *= 2;
-
-            //FileStream fs = File.Create(filepath);
+            xstart *= 2;
 
             string[] save = new string[ysize];
 
@@ -253,8 +258,6 @@ namespace Graphic_Renderer
             }
             return result;
         }
-
-
 
         private void setColor(string color)
         {
