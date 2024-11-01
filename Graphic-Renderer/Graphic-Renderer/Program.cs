@@ -9,65 +9,30 @@ namespace Graphic_Renderer
     {
         static void Main(string[] args)
         {
-            SPainter painter = new SPainter(60, 30,"Gray"); //Default for a. PC (Fullscreen): 144,44
+            SPainter painter = new SPainter(60, 30,"Black"); //Default for a. PC (Fullscreen): 144,44
                                                               //Default for a. PC (Small):
             painter.renderFrame();
 
-            int xpos = 6;
-            int ypos = 6;
+            painter.fillRectangle("red", 0, 0, 20, 20);
+            painter.fillRectangle("white", 4, 4, 12, 12);
 
-            int xvel = 1;
-            int yvel = 1;
-
-            int playerX = 0;
-
-            while (true)
-            {
-                //c++;
-                painter.fillRectangle("White",0, 0, 30, 30);
-                
-                painter.fillRectangle("Black", xpos, ypos, 2, 2);
-                painter.fillRectangle("Black", playerX, 1, 5, 2);
-
-                xpos += xvel;
-                ypos += yvel;
-
-                if (painter.KeyDown(SPainter.arrowLeft))
-                {
-                    playerX += 2;
-                }
-
-                if (painter.KeyDown(SPainter.arrowRight))
-                {
-                    playerX -= 2;
-                }
-
-
-
-                if (ypos == 3 && playerX <= xpos && xpos <= playerX + 10)
-                {
-                    yvel *= -1;
-                }
-
-
-                if (ypos >= 27 || ypos <= 0 )
-                {
-                    yvel *= -1;
-                }
-                if (xpos >= 56 || xpos <= 0)
-                {
-                    xvel *= -1;
-                }
-
-                painter.updateFrame();
-                painter.clear();
-
-                Thread.Sleep(50);
-            }
+            painter.updateFrame();
 
 
 
 
+
+            painter.saveImage(0, 0, 20, 20, @"..\..\test.txt");
+
+            painter.clear();
+
+            Thread.Sleep(5000);
+
+            painter.loadImage(5, 5, @"..\..\test.txt");
+
+            painter.updateFrame();
+
+            Thread.Sleep(100000);
 
         }
     }

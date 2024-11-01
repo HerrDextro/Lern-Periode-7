@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Drawing;
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.Marshalling;
 
 namespace Graphic_Renderer
 {
@@ -168,7 +170,6 @@ namespace Graphic_Renderer
             {
                 for (int j = 0;j < ysize; j++)
                 {
-
                     try
                     {
                         pixel[i + xstart, j + ystart] = color;
@@ -179,6 +180,52 @@ namespace Graphic_Renderer
                 }
             }
         }
+
+        public void saveImage(int xstart, int ystart, int xsize, int ysize,string filepath)
+        {
+            xsize *= 2;
+
+            //FileStream fs = File.Create(filepath);
+
+            string[] save = new string[ysize];
+
+            for (int i = 0; i < xsize; i++)
+            {
+                for (int j = 0; j < ysize; j++)
+                {
+                    try
+                    {
+                        save[j] += (pixel[xstart + i, ystart + j]+";");
+                    }
+                    catch { }
+                }
+            }
+            File.WriteAllText(filepath, toSingleString(save));
+        }
+
+        public void loadImage(int xpos, int ypos, string filepath)
+        {
+            string[] textInpRaw = File.ReadAllLines(filepath);
+            xpos *= 2;
+
+            for (int i = 0;i < textInpRaw.Length; i++)
+            {
+                string[] line = textInpRaw[i].Split(";");
+
+                for (int j = 0;j < line.Length-1; j++)
+                {
+                    try
+                    {
+                        pixel[xpos + j, ypos + i] = line[j];
+                    }
+                    catch { }
+                }
+            }
+
+
+        }
+
+
         public bool KeyDown(int keyCode)
         {
             return (GetAsyncKeyState(keyCode) & 0x8000) != 0;
@@ -195,6 +242,20 @@ namespace Graphic_Renderer
             }
             return list;
         }
+        
+        private string toSingleString(string[] input)
+        {
+            string result = string.Empty;
+
+            for (int x = 0;x < input.Length; x++)
+            {
+                result += (input[x] + "\n");
+            }
+            return result;
+        }
+
+
+
         private void setColor(string color)
         {
             try
