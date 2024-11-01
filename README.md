@@ -23,9 +23,19 @@ Heute haben wir ein Framework gemacht, um mit dem █-Character in der Konsole e
 - [X] Load images from .txt file (in █ Format)
 - [X] Load custom textures (Farbwerte für die Bilder, die man reinloadet)
 - [x] Read user Key input (perhaps in second console window)
-- [ ] Create documentation
+- [x] Create documentation
+- [x] Main Menu mit Spielauswahl
 
-✍️ Heute habe ich... (50-100 Wörter)
+Heute haben wir das Framework praktisch fertig gemacht. Man kann Bilder, Texturen von .txt Dateien importieren, alle Keys nutzen (theoretisch, wir nutzen jetzt nur WASD oder Pfeile) und wir sind jetzt bereit, ein paar einfache Games zu erstellen, um zu testen. Wir haben auch eine Dokumentation gemacht, damit wir nicht bei der Erstellung neuer Spiele irren. Wir haben das Main Menu, mit einer Auswahl von 2 Spiele (Space Invaders und Adventure) gemacht, und space invaders sehr simpel etwas renderen lassen, damit wir den "Spielaufstart" testen könnten.
+
+08.11.2024
+- [ ] Alex: komische graue Linie bei Main start fixen (kann Stunden brauchen, oder Minuten)
+- [ ] Alex: Space invaders: runGame
+- [ ] Space Invaders: allyUFO class + shooting (keine Ahnung wie das funktioniert, daher kein konkretes AP)
+- [ ] Neo: Pong (class slider)
+- [ ] Pong: Fensterrand Collision
+- [ ] Pong: Pralleffect
+- [ ] Pong: class ball
 
 ☝️ Vergessen Sie nicht, bis einen ersten Code auf github hochzuladen
 
