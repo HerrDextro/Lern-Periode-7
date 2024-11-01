@@ -20,8 +20,8 @@ Heute haben wir ein Framework gemacht, um mit dem █-Character in der Konsole e
 
 1.11.2024
 - [x] Funktion um Linien individuell zu refreshen
-- [ ] Load images from .txt file (in █ Format)
-- [ ] Load custom textures (Farbwerte für die Bilder, die man reinloadet)
+- [X] Load images from .txt file (in █ Format)
+- [X] Load custom textures (Farbwerte für die Bilder, die man reinloadet)
 - [x] Read user Key input (perhaps in second console window)
 - [ ] Create documentation
 
