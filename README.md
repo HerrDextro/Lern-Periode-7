@@ -3,7 +3,7 @@ Janky Graphic engine in console cursed creation thing
 *25.10 bis 20.12*
 
 Grob-Planung
-Ich werde mit Alexander Straub ein Projekt machen. 🧢🧢🧢
+Ich werde mit Alexander Straub ein Projekt machen. 
 
 25.10.2024
 - [x] Class und Funktion um Console Lines zu schreiben 
