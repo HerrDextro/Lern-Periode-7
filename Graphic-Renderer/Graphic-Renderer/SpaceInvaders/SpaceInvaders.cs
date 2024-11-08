@@ -14,8 +14,9 @@ namespace Graphic_Renderer
             painter = painterInp;
 
             Player player = new Player(painter);
-            
+
             painter.clear();
+            painter.fillRectangle("black", 0, 0, 60, 30);
 
             bool running = true;
             
@@ -23,6 +24,7 @@ namespace Graphic_Renderer
             {
                 painter.updateFrame();
                 painter.clear();
+                Thread.Sleep(25);
 
                 player.render();
 

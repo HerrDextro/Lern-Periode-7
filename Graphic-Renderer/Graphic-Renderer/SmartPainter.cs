@@ -169,8 +169,12 @@ namespace Graphic_Renderer
         public void changePixel(string color, int xpos, int ypos)
         {
             xpos *= 2;
-            pixel[xpos, ypos] = color;
-            pixel[xpos+1, ypos] = color;
+            try
+            {
+                pixel[xpos, ypos] = color;
+                pixel[xpos + 1, ypos] = color;
+            }
+            catch (IndexOutOfRangeException) { }
         }
         public void fillRectangle(string color,int xstart, int ystart, int xsize, int ysize)
         {
@@ -186,7 +190,7 @@ namespace Graphic_Renderer
                         pixel[i + xstart, j + ystart] = color;
                         charType[i + xstart, j + ystart] = "█";
                     }
-                    catch { }
+                    catch (IndexOutOfRangeException) { }
 
                 }
             }
@@ -228,7 +232,7 @@ namespace Graphic_Renderer
                     {
                         pixel[xpos + j, ypos + i] = line[j];
                     }
-                    catch { }
+                    catch (IndexOutOfRangeException) { }
                 }
             }
 
