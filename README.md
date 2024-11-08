@@ -31,7 +31,7 @@ Heute haben wir das Framework praktisch fertig gemacht. Man kann Bilder, Texture
 08.11.2024
 - [X] Alex: komische graue Linie bei Main start fixen (kann Stunden brauchen, oder Minuten)
 - [x] Alex: Space invaders: runGame
-- [ ] Space Invaders: allyUFO class + shooting (keine Ahnung wie das funktioniert, daher kein konkretes AP)
+- [X] Space Invaders: allyUFO class + shooting (keine Ahnung wie das funktioniert, daher kein konkretes AP)
 - [x] Neo: Pong (class slider)
 - [x] Pong: Fensterrand Collision
 - [ ] Pong: Pralleffect
@@ -41,3 +41,11 @@ Heute haben wir das Framework praktisch fertig gemacht. Man kann Bilder, Texture
 
 ...
 
+15.11.2024
+- [ ] Neo: Fix VS file properties to have misc files in compile mode (das braucht der ganze Morgen lange)
+- [ ] Neo: ???
+- [ ] Neo: ???
+- [ ] Alex: Implement Music
+- [ ] Alex: Death Screen
+- [ ] Alex: Difficulty Increases
+- [ ] (Alex): Start Coding New Game
