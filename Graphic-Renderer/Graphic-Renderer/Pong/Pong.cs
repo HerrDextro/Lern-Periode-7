@@ -6,5 +6,6 @@ namespace Graphic_Renderer
     public class Pong
     {
        //noice
+       Console.WriteLine("test");
     }
 }
