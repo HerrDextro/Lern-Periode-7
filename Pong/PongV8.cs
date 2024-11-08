@@ -6,7 +6,7 @@ using Graphic_Renderer;
 
 namespace Graphic_Renderer
 {
-    class Pong
+    public class Pong
     {
         public Pong()
         {
