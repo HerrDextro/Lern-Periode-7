@@ -24,7 +24,7 @@ namespace Graphic_Renderer
             }
 
           //paddle
-          string filepath = "..\Pong\"
+          //string filepath = "..\Pong\"
                 
                 //ball
         }
