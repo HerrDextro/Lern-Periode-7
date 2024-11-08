@@ -1,25 +1,16 @@
+using System.Reflection;
+using System.Text;
+
 namespace Graphic_Renderer
 {
-public class SpaceInvaders
+    public class SpaceInvader
     {
-        public SpaceInvaders()
+        public void StartGame(SPainter painter)
         {
-
-        }
-        public void runGame()
-        {
-            SPainter painter = new SPainter(60, 30, "black");
-            Console.Clear();
-            painter.renderFrame();
-
-            painter.fillRectangle("red", 2, 2, 10, 10);
-
+            painter.clear();
+            painter.fillRectangle("red",0,0,10,10);
             painter.updateFrame();
-
-            Thread.Sleep(5000);
-
-
+            Thread.Sleep(10000);
         }
     }
-
 }

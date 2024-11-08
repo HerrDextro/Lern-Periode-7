@@ -6,7 +6,7 @@ using Graphic_Renderer;
 
 namespace Graphic_Renderer
 {
-     internal class Program
+     public class Program
     {
         static void Main(string[] args)
         {
@@ -71,10 +71,9 @@ namespace Graphic_Renderer
                     switch (cursorheight)
                     {
                         case 1:
-                            SpaceInvaders spaceInvaders = new SpaceInvaders();
-                            spaceInvaders.runGame();
-                            Console.Clear();
-                            painter.renderFrame();
+                            SpaceInvader spaceInvaders = new SpaceInvader();
+                            spaceInvaders.StartGame(painter);
+                            painter.updateFrame();
                             break;
 
                     }

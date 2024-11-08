@@ -6,7 +6,7 @@ using System.Runtime.InteropServices.Marshalling;
 
 namespace Graphic_Renderer
 {
-    class SPainter
+    public class SPainter
     {
         string[,] pixel;
         string[,] pixelLast;
@@ -92,6 +92,8 @@ namespace Graphic_Renderer
 
             defaultTextColor = "White";
 
+            Console.CursorVisible = false;
+
 
 
         }
@@ -124,6 +126,7 @@ namespace Graphic_Renderer
         public void clear()
         {
             pixel = populateList(pixel, defaultBGColor);
+            charType = populateList(charType, "█");
         }
 
 
