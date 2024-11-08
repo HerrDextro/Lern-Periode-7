@@ -7,7 +7,13 @@ namespace Graphic_Renderer
     {
         public void StartGame(SPainter painter)
         {
-          //comment
+          //creating field
+
+          //creating gameloop
+
+          //paddle
+
+          //ball
         }
     }
 }
