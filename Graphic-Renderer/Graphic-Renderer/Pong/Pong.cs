@@ -12,7 +12,7 @@ namespace Graphic_Renderer
 
             //variables for loops arrays and whatnot (change names)
             bool alive = true;
-            string paddlePath = "..\\Pong\\textures\\paddle1.txt"
+            string paddlePath = "..\\Pong\\textures\\paddle1.txt";
             int paddleSpeed = 0; //change when testing, otherwise much frustration
 
             //creating field
