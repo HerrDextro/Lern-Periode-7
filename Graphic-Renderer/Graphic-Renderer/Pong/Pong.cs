@@ -1,70 +1,97 @@
-using System.Reflection;
+/*using System.Reflection;
 using System.Text;
 
 namespace Graphic_Renderer
 {
-    public class Pong
+    public class PongGame
     {
+        public int fieldX = 144; // Field declarations moved outside methods
+        public int fieldY = 44;
+
         public void StartGame(SPainter painter)
         {
-            //Default for a. PC (Fullscreen): 144,44
-            //Default for a. PC (Small): 60,30
-
-            //variables for loops arrays and whatnot (change names)
+            // Variables for loops, arrays, and whatnot
             bool alive = true;
             string paddlePath = "..\\Pong\\textures\\paddle1.txt";
-            public int paddleSpeed = 0; //change when testing, otherwise much frustration
+            string ballPath = "..\\Pong\\textures\\ball.txt";
+            int paddleSpeed = 0; // Change when testing, otherwise much frustration
 
-            //creating field
-            public int fieldX = 144; //dont need for vertical paddle
-            public int fieldY = 44;
-
-            //creating gameloop
-            
-            
-
+            // Logic for the game start can be added here
         }
 
-        class Paddle
+        public class Paddle
         {
-            int xPos {  get; set; }
-            int yPos { get; set; }
+            public int xPos { get; set; }
+            public int yPos { get; set; }
 
-            public void PaddleUp()
+            public void PaddleUp(SPainter painter)
             {
-                if (painter.KeyDown =SPainter.arrowRight)
-            {
+                if (painter.KeyDown == SPainter.arrowRight)
+                {
                     yPos++;
                 }
             }
 
-            public void PaddleDown()
+            public void PaddleDown(SPainter painter)
             {
-                if(painter.KeyDown = SPainter.arrowLeft)
+                if (painter.KeyDown == SPainter.arrowLeft)
                 {
-                    xPos--;
+                    yPos--;
                 }
             }
 
-            //setting field boundaries
-            if(yPos == fieldY)
+            public void SetFieldBoundaries(int fieldY)
             {
-                yPos = fîeldY;
+                if (yPos >= fieldY)
+                {
+                    yPos = fieldY;
+                }
+
+                if (yPos <= 0)
+                {
+                    yPos = 0;
+                }
             }
 
-            if(yPos == 0)
+            public void RenderPaddle(SPainter painter, string paddlePath)
             {
-                yPos = 0;
+                painter.loadImage(yPos, xPos, paddlePath);
             }
-
-            painter.loadImage(yPos, setPaddlePos, paddlePath);     
         }
-        class Ball
-        {
-            int xPos { get; set; };
-            int yPos { get; set; };
-            int speed = 0; //change to test 
 
+        public class Ball
+        {
+            public int xPos { get; set; }
+            public int yPos { get; set; }
+            public int speed = 0; // Change to test
+
+            public void SetFieldBoundaries(int fieldX, int fieldY)
+            {
+                if (xPos >= fieldX)
+                {
+                    xPos = fieldX;
+                }
+
+                if (xPos <= 0)
+                {
+                    xPos = 0;
+                }
+
+                if (yPos >= fieldY)
+                {
+                    yPos = fieldY;
+                }
+
+                if (yPos <= 0)
+                {
+                    yPos = 0;
+                }
+            }
+
+            public void RenderBall(SPainter painter, string ballPath)
+            {
+                painter.loadImage(yPos, xPos, ballPath);
+            }
         }
     }
-}
+}*/
