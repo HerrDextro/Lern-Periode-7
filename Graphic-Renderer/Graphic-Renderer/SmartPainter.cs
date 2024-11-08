@@ -210,7 +210,7 @@ namespace Graphic_Renderer
                     catch { }
                 }
             }
-            File.WriteAllText(filepath, toSingleString(save));
+            //File.WriteAllText(filepath, toSingleString(save)); (removed due to hardcoded filepath, is experimental anyways
         }
 
         public void loadImage(int xpos, int ypos, string filepath)
