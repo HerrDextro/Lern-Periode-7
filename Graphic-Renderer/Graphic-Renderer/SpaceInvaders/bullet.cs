@@ -14,7 +14,7 @@ namespace Graphic_Renderer
         public Bullet(int xinp, SPainter paintInp)
         {
             xpos = xinp;
-            ypos = 40;
+            ypos = 27;
 
             painter = paintInp;
 

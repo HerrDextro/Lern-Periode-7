@@ -12,21 +12,22 @@ namespace Graphic_Renderer
 
             //variables for loops arrays and whatnot (change names)
             bool alive = true;
-            string paddlePath = "..\\Pong\\textures\\paddle1.txt"
+            string paddlePath = "..\\Pong\\textures\\paddle1.txt";
 
             //creating field
             int fieldX = 144;
             int fieldY = 44;
 
             //creating gameloop
-            while(alive)
+            while (alive)
             {
 
             }
 
-          //paddle
-          
+            //paddle
 
-                
+
+
+        }
     }
 }

@@ -9,6 +9,8 @@ namespace Graphic_Renderer
         int xpos = 1;
         int cool = 0;
 
+        int bulletCool = 0;
+
         List<Bullet> bullets = new List<Bullet>();
 
         SPainter painter;
@@ -20,11 +22,14 @@ namespace Graphic_Renderer
 
         public void render()
         {
-            painter.loadImage(xpos, 25, texture);
-
             if (cool > 0)
             {
                 cool--;
+            }
+
+            if (bulletCool > 0)
+            {
+                bulletCool--;
             }
 
             if (painter.KeyDown(SPainter.arrowLeft) && cool == 0)
@@ -37,9 +42,10 @@ namespace Graphic_Renderer
                 xpos--;
                 cool = 2;
             }
-            if (painter.KeyDown(SPainter.enter))
+            if (painter.KeyDown(SPainter.arrowUp) && bulletCool == 0)
             {
                 bullets.Add(new Bullet(xpos + 2, painter));
+                bulletCool = 7;
             }
 
             for (int i = 0; i < bullets.Count; i++)
@@ -51,6 +57,17 @@ namespace Graphic_Renderer
                     break;
                 }
             }
+
+            if (xpos <= 0)
+            {
+                xpos = 0;
+            }
+            if (xpos >= 55)
+            {
+                xpos = 55;
+            }
+
+            painter.loadImage(xpos, 25, texture);
 
         }
     }
