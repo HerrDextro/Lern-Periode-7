@@ -168,7 +168,9 @@ namespace Graphic_Renderer
 
         public void changePixel(string color, int xpos, int ypos)
         {
+            xpos *= 2;
             pixel[xpos, ypos] = color;
+            pixel[xpos+1, ypos] = color;
         }
         public void fillRectangle(string color,int xstart, int ystart, int xsize, int ysize)
         {

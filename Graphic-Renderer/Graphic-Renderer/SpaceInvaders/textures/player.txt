@@ -1,4 +1,4 @@
-black;black;blue,black;black
-black;blue;blue;blue;black
-blue;black;blue;black;blue
-blue;blue;blue;blue;blue
+black;black;Cyan;Cyan;black;black;Cyan;Cyan;black;black;
+black;black;Cyan;Cyan;Cyan;Cyan;Cyan;Cyan;black;black;
+Cyan;Cyan;Cyan;Cyan;Cyan;Cyan;Cyan;Cyan;Cyan;Cyan;
+Cyan;Cyan;black;black;black;black;black;black;Cyan;Cyan;
