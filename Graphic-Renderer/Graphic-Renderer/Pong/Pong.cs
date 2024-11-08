@@ -13,21 +13,57 @@ namespace Graphic_Renderer
             //variables for loops arrays and whatnot (change names)
             bool alive = true;
             string paddlePath = "..\\Pong\\textures\\paddle1.txt";
-            int paddleSpeed = 0; //change when testing, otherwise much frustration
+            public int paddleSpeed = 0; //change when testing, otherwise much frustration
 
             //creating field
-            int fieldX = 144;
-            int fieldY = 44;
+            public int fieldX = 144; //dont need for vertical paddle
+            public int fieldY = 44;
 
             //creating gameloop
-            while (alive)
+            
+            
+
+        }
+
+        class Paddle
+        {
+            int xPos {  get; set; }
+            int yPos { get; set; }
+
+            public void PaddleUp()
             {
-                //
+                if (painter.KeyDown =SPainter.arrowRight)
+            {
+                    yPos++;
+                }
             }
 
-          //paddle
-          
+            public void PaddleDown()
+            {
+                if(painter.KeyDown = SPainter.arrowLeft)
+                {
+                    xPos--;
+                }
+            }
 
+            //setting field boundaries
+            if(yPos == fieldY)
+            {
+                yPos = fîeldY;
+            }
+
+            if(yPos == 0)
+            {
+                yPos = 0;
+            }
+
+            painter.loadImage(yPos, setPaddlePos, paddlePath);     
+        }
+        class Ball
+        {
+            int xPos { get; set; };
+            int yPos { get; set; };
+            int speed = 0; //change to test 
 
         }
     }
