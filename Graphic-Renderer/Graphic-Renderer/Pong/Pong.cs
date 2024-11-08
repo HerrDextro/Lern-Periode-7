@@ -7,13 +7,26 @@ namespace Graphic_Renderer
     {
         public void StartGame(SPainter painter)
         {
-          //creating field
+            //Default for a. PC (Fullscreen): 144,44
+            //Default for a. PC (Small): 60,30
 
-          //creating gameloop
+            //variables for loops arrays and whatnot (change names)
+            bool alive = true;
+
+            //creating field
+            int fieldX = 144;
+            int fieldY = 44;
+
+            //creating gameloop
+            while(alive)
+            {
+
+            }
 
           //paddle
-
-          //ball
+          string filepath = "..\Pong\"
+                
+                //ball
         }
     }
 }
