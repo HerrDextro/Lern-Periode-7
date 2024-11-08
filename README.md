@@ -30,7 +30,7 @@ Heute haben wir das Framework praktisch fertig gemacht. Man kann Bilder, Texture
 
 08.11.2024
 - [X] Alex: komische graue Linie bei Main start fixen (kann Stunden brauchen, oder Minuten)
-- [ ] Alex: Space invaders: runGame
+- [x] Alex: Space invaders: runGame
 - [ ] Space Invaders: allyUFO class + shooting (keine Ahnung wie das funktioniert, daher kein konkretes AP)
 - [ ] Neo: Pong (class slider)
 - [ ] Pong: Fensterrand Collision
