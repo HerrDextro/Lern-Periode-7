@@ -13,7 +13,6 @@ namespace Graphic_Renderer
         public void StartGame(SPainter painterInp)
         {
             
-            
             painter = painterInp;
 
             Player player = new Player(painter);
@@ -43,7 +42,7 @@ namespace Graphic_Renderer
 
                 for (int i = 0; i < enemys.Count; i++)
                 {
-                    enemys[i].render((counter%20==0),player);
+                    enemys[i].render((counter%(20)==0),player);
                     if (!(enemys[i].stillExists()))
                     {
                         enemys.RemoveAt(i);
