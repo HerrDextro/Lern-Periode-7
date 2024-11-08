@@ -20,6 +20,16 @@ namespace Graphic_Renderer
             painter = painterInp;
         }
 
+        public List<Bullet> getBullets()
+        {
+            return bullets;
+        }
+
+        public void destroyBullet(int index)
+        {
+            bullets.RemoveAt(index);
+        }
+
         public void render()
         {
             if (cool > 0)

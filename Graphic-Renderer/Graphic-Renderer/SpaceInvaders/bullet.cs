@@ -11,6 +11,18 @@ namespace Graphic_Renderer
         int xpos;
         int ypos;
         
+
+
+        public int getXpos()
+        {
+            return xpos;
+        }
+        public int getYpos()
+        {
+            return ypos;
+        }
+
+
         public Bullet(int xinp, SPainter paintInp)
         {
             xpos = xinp;
