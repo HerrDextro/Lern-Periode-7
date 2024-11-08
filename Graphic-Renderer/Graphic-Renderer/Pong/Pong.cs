@@ -5,7 +5,9 @@ namespace Graphic_Renderer
 {
     public class Pong
     {
-       //noice
-       Console.WriteLine("test");
+        public void StartGame(SPainter painterInp)
+        {
+            Console.WriteLine("test success");
+        }
     }
 }

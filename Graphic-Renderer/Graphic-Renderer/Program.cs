@@ -76,9 +76,9 @@ namespace Graphic_Renderer
                             painter.updateFrame();
                             break;
                         case 2:
-                            //PongG ponggame = new Pong();
-                            //ponggame.StartGame(painter);  
-                            //painter.updateFrame();
+                            Pong pong = new Pong();
+                            pong.StartGame(painter);  
+                            painter.updateFrame();
                             break;
 
                     }
