@@ -8,11 +8,7 @@ namespace Graphic_Renderer
 {
     public class Pong
     {
-        public Pong()
-        {
-
-        }
-        public void runGame()
+        public void StartGame()
         {
             SPainter painter = new SPainter(60, 30, "black");
             Console.Clear();
