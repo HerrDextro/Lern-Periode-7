@@ -21,13 +21,12 @@ namespace Graphic_Renderer
             //creating gameloop
             while (alive)
             {
-
+                //
             }
 
             //paddle
 
 
 
-        }
     }
 }
