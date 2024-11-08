@@ -8,14 +8,16 @@ namespace Graphic_Renderer
         public void StartGame(SPainter painter)
         {
             painter.clear();
-            painter.fillRectangle("Cyan",0,0,5,4);
+            painter.fillRectangle("white",0,0,7,6);
 
             int[,] arr =
             {
-                {0, 1, 0, 1, 0},
-                {0, 1, 1, 1, 0},
-                {1, 1, 1, 1, 1},
-                {1, 0, 0, 0, 1}
+                {0, 0, 1, 1, 1, 0, 0},
+                {0, 1, 1, 0, 1, 1, 0},
+                {1, 1, 0, 1, 0, 1, 1},
+                {0, 1, 1, 1, 1, 1, 0},
+                {0, 1, 0, 1, 0, 1, 0},
+                {0, 1, 0, 1, 0, 1, 0}
             };
 
             for (int i = 0; i < arr.GetLength(0); i++)
@@ -30,7 +32,7 @@ namespace Graphic_Renderer
                 }
             }
 
-            painter.saveImage(0, 0, 5, 4, "C:\\Users\\alex\\Source\\Repos\\HerrDextro\\Lern-Periode-7\\Graphic-Renderer\\Graphic-Renderer\\SpaceInvaders\\textures\\enemy01.txt");
+            painter.saveImage(0, 0, 7, 6, "C:\\Users\\alex\\Source\\Repos\\HerrDextro\\Lern-Periode-7\\Graphic-Renderer\\Graphic-Renderer\\SpaceInvaders\\textures\\enemy04HIT.txt");
 
 
             painter.updateFrame();

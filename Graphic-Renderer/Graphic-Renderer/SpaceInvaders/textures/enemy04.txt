@@ -1,0 +1,6 @@
+black;black;black;black;darkBlue;darkBlue;darkBlue;darkBlue;darkBlue;darkBlue;black;black;black;black;
+black;black;darkBlue;darkBlue;darkBlue;darkBlue;black;black;darkBlue;darkBlue;darkBlue;darkBlue;black;black;
+darkBlue;darkBlue;darkBlue;darkBlue;black;black;darkBlue;darkBlue;black;black;darkBlue;darkBlue;darkBlue;darkBlue;
+black;black;darkBlue;darkBlue;darkBlue;darkBlue;darkBlue;darkBlue;darkBlue;darkBlue;darkBlue;darkBlue;black;black;
+black;black;darkBlue;darkBlue;black;black;darkBlue;darkBlue;black;black;darkBlue;darkBlue;black;black;
+black;black;darkBlue;darkBlue;black;black;darkBlue;darkBlue;black;black;darkBlue;darkBlue;black;black;
