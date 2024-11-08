@@ -7,36 +7,13 @@ namespace Graphic_Renderer
     {
         public void StartGame(SPainter painter)
         {
-            painter.clear();
-            painter.fillRectangle("white", 0, 0, 7, 6);
+          //creating field
 
-            int[,] arr =
-            {
-                {0, 0, 1, 1, 1, 0, 0},
-                {0, 1, 1, 0, 1, 1, 0},
-                {1, 1, 0, 1, 0, 1, 1},
-                {0, 1, 1, 1, 1, 1, 0},
-                {0, 1, 0, 1, 0, 1, 0},
-                {0, 1, 0, 1, 0, 1, 0}
-            };
+          //creating gameloop
 
-            for (int i = 0; i < arr.GetLength(0); i++)
-            {
-                for (int j = 0; j < arr.GetLength(1); j++)
-                {
-                    if (arr[i, j] == 0)
-                    {
-                        painter.changePixel("black", j, i);
-                    }
+          //paddle
 
-                }
-            }
-
-            painter.saveImage(0, 0, 7, 6, "C:\\Users\\alex\\Source\\Repos\\HerrDextro\\Lern-Periode-7\\Graphic-Renderer\\Graphic-Renderer\\SpaceInvaders\\textures\\enemy04HIT.txt");
-
-
-            painter.updateFrame();
-            Thread.Sleep(10000);
+          //ball
         }
     }
 }

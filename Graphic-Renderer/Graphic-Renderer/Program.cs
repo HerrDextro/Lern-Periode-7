@@ -13,7 +13,7 @@ namespace Graphic_Renderer
             string[] gamelist =
             {
                 "Space Invaders",
-                "Pong" //neoww
+                "Pong" //neow
             };
             int cursorheight = 0;
             int cursorcool = 0;
