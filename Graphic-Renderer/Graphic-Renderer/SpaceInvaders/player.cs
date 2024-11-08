@@ -1,15 +1,23 @@
 using System.Runtime.CompilerServices;
-/*
+
 namespace Graphic_Renderer
 {
     public class Player
     {
         string texture = @"..\..\Graphic-Renderer\SpaceInvaders\textures\player.txt";
-        public Player(SPainter painter)
+
+        int xpos = 0;
+
+        SPainter painter;
+
+        public Player(SPainter painterInp)
         {
-            this.painter = painter;
+            painter = painterInp;
         }
 
+        public void render()
+        {
+            painter.loadImage(xpos, 10, texture);
+        }
     }
 }
-*/
