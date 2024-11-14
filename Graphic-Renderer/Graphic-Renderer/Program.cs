@@ -20,7 +20,7 @@ namespace Graphic_Renderer
             int cursorcool = 0;
 
 
-            SPainter painter = new SPainter(60, 30,"Black"); //Default for a. PC (Fullscreen): 144,44
+            SPainter painter = new SPainter(60, 30,"Black",1); //Default for a. PC (Fullscreen): 144,44
                                                              //Default for a. PC (Small): 60,30
 
             //Startup Sequence (Animation)

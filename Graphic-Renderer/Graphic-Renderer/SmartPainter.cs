@@ -74,9 +74,10 @@ namespace Graphic_Renderer
         public const int capslock = 0x14;
         public const int delete = 0x2E;
 
+        Thread[] threads;
 
         // Constructor
-        public SPainter(int width, int height,string color)
+        public SPainter(int width, int height,string color,int threadsAmmount)
         {
             width *= 2;
 
@@ -94,34 +95,48 @@ namespace Graphic_Renderer
 
             Console.CursorVisible = false;
 
-
-
+            threads = new Thread[pixel.GetLength(1)];
         }
+
         public void updateFrame()
         {
             for (int i = 0; i < pixel.GetLength(1); i++)
             {
-                for (int j = 0; j < pixel.GetLength(0); j++)
-                {
-                    if (pixel[j,i] != pixelLast[j,i])
-                    {
-                        Console.SetCursorPosition(j, i);
-                        if (charType[j, i] == "█")
-                        {
-                            setColor(pixel[j, i]);
-                        }
-                        else
-                        {
-                            setColor(defaultTextColor);
-                            setBGColor(pixel[j, i]);
-                        }
-                        Console.Write(charType[j, i]);
-                    }
-                    pixelLast[j, i] = pixel[j, i];
-                }
+                int rowIndex = i; // Local copy to capture the current value of i
+                threads[rowIndex] = new Thread(() => UpdateRow(rowIndex));
+                threads[rowIndex].Start();
             }
             pixelLast = pixel.Clone() as string[,];
         }
+
+        private void UpdateRow(int i)
+        {
+            for (int j = 0; j < pixel.GetLength(0); j++)
+            {
+                if (pixel[j, i] != pixelLast[j, i])
+                {
+                    Console.SetCursorPosition(j, i);
+                    if (charType[j, i] == "█")
+                    {
+                        setColor(pixel[j, i]);
+                    }
+                    else
+                    {
+                        setColor(defaultTextColor);
+                        setBGColor(pixel[j, i]);
+                    }
+                    Console.Write(charType[j, i]);
+                }
+                //pixelLast[j, i] = pixel[j, i];
+            }
+        }
+
+
+
+
+
+
+
 
         public void clear()
         {
