@@ -23,13 +23,14 @@ namespace Graphic_Renderer
             bool running = true;
             int counter = 90;
 
-
             while (running)
             {
                 counter ++;
                 
                 painter.updateFrame();
                 painter.clear();
+
+
                 Thread.Sleep(25);
 
                 player.render();
@@ -53,9 +54,11 @@ namespace Graphic_Renderer
                         running = false;
                     }
                 }
-
             }
-
+            painter.clear();
+            painter.fillRectangle("darkred", 4, 4, 52, 22);
+            painter.updateFrame();
+            Thread.Sleep(3000);
 
 
 

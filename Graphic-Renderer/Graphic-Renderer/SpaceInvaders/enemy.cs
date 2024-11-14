@@ -134,7 +134,7 @@ namespace Graphic_Renderer
             xpos += xvel;
             ypos += yvel;
 
-            if (xpos >= 54)
+            if (xpos >= 53)
             {
                 xvel = 0;
                 yvel = 1;
