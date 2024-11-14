@@ -18,3 +18,13 @@ C:\Users\Neo\Source\Repos\HerrDextro\Lern-Periode-7\Graphic-Renderer\Graphic-Ren
 C:\Users\Neo\Source\Repos\HerrDextro\Lern-Periode-7\Graphic-Renderer\Graphic-Renderer\obj\Debug\net8.0\Graphic-Renderer.AssemblyInfo.cs
 C:\Users\Neo\Source\Repos\HerrDextro\Lern-Periode-7\Graphic-Renderer\Graphic-Renderer\obj\Debug\net8.0\Graphic-Renderer.csproj.CoreCompileInputs.cache
 C:\Users\Neo\Source\Repos\HerrDextro\Lern-Periode-7\Graphic-Renderer\Graphic-Renderer\obj\Debug\net8.0\Graphic-Renderer.sourcelink.json
+C:\Users\Neo\Source\Repos\HerrDextro\Lern-Periode-7\Graphic-Renderer\Graphic-Renderer\bin\Debug\net8.0\Graphic-Renderer.exe
+C:\Users\Neo\Source\Repos\HerrDextro\Lern-Periode-7\Graphic-Renderer\Graphic-Renderer\bin\Debug\net8.0\Graphic-Renderer.deps.json
+C:\Users\Neo\Source\Repos\HerrDextro\Lern-Periode-7\Graphic-Renderer\Graphic-Renderer\bin\Debug\net8.0\Graphic-Renderer.runtimeconfig.json
+C:\Users\Neo\Source\Repos\HerrDextro\Lern-Periode-7\Graphic-Renderer\Graphic-Renderer\bin\Debug\net8.0\Graphic-Renderer.dll
+C:\Users\Neo\Source\Repos\HerrDextro\Lern-Periode-7\Graphic-Renderer\Graphic-Renderer\bin\Debug\net8.0\Graphic-Renderer.pdb
+C:\Users\Neo\Source\Repos\HerrDextro\Lern-Periode-7\Graphic-Renderer\Graphic-Renderer\obj\Debug\net8.0\Graphic-Renderer.dll
+C:\Users\Neo\Source\Repos\HerrDextro\Lern-Periode-7\Graphic-Renderer\Graphic-Renderer\obj\Debug\net8.0\refint\Graphic-Renderer.dll
+C:\Users\Neo\Source\Repos\HerrDextro\Lern-Periode-7\Graphic-Renderer\Graphic-Renderer\obj\Debug\net8.0\Graphic-Renderer.pdb
+C:\Users\Neo\Source\Repos\HerrDextro\Lern-Periode-7\Graphic-Renderer\Graphic-Renderer\obj\Debug\net8.0\Graphic-Renderer.genruntimeconfig.cache
+C:\Users\Neo\Source\Repos\HerrDextro\Lern-Periode-7\Graphic-Renderer\Graphic-Renderer\obj\Debug\net8.0\ref\Graphic-Renderer.dll
