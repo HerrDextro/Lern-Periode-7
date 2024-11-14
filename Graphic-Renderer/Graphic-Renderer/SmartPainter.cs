@@ -103,7 +103,7 @@ namespace Graphic_Renderer
             {
                 for (int j = 0; j < pixel.GetLength(0); j++)
                 {
-                    if (pixel[j,i] != pixelLast[j,i])
+                    if (pixel[j, i] != pixelLast[j, i])
                     {
                         Console.SetCursorPosition(j, i);
                         if (charType[j, i] == "█")
@@ -117,7 +117,7 @@ namespace Graphic_Renderer
                         }
                         Console.Write(charType[j, i]);
                     }
-                    pixelLast[j, i] = pixel[j, i];
+                    //pixelLast[j, i] = pixel[j, i];
                 }
             }
             pixelLast = pixel.Clone() as string[,];
@@ -128,8 +128,6 @@ namespace Graphic_Renderer
             pixel = populateList(pixel, defaultBGColor);
             charType = populateList(charType, "█");
         }
-
-
 
         public void renderFrame()
         {
