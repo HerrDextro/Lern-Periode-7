@@ -170,7 +170,7 @@ namespace Graphic_Renderer
                     int rectEndX = Math.Abs(rectStartX - (cursorX));
                     int rectEndY = Math.Abs(rectStartY - (cursorY));
 
-                    painter.saveImage(rectStartX, rectStartY, rectEndX, rectEndX, "C:\\Users\\alex\\Source\\Repos\\HerrDextro\\Lern-Periode-7\\Graphic-Renderer\\Graphic-Renderer\\no.txt");
+                    painter.saveImage(rectStartX, rectStartY, rectEndX, rectEndY, @"..\..\..\DevPaint\Textures\texture.txt");
 
                     keypress2 = true;
                 }

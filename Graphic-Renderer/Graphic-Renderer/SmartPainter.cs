@@ -212,7 +212,7 @@ namespace Graphic_Renderer
                     catch { }
                 }
             }
-            //File.WriteAllText(filepath, toSingleString(save)); (removed due to hardcoded filepath, is experimental anyways
+            File.WriteAllText(filepath, toSingleString(save));
         }
 
         public void loadImage(int xpos, int ypos, string filepath)

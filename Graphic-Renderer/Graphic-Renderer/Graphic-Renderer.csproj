@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="BombDrop\Textures\" />
+    <Folder Include="DevPaint\Textures\" />
     <Folder Include="SpaceInvaders\textures\" />
   </ItemGroup>
 
