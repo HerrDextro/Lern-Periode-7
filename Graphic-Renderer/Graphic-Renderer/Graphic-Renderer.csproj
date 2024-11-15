@@ -11,6 +11,7 @@
   <ItemGroup>
     <Folder Include="DevPaint\Textures\" />
     <Folder Include="SpaceInvaders\textures\" />
+	  <Folder Include="TestGame"/>
   </ItemGroup>
 
 </Project>
