@@ -1,3 +1,6 @@
+using System.Reflection;
+using System.Text;
+
 public class ItemCollectorPlayer
 {
 	SPainter painter;
@@ -6,7 +9,7 @@ public class ItemCollectorPlayer
 	int width;
 	int height;
 
-	public ItemCollectorPlayer(SPainter painterInp)
+	public ItemCollectorPlayer(SPainter painter)
 	{
 		painter = painterInp;
 		xpos = 30;
@@ -35,9 +38,9 @@ public class Item
 	public int ypos { get; private set; }
 	public int width { get; private set; }
 	public int height { get; private set; }
-	SPainter painter;
+    SPainter painter;
 
-	public Item(SPainter painterInp)
+	public Item(SPainter painter)
 	{
 		painter = painterInp;
 		Random random = new Random();
