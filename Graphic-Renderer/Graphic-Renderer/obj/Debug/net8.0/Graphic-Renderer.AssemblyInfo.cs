@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Graphic-Renderer")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fc9827aa82ebd04fe4e0e6d62f8c09c1f54cc8aa")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ea51eb5f9536c8aa54d58568f291668f7bebdba3")]
 [assembly: System.Reflection.AssemblyProductAttribute("Graphic-Renderer")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Graphic-Renderer")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
