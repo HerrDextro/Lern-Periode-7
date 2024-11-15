@@ -44,7 +44,7 @@ Heute haben wir das Framework praktisch fertig gemacht. Man kann Bilder, Texture
 15.11.2024
 - [ ] Neo: Fix VS file properties to have misc files in compile mode (das braucht der ganze Morgen lange)
 - [ ] Neo: Loading screen animation
-- [ ] Neo: ???
+- [ ] Neo: Enemy 06/07 textures erstellen
 - [ ] Alex: Implement Music
 - [ ] Alex: Death Screen
 - [ ] Alex: Difficulty Increases
