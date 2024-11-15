@@ -1,0 +1,5 @@
+DarkYellow;DarkYellow;black;black;black;black;black;black;black;black;DarkYellow;DarkYellow;
+DarkYellow;DarkYellow;black;black;DarkYellow;DarkYellow;DarkYellow;DarkYellow;black;black;DarkYellow;DarkYellow;
+black;black;DarkYellow;DarkYellow;black;black;black;black;DarkYellow;DarkYellow;black;black;
+black;black;DarkYellow;DarkYellow;black;black;black;black;DarkYellow;DarkYellow;black;black;
+black;black;black;black;DarkYellow;DarkYellow;DarkYellow;DarkYellow;black;black;black;black;

@@ -5,7 +5,7 @@ namespace Graphic_Renderer
 {
     public class Enemy
     {
-        int xpos = 30;
+        int xpos;
         int ypos;
 
         int xvel = 1;
@@ -23,46 +23,91 @@ namespace Graphic_Renderer
 
         SPainter painter;
 
-        public Enemy(SPainter painterInp, bool isBoss)
+        public Enemy(SPainter painterInp, int tier, int xinp)
         {
             ypos = 1;
+
+            xpos = xinp;
             
             painter = painterInp;
 
             Random random1 = new Random();
 
-            if (!isBoss)
+
+            switch (tier)
             {
-                switch (random1.Next(3))
-                {
-                    case 0:
-                        texture = @"..\..\..\SpaceInvaders\textures\enemy01.txt";
-                        textureHIT = @"..\..\..\SpaceInvaders\textures\enemy01HIT.txt";
-                        healthPoints = 2;
-                        break;
-                    case 1:
-                        texture = @"..\..\..\SpaceInvaders\textures\enemy02.txt";
-                        textureHIT = @"..\..\..\SpaceInvaders\textures\enemy02HIT.txt";
-                        healthPoints = 2;
-                        break;
-                    case 2:
-                        texture = @"..\..\..\SpaceInvaders\textures\enemy03.txt";
-                        textureHIT = @"..\..\..\SpaceInvaders\textures\enemy03HIT.txt";
-                        healthPoints = 4;
-                        break;
-                }
+                case 1:
+                    switch (random1.Next(3))
+                    {
+                        case 0:
+                            texture = @"..\..\..\SpaceInvaders\textures\enemy01.txt";
+                            textureHIT = @"..\..\..\SpaceInvaders\textures\enemy01HIT.txt";
+                            healthPoints = 2;
+                            break;
+                        case 1:
+                            texture = @"..\..\..\SpaceInvaders\textures\enemy02.txt";
+                            textureHIT = @"..\..\..\SpaceInvaders\textures\enemy02HIT.txt";
+                            healthPoints = 2;
+                            break;
+                        case 2:
+                            texture = @"..\..\..\SpaceInvaders\textures\enemy03.txt";
+                            textureHIT = @"..\..\..\SpaceInvaders\textures\enemy03HIT.txt";
+                            healthPoints = 4;
+                            break;
+                    }
+                    break;
+                case 2:
+                    switch (random1.Next(3))
+                    {
+                        case 0:
+                            texture = @"..\..\..\SpaceInvaders\textures\enemy05.txt";
+                            textureHIT = @"..\..\..\SpaceInvaders\textures\enemy05HIT.txt";
+                            healthPoints = 5;
+                            break;
+                        case 1:
+                            texture = @"..\..\..\SpaceInvaders\textures\enemy06.txt";
+                            textureHIT = @"..\..\..\SpaceInvaders\textures\enemy06HIT.txt";
+                            healthPoints = 4;
+                            break;
+                        case 2:
+                            texture = @"..\..\..\SpaceInvaders\textures\enemy07.txt";
+                            textureHIT = @"..\..\..\SpaceInvaders\textures\enemy07HIT.txt";
+                            healthPoints = 6;
+                            break;
+                    }
+                    break;
+                case 3:
+                    switch (random1.Next(2))
+                    {
+                        case 0:
+                            texture = @"..\..\..\SpaceInvaders\textures\enemy04.txt";
+                            textureHIT = @"..\..\..\SpaceInvaders\textures\enemy04HIT.txt";
+                            healthPoints = 10;
+                            break;
+                        case 1:
+                            texture = @"..\..\..\SpaceInvaders\textures\enemy09.txt";
+                            textureHIT = @"..\..\..\SpaceInvaders\textures\enemy09HIT.txt";
+                            healthPoints = 14;
+                            break;
+                    }
+                    break;
+
             }
-            else
-            {
-                texture = @"..\..\..\SpaceInvaders\textures\enemy04.txt";
-                textureHIT = @"..\..\..\SpaceInvaders\textures\enemy04HIT.txt";
-                healthPoints = 10;
-            }
+
+
+            //texture = @"..\..\..\SpaceInvaders\textures\enemy04.txt";
+            //textureHIT = @"..\..\..\SpaceInvaders\textures\enemy04HIT.txt";
+            //healthPoints = 10;
+
+
+        
+            
+
 
             renderTexture = texture;
 
             Random random2 = new Random();
-            if (random1.Next(2) == 0)
+            if (xpos < 30)
             {
                 xvel = -1;
                 defXvel = -1;

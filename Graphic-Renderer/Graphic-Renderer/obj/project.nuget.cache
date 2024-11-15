@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "Cfwb9e+A4U0=",
+  "dgSpecHash": "YMwD2qiZCtM=",
   "success": true,
   "projectFilePath": "C:\\Users\\alex\\Source\\Repos\\HerrDextro\\Lern-Periode-7\\Graphic-Renderer\\Graphic-Renderer\\Graphic-Renderer.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\alex\\.nuget\\packages\\system.windows.extensions\\9.0.0\\system.windows.extensions.9.0.0.nupkg.sha512"
+  ],
   "logs": []
 }

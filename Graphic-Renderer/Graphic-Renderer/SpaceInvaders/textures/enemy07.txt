@@ -1,0 +1,5 @@
+black;black;darkGray;darkGray;black;black;black;black;darkGray;darkGray;black;black;
+black;black;darkGray;darkGray;darkGray;darkGray;darkGray;darkGray;darkGray;darkGray;black;black;
+darkGray;darkGray;black;black;darkGray;darkGray;darkGray;darkGray;black;black;darkGray;darkGray;
+darkGray;darkGray;black;black;black;black;black;black;black;black;darkGray;darkGray;
+black;black;darkGray;darkGray;black;black;black;black;darkGray;darkGray;black;black;

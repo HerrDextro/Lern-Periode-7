@@ -1,0 +1,5 @@
+magenta;magenta;black;black;magenta;magenta;magenta;magenta;black;black;magenta;magenta;
+black;black;magenta;magenta;black;black;black;black;magenta;magenta;black;black;
+black;black;magenta;magenta;magenta;magenta;magenta;magenta;magenta;magenta;black;black;
+black;black;magenta;magenta;black;black;black;black;magenta;magenta;black;black;
+magenta;magenta;black;black;magenta;magenta;magenta;magenta;black;black;magenta;magenta;
