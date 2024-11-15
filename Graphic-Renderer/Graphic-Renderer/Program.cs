@@ -13,7 +13,7 @@ namespace Graphic_Renderer
             string[] gamelist =
             {
                 "Space Invaders",
-                "Pong", //neow
+                "TestGame", //neow
                 "Dev Paint"
             };
             int cursorheight = 0;
@@ -77,18 +77,18 @@ namespace Graphic_Renderer
                             painter.updateFrame();
                             break;
                         case 2:
-                            Pong pong = new Pong();
-                            pong.StartGame(painter);  
+                            ItemCollector itemCollector = new ItemCollector();
+                            itemCollector.StartGame(painter);  // Corrected line
                             painter.updateFrame();
                             break;
                         case 3:
-                            DevPaint Defpaint = new DevPaint();
-                            Defpaint.StartGame(painter);
+                            DevPaint devPaint = new DevPaint();
+                            devPaint.StartGame(painter);
                             painter.updateFrame();
                             break;
-
                     }
                 }
+
 
 
 
