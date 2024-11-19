@@ -10,9 +10,9 @@ namespace Graphic_Renderer
         int width;
         int height;
 
-        public ItemCollectorPlayer(SPainter painter)
+        public ItemCollectorPlayer(SPainter myPainter)
         {
-            painter = painterInp;
+            myPainter = painterInp;
             xpos = 30;
             ypos = 28;
             width = 5;  //change to texture file later
@@ -33,7 +33,7 @@ namespace Graphic_Renderer
         }
     }
 
-    public class Item
+    public class Thing
     {
         public int xpos { get; private set; }
         public int ypos { get; private set; }
@@ -41,9 +41,9 @@ namespace Graphic_Renderer
         public int height { get; private set; }
         SPainter painter;
 
-        public Item(SPainter painter)
+        public Thing(SPainter myPainter)
         {
-            painter = painterInp;
+            myPainter = painterInp;
             Random random = new Random();
             xpos = random.Next(0, 60);
             ypos = 0;
