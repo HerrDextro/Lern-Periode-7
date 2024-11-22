@@ -49,3 +49,12 @@ Heute haben wir das Framework praktisch fertig gemacht. Man kann Bilder, Texture
 - [ ] Alex: Death Screen
 - [ ] Alex: Difficulty Increases
 - [ ] (Alex): Start Coding New Game
+
+22.11.2024
+- [ ] Alex: Formen fallen und Rotieren
+- [ ] Alex: Formen erkennen reihe
+- [ ] Alex: Formen löschen sich
+- [ ] Alex: Formen fallen nach löschung runter
+
+
+
