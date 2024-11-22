@@ -66,7 +66,8 @@ Neo hat heute endlich die Arbeitspakete von letzte Wochen geschafft, und ein fas
 - [ ] Neo: "Stupid" constructor for paddle
 - [ ] Neo: Modular constructors (textures, left righ boolean, ball size, filed size)
 - [ ] Alex: Tetris music track thread
-- [ ] Alex: 
+- [ ] Alex: Add more animations
+- [ ] Alex: Refine game-hub
 
 
 
