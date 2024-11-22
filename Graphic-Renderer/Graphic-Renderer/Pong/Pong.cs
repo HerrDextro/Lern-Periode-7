@@ -7,7 +7,10 @@ namespace Graphic_Renderer
     {
         public void StartGame(SPainter painterInp)
         {
-            Console.WriteLine("test success");
+            painter = painterInp;
+
+            bool runnning = true;
+
         }
     }
 }
