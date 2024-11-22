@@ -34,7 +34,7 @@ Heute haben wir das Framework praktisch fertig gemacht. Man kann Bilder, Texture
 - [X] Space Invaders: allyUFO class + shooting (keine Ahnung wie das funktioniert, daher kein konkretes AP)
 - [x] Neo: Pong (class slider)
 - [x] Pong: Fensterrand Collision
-- [ ] Pong: Pralleffect
+- [x] Pong: Pralleffect
 - [x] Pong: class ball
 
 ☝️ Vergessen Sie nicht, bis einen ersten Code auf github hochzuladen
@@ -42,9 +42,8 @@ Heute haben wir das Framework praktisch fertig gemacht. Man kann Bilder, Texture
 ...
 
 15.11.2024
-- [ ] Neo: Fix VS file properties to have misc files in compile mode (das braucht der ganze Morgen lange)
-- [ ] Neo: Loading screen animation
-- [ ] Neo: ???
+- [x] Neo: Fix VS file properties to have misc files in compile mode (das braucht der ganze Morgen lange)
+- [x] Neo: Doku SPainter
 - [ ] Alex: Implement Music
 - [ ] Alex: Death Screen
 - [ ] Alex: Difficulty Increases
@@ -55,6 +54,20 @@ Heute haben wir das Framework praktisch fertig gemacht. Man kann Bilder, Texture
 - [ ] Alex: Formen erkennen reihe
 - [ ] Alex: Formen löschen sich
 - [ ] Alex: Formen fallen nach löschung runter
+- [ ] Neo: hoffen, dass etwas funktioniert
+- [ ] Neo: Pong bis zu paddle und ball fertig
+
+Alex hat heute das ganze Tetris gemacht, es ist spielbar und man kann sterben. Das Tetris hat 7 Formen, welche rotiert werden können. 
+Neo hat heute endlich die Arbeitspakete von letzte Wochen geschafft, und ein fast fertiges single player Pong gemacht. Wir haben auch eine bessere Dokumentation für der SmartPainter erstellt, damit andere die vielleicht ein Game darauf machen wollen nicht so viel schmerz und träne haben.
+
+29.11.20247
+- [ ] Neo: Pong Hitbox
+- [ ] Neo: Game over screen
+- [ ] Neo: Stupid constructor for paddle
+- [ ] Neo: Modular constructors (textures, left righ boolean, ball size, filed size)
+- [ ] Alex: Tetris music track thread
+- [ ] 
+
 
 
 
