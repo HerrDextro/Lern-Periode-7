@@ -47,11 +47,8 @@ namespace Graphic_Renderer
             if (ypos >= 29)
             {
                 yspeed *= -1;
-        }
+            }
 
-        public bool stillExists()
-        {
-            return ypos >= 0;
         }
 
         

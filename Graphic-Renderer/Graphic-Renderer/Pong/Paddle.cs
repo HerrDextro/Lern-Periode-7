@@ -10,44 +10,36 @@ namespace Graphic_Renderer
         }
         SPainter painter;
 
-        string texture = @"C:\Users\Neo\Source\Repos\HerrDextro\Lern-Periode-7\Graphic-Renderer\Graphic-Renderer\Pong\textures\paddle1.txt";
-
-        int ypos = 22;
-
-        SPainter painter;
-
-        public Paddle(SPainter painterInp)
-        {
-            painter = painterInp;
-        }
+        string paddle1Texture = @"C:\Users\Neo\Source\Repos\HerrDextro\Lern-Periode-7\Graphic-Renderer\Graphic-Renderer\Pong\textures\paddle1.txt";
+        int xpos = 59; //horizontal position of paddle, the higher the further right, make no more than 59
+        int ypos;
 
         public void render()
         {
 
+            painter.loadImage(xpos, ypos, paddle1Texture);
+
             if (painter.KeyDown(SPainter.arrowLeft))
-            {
-                ypos++;
-                
-            }
-            if (painter.KeyDown(SPainter.arrowRight))
             {
                 ypos--;
                 
             }
-            
+            if (painter.KeyDown(SPainter.arrowRight))
+            {
+                ypos++;
+                
+            }
 
-            
 
-            if (ypos <= 0) //field boundaries
+            //field movement constraints
+            if (ypos <= 0)
             {
                 ypos = 0;
             }
-            if (ypos >= 55)
+            if (ypos >= 26) //26 bc paddle is 4 long i think
             {
-                ypos = 55;
+                ypos = 26;
             }
-
-            painter.loadImage(30, ypos, texture);
 
         }
     }

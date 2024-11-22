@@ -23,16 +23,18 @@ namespace Graphic_Renderer
 
             while (running)
             {
+                painter.updateFrame();
+                painter.clear();
                 bool alive = true;
                 //string paddlePath = "..\\Pong\\textures\\paddle1.txt";
                 //string ballPath = "..\\Pong\\textures\\ball.txt";
                 int paddleSpeed = 0; // Change when testing, otherwise much frustration
-                Thread.Sleep(25); //fps adjuster 
+                Thread.Sleep(200); //fps adjuster 
 
                 paddle.render();
-                ball.render();
+                ball.render(); 
 
-
+                
             }
         }
     }
