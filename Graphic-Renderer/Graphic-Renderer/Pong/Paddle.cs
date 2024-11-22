@@ -19,12 +19,12 @@ namespace Graphic_Renderer
 
             painter.loadImage(xpos, ypos, paddle1Texture);
 
-            if (painter.KeyDown(SPainter.arrowLeft))
+            if (painter.KeyDown(SPainter.arrowUp))
             {
                 ypos--;
                 
             }
-            if (painter.KeyDown(SPainter.arrowRight))
+            if (painter.KeyDown(SPainter.arrowDown))
             {
                 ypos++;
                 

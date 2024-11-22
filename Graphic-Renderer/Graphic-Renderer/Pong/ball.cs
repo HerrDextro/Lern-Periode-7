@@ -32,9 +32,9 @@ namespace Graphic_Renderer
             xpos += xspeed;
             ypos += yspeed;
 
-            if (xpos <= 0)
+            if (xpos <= 2)
             {
-                yspeed *= -1;
+                xspeed *= -1;
             }
             if (ypos <= 0)
             {

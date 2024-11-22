@@ -29,7 +29,7 @@ namespace Graphic_Renderer
                 //string paddlePath = "..\\Pong\\textures\\paddle1.txt";
                 //string ballPath = "..\\Pong\\textures\\ball.txt";
                 int paddleSpeed = 0; // Change when testing, otherwise much frustration
-                Thread.Sleep(200); //fps adjuster 
+                Thread.Sleep(25); //fps adjuster, standard is 25 ms
 
                 paddle.render();
                 ball.render(); 
