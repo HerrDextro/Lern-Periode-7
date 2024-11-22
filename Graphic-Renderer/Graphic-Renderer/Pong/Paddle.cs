@@ -4,7 +4,13 @@ namespace Graphic_Renderer
 {
     public class Paddle
     {
-        string texture = @"..\..\..\Pong\textures\paddle.txt";
+        public Paddle(SPainter painterInp)
+        {
+            painter = painterInp;
+        }
+        SPainter painter;
+
+        string texture = @"C:\Users\Neo\Source\Repos\HerrDextro\Lern-Periode-7\Graphic-Renderer\Graphic-Renderer\Pong\textures\paddle1.txt";
 
         int ypos = 22;
 
