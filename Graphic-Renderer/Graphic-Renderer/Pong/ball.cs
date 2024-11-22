@@ -42,7 +42,7 @@ namespace Graphic_Renderer
             }
             if (xpos >= 58)
             {
-                //xspeed *= -1;
+                xspeed *= -1;
             }
             if (ypos >= 29)
             {
