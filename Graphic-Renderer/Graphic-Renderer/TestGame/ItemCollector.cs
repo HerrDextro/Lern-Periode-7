@@ -1,10 +1,11 @@
+/*
 namespace Graphic_Renderer
 {
     public class ItemCollector
     {
         SPainter painter;
         List<Item> items = new List<Item>();
-
+        
         public void StartGame(SPainter painterInp)
         {
             painter = painterInp;
@@ -44,3 +45,4 @@ namespace Graphic_Renderer
         }
     }
 }
+*/

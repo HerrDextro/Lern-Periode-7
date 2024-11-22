@@ -1,3 +1,4 @@
+/*
 namespace Graphic_Renderer
 {
     public class Item
@@ -20,4 +21,4 @@ namespace Graphic_Renderer
             ypos++; // Moving downwards
         }
     }
-}
+}*/

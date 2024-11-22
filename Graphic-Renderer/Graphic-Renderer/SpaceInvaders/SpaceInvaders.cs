@@ -15,17 +15,22 @@ namespace Graphic_Renderer
 
         int difficulty = 0;
 
+
         private void playMusic()
         {
             string audioPath = @"..\..\..\SpaceInvaders\audio\guardian.wav"; ; // Use a .wav file.
             SoundPlayer player = new SoundPlayer(audioPath);
+            SoundPlayer fred = new SoundPlayer();
 
             // Loop the audio file
-            while (true)
+            while (musicRunning)
             {
                 player.PlaySync(); // PlaySync blocks the thread until the file finishes playing
             }
+            player.Stop();
         }
+
+        volatile bool musicRunning = true;
         public void StartGame(SPainter painterInp)
         {
             
@@ -38,8 +43,8 @@ namespace Graphic_Renderer
             bool running = true;
             int EnemyMoving = 0;
 
-            Thread myThread = new Thread(playMusic);
-            myThread.Start();
+            Thread musicThread = new Thread(playMusic);
+            musicThread.Start();
 
             while (running)
             {
@@ -90,6 +95,7 @@ namespace Graphic_Renderer
             painter.clear();
 
             painter.writeText("Press esc to continue", 15, 20);
+            painter.writeText("Music: youtube.com/@TenM", 15, 21);
 
             painter.loadImage(4, 4, @"..\..\..\..\Graphic-Renderer\SpaceInvaders\textures\deathScreen.txt");
 
@@ -97,6 +103,7 @@ namespace Graphic_Renderer
             {
                 painter.updateFrame();
             }
+            musicRunning = false;
 
             painter.clear();
             Thread.Sleep(100);

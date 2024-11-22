@@ -14,7 +14,8 @@ namespace Graphic_Renderer
             {
                 "Space Invaders",
                 "TestGame", //neow
-                "Dev Paint"
+                "Dev Paint",
+                "Tetris"
             };
             int cursorheight = 0;
             int cursorcool = 0;
@@ -77,13 +78,18 @@ namespace Graphic_Renderer
                             painter.updateFrame();
                             break;
                         case 2:
-                            ItemCollector itemCollector = new ItemCollector();
-                            itemCollector.StartGame(painter);  // Corrected line
+                            //ItemCollector itemCollector = new ItemCollector();
+                            //itemCollector.StartGame(painter);  // Corrected line
                             painter.updateFrame();
                             break;
                         case 3:
                             DevPaint devPaint = new DevPaint();
                             devPaint.StartGame(painter);
+                            painter.updateFrame();
+                            break;
+                        case 4:
+                            Tetris tetris = new Tetris(painter);
+                            tetris.StartGame();
                             painter.updateFrame();
                             break;
                     }

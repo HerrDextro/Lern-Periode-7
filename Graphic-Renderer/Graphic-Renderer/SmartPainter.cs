@@ -228,7 +228,10 @@ namespace Graphic_Renderer
                 {
                     try
                     {
-                        pixel[xpos + j, ypos + i] = line[j];
+                        if (pixel[xpos + j, ypos + i] != "none")
+                        {
+                            pixel[xpos + j, ypos + i] = line[j];
+                        }
                     }
                     catch (IndexOutOfRangeException) { }
                 }

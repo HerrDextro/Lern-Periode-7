@@ -1,3 +1,4 @@
+/*
 namespace Graphic_Renderer
 {
     public class ItemCollectorPlayer
@@ -57,3 +58,4 @@ namespace Graphic_Renderer
     }
 
 }
+*/
