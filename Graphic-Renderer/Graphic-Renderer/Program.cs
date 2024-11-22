@@ -13,8 +13,9 @@ namespace Graphic_Renderer
             string[] gamelist =
             {
                 "Space Invaders",
-                "Pong", //neow
-                "Dev Paint"
+                "Testgame", //neow
+                "Dev Paint",
+                "Pong"
             };
             int cursorheight = 0;
             int cursorcool = 0;
@@ -77,13 +78,16 @@ namespace Graphic_Renderer
                             painter.updateFrame();
                             break;
                         case 2:
-                            Pong pong = new Pong();
-                            pong.StartGame(painter);  
-                            painter.updateFrame();
+                            //s
                             break;
                         case 3:
                             DevPaint Defpaint = new DevPaint();
                             Defpaint.StartGame(painter);
+                            painter.updateFrame();
+                            break;
+                        case 4:
+                            Pong pong = new Pong();
+                            pong.StartGame(painter);
                             painter.updateFrame();
                             break;
 
