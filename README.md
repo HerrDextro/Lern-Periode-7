@@ -50,12 +50,12 @@ Heute haben wir das Framework praktisch fertig gemacht. Man kann Bilder, Texture
 - [ ] (Alex): Start Coding New Game
 
 22.11.2024
-- [ ] Alex: Formen fallen und Rotieren
-- [ ] Alex: Formen erkennen reihe
-- [ ] Alex: Formen löschen sich
-- [ ] Alex: Formen fallen nach löschung runter
-- [ ] Neo: hoffen, dass etwas funktioniert
-- [ ] Neo: Pong bis zu paddle und ball fertig
+- [x] Alex: Formen fallen und Rotieren
+- [x] Alex: Formen erkennen reihe
+- [x] Alex: Formen löschen sich
+- [x] Alex: Formen fallen nach löschung runter
+- [x] Neo: hoffen, dass etwas funktioniert
+- [x] Neo: Pong bis zu paddle und ball fertig
 
 Alex hat heute das ganze Tetris gemacht, es ist spielbar und man kann sterben. Das Tetris hat 7 Formen, welche rotiert werden können. 
 Neo hat heute endlich die Arbeitspakete von letzte Wochen geschafft, und ein fast fertiges single player Pong gemacht. Wir haben auch eine bessere Dokumentation für der SmartPainter erstellt, damit andere die vielleicht ein Game darauf machen wollen nicht so viel schmerz und träne haben.
@@ -63,10 +63,10 @@ Neo hat heute endlich die Arbeitspakete von letzte Wochen geschafft, und ein fas
 29.11.20247
 - [ ] Neo: Pong Hitbox
 - [ ] Neo: Game over screen
-- [ ] Neo: Stupid constructor for paddle
+- [ ] Neo: "Stupid" constructor for paddle
 - [ ] Neo: Modular constructors (textures, left righ boolean, ball size, filed size)
 - [ ] Alex: Tetris music track thread
-- [ ] 
+- [ ] Alex: 
 
 
 
