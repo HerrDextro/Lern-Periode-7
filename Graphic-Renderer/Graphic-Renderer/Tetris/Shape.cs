@@ -14,7 +14,7 @@ namespace Graphic_Renderer
         // Storing Color & position
         public string color = "black";
 
-        int xpos = 1;
+        int xpos = 7;
         public int ypos = 1;
 
         int keyCool = 0;
@@ -113,12 +113,12 @@ namespace Graphic_Renderer
             if (painter.KeyDown(SPainter.arrowLeft) && keyCool == 0)
             {
                 xpos++;
-                keyCool = 15;
+                keyCool = 7;
             }
             if (painter.KeyDown(SPainter.arrowRight) && keyCool == 0)
             {
                 xpos--;
-                keyCool = 15;
+                keyCool = 7;
             }
 
             if (xpos < 1)

@@ -17,6 +17,10 @@ namespace Graphic_Renderer
         // Utility Variables
         bool running = true;
 
+        int score = 0;
+        int level = 16;
+
+        bool boosting = false;
 
         Shape shape;
 
@@ -40,7 +44,7 @@ namespace Graphic_Renderer
                 Thread.Sleep(10);
 
                 time++;
-
+                
 
                 // Rendering Board
                 painter.fillRectangle("darkgray", 0, 0, 16, 30);
@@ -53,19 +57,40 @@ namespace Graphic_Renderer
                     }
                 }
 
+                painter.fillRectangle("black", 16, 2, 20, 3);
+                painter.writeText("Your Level: " + Convert.ToString(level), 33, 2);
+                painter.writeText("Your Score: " + Convert.ToString(score), 33, 3);
+                painter.writeText("Next Level: " + Convert.ToString(Math.Pow((level + 1), 2)*100), 33, 4);
+
+                if (score/100 >= Math.Pow((level+1),2))
+                {
+                    painter.fillRectangle("darkgray", 16, 2, 20, 3);
+                    level++;
+                }
+
+
                 // Rendering Dropping Shape
 
                 shape.checkKeyboardInputs();
                 shape.writeShape();
 
-                if (time % 10 == 0) // 100
+                if (painter.KeyDown(SPainter.space)&& !boosting)
+                {
+                    boosting = true;
+                }
+
+                if (time % (25-level) == 0 || boosting) // 100
                 {
                     shape.updatePosition();
                 }
 
                 if (shape.isColliding(board))
                 {
+                    boosting = false;
                     List<int[]> list = new List<int[]>(shape.lockShape());
+
+
+                    painter.fillRectangle("darkgray", 16, 2, 20, 3);
 
                     for (int i = 0; i < list.Count; i++)
                     {
@@ -86,6 +111,7 @@ namespace Graphic_Renderer
                 {
                     if (isRowDone(i))
                     {
+                        score += 100;
                         for (int j = i; j >= 0; j--)
                         {
                             moveLine(j);
@@ -127,7 +153,7 @@ namespace Graphic_Renderer
                 }
                 catch (IndexOutOfRangeException)
                 {
-                    board[i, line] = new Block(painter);
+                    board[i, line] = new Block(painter,i%2==0);
                 }
             }
         }
@@ -152,7 +178,7 @@ namespace Graphic_Renderer
             {
                 for (int c = 0; c < board.GetLength(1); c++)
                 {
-                    board[r, c] = new Block(painter);
+                    board[r, c] = new Block(painter,r%2==0);
                 }
             }
         }

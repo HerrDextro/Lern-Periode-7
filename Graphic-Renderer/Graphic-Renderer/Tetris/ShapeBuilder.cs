@@ -62,16 +62,13 @@ namespace Graphic_Renderer
 {
             "red",
             "darkred",
-            "darkblue",
-            "blue",
             "darkgreen",
             "green",
             "darkMagenta",
             "magenta",
-            "darkCyan",
-            "cyan",
             "DarkYellow",
-            "yellow",
+            "blue",
+            "darkBlue"
         };
 
 

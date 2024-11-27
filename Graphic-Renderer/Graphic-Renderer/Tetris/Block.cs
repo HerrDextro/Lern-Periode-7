@@ -18,9 +18,20 @@ namespace Graphic_Renderer
 
         string texturePath;
 
-        public Block(SPainter painterInput)
+        public Block(SPainter painterInput,bool colorInput)
         {
             painter = painterInput; 
+
+            if (colorInput)
+            {
+                color = "black";
+            }
+            else
+            {
+                color = "black";
+            }
+
+
         }
 
         public void LockBlock(string colorInp)

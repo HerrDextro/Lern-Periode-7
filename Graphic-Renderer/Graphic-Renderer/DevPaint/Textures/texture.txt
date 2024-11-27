@@ -1,0 +1,9 @@
+white;white;white;white;white;white;white;white;white;white;white;white;white;white;white;white;white;white;white;white;white;white;white;white;white;white;
+white;white;white;white;white;white;white;white;white;white;white;white;white;white;white;white;white;white;white;white;white;white;white;white;white;white;
+white;white;white;white;white;white;white;white;white;white;white;white;white;white;white;white;white;white;white;white;white;white;white;white;white;white;
+white;white;white;white;white;white;white;white;red;red;red;red;red;red;red;red;red;red;red;red;red;red;white;white;white;white;
+white;white;white;white;white;white;white;white;red;red;white;white;white;white;white;white;white;white;white;white;red;red;white;white;white;white;
+white;white;white;white;white;white;white;white;red;red;white;white;white;white;red;red;white;white;white;white;red;red;white;white;white;white;
+white;white;white;white;white;white;white;white;red;red;white;white;white;white;white;white;white;white;white;white;red;red;white;white;white;white;
+white;white;white;white;white;white;white;white;red;red;red;red;red;red;red;red;red;red;red;red;red;red;white;white;white;white;
+white;white;white;white;white;white;white;white;white;white;white;white;white;white;white;white;white;white;white;white;white;white;white;white;white;white;
