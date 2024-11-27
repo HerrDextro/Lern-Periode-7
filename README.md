@@ -61,8 +61,8 @@ Alex hat heute das ganze Tetris gemacht, es ist spielbar und man kann sterben. D
 Neo hat heute endlich die Arbeitspakete von letzte Wochen geschafft, und ein fast fertiges single player Pong gemacht. Wir haben auch eine bessere Dokumentation für der SmartPainter erstellt, damit andere die vielleicht ein Game darauf machen wollen nicht so viel schmerz und träne haben.
 
 29.11.20247
-- [ ] Neo: Pong Hitbox
-- [ ] Neo: Game over screen
+- [x] Neo: Pong Hitbox
+- [x] Neo: Game over screen
 - [ ] Neo: "Stupid" constructor for paddle
 - [ ] Neo: Modular constructors (textures, left righ boolean, ball size, filed size)
 - [ ] Alex: Tetris music track thread
