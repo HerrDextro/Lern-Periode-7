@@ -10,9 +10,11 @@ namespace Graphic_Renderer
         }
         SPainter painter;
 
+        
+
         string paddle1Texture = @"C:\Users\Neo\Source\Repos\HerrDextro\Lern-Periode-7\Graphic-Renderer\Graphic-Renderer\Pong\textures\paddle1.txt";
-        int xpos = 59; //horizontal position of paddle, the higher the further right, make no more than 59
-        int ypos;
+        int xpos = 58; //horizontal position of paddle, the higher the further right, make no more than 59
+        public int ypos; //public for collision access
 
         public void render()
         {
@@ -40,6 +42,7 @@ namespace Graphic_Renderer
             {
                 ypos = 26;
             }
+
 
         }
     }

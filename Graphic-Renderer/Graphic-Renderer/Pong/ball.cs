@@ -1,4 +1,5 @@
 using System.Reflection;
+using System.Reflection.Metadata.Ecma335;
 using System.Runtime.InteropServices.Marshalling;
 using System.Text;
 
@@ -11,17 +12,21 @@ namespace Graphic_Renderer
             painter = painterInp;
         }
 
+        public int xspeed = 1;
+        public int yspeed = 1;
+
         string ballTexture = @"C:\Users\Neo\Source\Repos\HerrDextro\Lern-Periode-7\Graphic-Renderer\Graphic-Renderer\Pong\textures\ball.txt";
 
         SPainter painter;
+        Pong pong = new Pong();
+        
 
-        int xpos = 30; //middle fo filed is x 30 or x 29 or smt
-        int ypos = 15; //middle of field is y15
+        public int xpos = 30; //middle fo filed is x 30 or x 29 or smt
+        public int ypos = 15; //middle of field is y15 //public for collision checker  
         //PLS DONOUT RESET IN RENDER YOU DAMABSS
-        int xspeed = 1;
-        int yspeed = 1;
+        
 
-        public void render()
+        public void render(Paddle paddle)
         {
             painter.loadImage(xpos, ypos, ballTexture);
 
@@ -40,9 +45,16 @@ namespace Graphic_Renderer
             {
                 yspeed *= -1;
             }
-            if (xpos >= 58)
+            if (xpos >= 58 && ypos <= paddle.ypos && ypos > paddle.ypos - 4) // how to get paddle variable
             {
                 xspeed *= -1;
+            }
+            if (xpos >= 59 && ypos !<= paddle.ypos && ypos !> paddle.ypos - 4)
+            {
+                xspeed = 0;
+                yspeed = 0;
+                painter.fillRectangle("darkred", 0, 0, 60, 30);
+                painter.writeText("Game Over", 30, 15);
             }
             if (ypos >= 29)
             {
@@ -51,6 +63,7 @@ namespace Graphic_Renderer
 
         }
 
+        
         
 
         
