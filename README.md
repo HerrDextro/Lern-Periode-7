@@ -59,6 +59,7 @@ Heute haben wir das Framework praktisch fertig gemacht. Man kann Bilder, Texture
 
 Alex hat heute das ganze Tetris gemacht, es ist spielbar und man kann sterben. Das Tetris hat 7 Formen, welche rotiert werden können. 
 Neo hat heute endlich die Arbeitspakete von letzte Wochen geschafft, und ein fast fertiges single player Pong gemacht. Wir haben auch eine bessere Dokumentation für der SmartPainter erstellt, damit andere die vielleicht ein Game darauf machen wollen nicht so viel schmerz und träne haben.
+Neo hat ein bisschen später die erste Version von Pong fertig gemacht. Es hat noch ein paar Bugs, und der Code ist noch nicht sauber und poliert. 
 
 29.11.20247
 - [x] Neo: Pong Hitbox
