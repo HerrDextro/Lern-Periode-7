@@ -10,7 +10,12 @@ namespace Graphic_Renderer
      {
         static void Main(string[] args)
         {
-            StartUp.Run();
+
+           SPainter painter = new SPainter(60, 30, "Black"); //Default for a. PC (Fullscreen): 144,44
+                                                              //Default for a. PC (Small): 60,30
+            
+            
+
             string[] gamelist =
             {
                 "Space Invaders",
@@ -22,13 +27,13 @@ namespace Graphic_Renderer
             int cursorcool = 0;
 
 
-            SPainter painter = new SPainter(60, 30,"Black"); //Default for a. PC (Fullscreen): 144,44
-                                                             //Default for a. PC (Small): 60,30
+            //SPainter painter = new SPainter(60, 30,"Black"); //Default for a. PC (Fullscreen): 144,44
+            //Default for a. PC (Small): 60,30
 
             //Startup Sequence (Animation)
-
-
-
+            
+            StartUp.Run(painter);
+            //Thread.Sleep(2000); //time for startup sequence
 
 
             //Main Loop
@@ -39,7 +44,7 @@ namespace Graphic_Renderer
 
             }
 
-            painter.renderFrame();
+            //painter.renderFrame();
 
             while (true)
             {
