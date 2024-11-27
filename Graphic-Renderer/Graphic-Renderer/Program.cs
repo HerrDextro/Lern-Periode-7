@@ -7,9 +7,10 @@ using Graphic_Renderer;
 namespace Graphic_Renderer
 {
      public class Program
-    {
+     {
         static void Main(string[] args)
         {
+            StartUp.Run();
             string[] gamelist =
             {
                 "Space Invaders",

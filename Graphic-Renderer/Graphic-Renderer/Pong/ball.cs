@@ -12,8 +12,8 @@ namespace Graphic_Renderer
             painter = painterInp;
         }
 
-        public int xspeed = 0.5;
-        public int yspeed = 0.5;
+        public int xspeed = 1;
+        public int yspeed = 1;
 
         string ballTexture = @"C:\Users\Neo\Source\Repos\HerrDextro\Lern-Periode-7\Graphic-Renderer\Graphic-Renderer\Pong\textures\ball.txt";
 
