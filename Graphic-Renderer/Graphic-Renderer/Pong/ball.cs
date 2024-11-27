@@ -12,8 +12,8 @@ namespace Graphic_Renderer
             painter = painterInp;
         }
 
-        public int xspeed = 1;
-        public int yspeed = 1;
+        public int xspeed = 0.5;
+        public int yspeed = 0.5;
 
         string ballTexture = @"C:\Users\Neo\Source\Repos\HerrDextro\Lern-Periode-7\Graphic-Renderer\Graphic-Renderer\Pong\textures\ball.txt";
 
@@ -45,13 +45,13 @@ namespace Graphic_Renderer
             {
                 yspeed *= -1;
             }
-            if (xpos >= 58 && ypos <= paddle.ypos && ypos > paddle.ypos - 4) // how to get paddle variable
+            if (paddle.ypos <= ypos && ypos <= paddle.ypos + 4 && xpos >= 57) // how to get paddle variable
             {
                 xspeed *= -1;
             }
             if (xpos >= 59 && ypos !<= paddle.ypos && ypos !> paddle.ypos - 4)
             {
-                xspeed = 0;
+                xspeed = 0; 
                 yspeed = 0;
                 painter.fillRectangle("darkred", 0, 0, 60, 30);
                 painter.writeText("Game Over", 30, 15);
@@ -62,10 +62,5 @@ namespace Graphic_Renderer
             }
 
         }
-
-        
-        
-
-        
     }
 }

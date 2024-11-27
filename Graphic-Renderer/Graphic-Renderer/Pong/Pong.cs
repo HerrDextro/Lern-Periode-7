@@ -26,44 +26,17 @@ namespace Graphic_Renderer
             Paddle paddle = new Paddle(painter);
             Ball ball = new Ball(painter);
 
-            
-            
-             
-
             while (running)
             {
                 painter.updateFrame();
                 painter.clear();
-                //string paddlePath = "..\\Pong\\textures\\paddle1.txt";
-                //string ballPath = "..\\Pong\\textures\\ball.txt";
+ 
                 int paddleSpeed = 0; // Change when testing, otherwise much frustration
-                Thread.Sleep(25); //fps adjuster, standard is 25 ms
+                Thread.Sleep(35); //fps adjuster, standard is 35 ms
                 
                 paddle.render();
                 ball.render(paddle);
-
-                /*//ball and paddle collision checker
-                if (ball.xpos >= 58 && ball.ypos < paddle.ypos && ball.ypos > paddle.ypos - 4) //leave on 59, as ball is 1 pixel
-                {
-                    collision = true;
-                    //Console.WriteLine("collision true");
-                }
-                if (pong.collision == false & ball.xpos >= 59)
-                {
-
-                    ball.xspeed = 0;
-                    ball.yspeed = 0;
-                    //painter.clear();
-                    painter.writeText("Game Over", 30, 15);
-                    Console.WriteLine("GameOver");
-                    running = false;
-
-                }*/
-
-
             }
-            
-
         }
     }
 }
