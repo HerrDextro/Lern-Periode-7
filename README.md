@@ -66,7 +66,7 @@ Neo hat ein bisschen später die erste Version von Pong fertig gemacht. Es hat n
 - [x] Neo: Game over screen
 - [ ] Neo: "Stupid" constructor for paddle
 - [ ] Neo: Modular constructors (textures, left righ boolean, ball size, filed size)
-- [ ] Alex: Tetris music track thread
+- [X] Alex: Tetris music track thread
 - [ ] Alex: Add more animations
 - [ ] Alex: Refine game-hub
 
