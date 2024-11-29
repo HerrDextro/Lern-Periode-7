@@ -30,7 +30,7 @@ namespace Graphic_Renderer
             "magenta",
             "darkCyan",
             "cyan",
-            "DarkYellow",
+            "darkYellow",
             "yellow",
         };
 

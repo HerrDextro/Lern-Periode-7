@@ -84,12 +84,10 @@ namespace Graphic_Renderer
             }
             return false;
         }
-        
-        
-        public void updatePosition()
-        {
-            ypos++;
-        }
+
+
+        public void updatePosition() => ypos++;
+
 
         public void checkKeyboardInputs()
         {

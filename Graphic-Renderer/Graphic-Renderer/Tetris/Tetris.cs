@@ -3,6 +3,7 @@ using System.Text;
 using System.Media;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using System.Security.Cryptography.X509Certificates;
+using System.Numerics;
 
 namespace Graphic_Renderer
 {
@@ -18,7 +19,7 @@ namespace Graphic_Renderer
         bool running = true;
 
         int score = 0;
-        int level = 16;
+        int level = 0;
 
         bool boosting = false;
 
@@ -33,9 +34,33 @@ namespace Graphic_Renderer
 
         }
 
+        private void playMusic()
+        {
+            string audioPath = @"..\..\..\Tetris\audio\tetris.wav";
+            SoundPlayer player = new SoundPlayer(audioPath);
+
+            Thread musicThread = new Thread(() =>
+            {
+                player.PlayLooping();
+                while (musicRunning)
+                {
+                    Thread.Sleep(100); // Small delay to prevent busy-waiting
+                }
+                player.Stop(); 
+            });
+
+            musicThread.IsBackground = true;
+            musicThread.Start();
+        }
+        volatile bool musicRunning = true;
+
         public void StartGame()
         {
             int time = 0;
+
+            Thread musicThread = new Thread(playMusic);
+            musicThread.Start();
+
             while (running)
             {
                 // Basic Painter updates
@@ -86,7 +111,7 @@ namespace Graphic_Renderer
 
                 if (shape.isColliding(board))
                 {
-                    boosting = false;
+                    
                     List<int[]> list = new List<int[]>(shape.lockShape());
 
 
@@ -95,6 +120,7 @@ namespace Graphic_Renderer
                     for (int i = 0; i < list.Count; i++)
                     {
                         board[list[i][0], list[i][1]].LockBlock(shape.color);
+                        boosting = false;
                     }
 
                     shape = new Shape(painter);
@@ -124,13 +150,15 @@ namespace Graphic_Renderer
             painter.clear();
             painter.loadImage(5, 5, @"..\..\..\Tetris\Textures\endscreen.txt");
 
-            painter.writeText("Press esc to continue", 15, 20);
-            //painter.writeText("Music: youtube.com/@TenM", 15, 21);
+            painter.writeText("Press esc to continue", 15, 19);
+            painter.writeText("Music: Sma$her - Tetris Phonk", 15, 20);
 
             while (!(painter.KeyDown(SPainter.escape)))
             {
                 painter.updateFrame();
             }
+
+            musicRunning = false;
 
             painter.clear();
             Thread.Sleep(100);

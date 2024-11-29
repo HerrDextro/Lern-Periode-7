@@ -18,19 +18,24 @@ namespace Graphic_Renderer
 
         private void playMusic()
         {
-            string audioPath = @"..\..\..\SpaceInvaders\audio\guardian.wav"; ; // Use a .wav file.
+            string audioPath = @"..\..\..\SpaceInvaders\audio\guardian.wav";
             SoundPlayer player = new SoundPlayer(audioPath);
-            SoundPlayer fred = new SoundPlayer();
 
-            // Loop the audio file
-            while (musicRunning)
+            Thread musicThread = new Thread(() =>
             {
-                player.PlaySync(); // PlaySync blocks the thread until the file finishes playing
-            }
-            player.Stop();
-        }
+                player.PlayLooping();
+                while (musicRunning)
+                {
+                    Thread.Sleep(100); // Small delay to prevent busy-waiting
+                }
+                player.Stop();
+            });
 
+            musicThread.IsBackground = true;
+            musicThread.Start();
+        }
         volatile bool musicRunning = true;
+
         public void StartGame(SPainter painterInp)
         {
             
