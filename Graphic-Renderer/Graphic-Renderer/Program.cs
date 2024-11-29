@@ -16,24 +16,24 @@ namespace Graphic_Renderer
             //painter.renderFrame(); //moved
 
             //Startup Sequence (Animation)
-            StartUp.StartUpAnim(painter);
+            //StartUp.StartUpAnim(painter);
             
-            painter.renderFrame(); //moved it here and the weird problem dissapreared. I think its bc startup anim cant render without it
+            //painter.renderFrame(); //moved it here and the weird problem dissapreared. I think its bc startup anim cant render without it
 
 
 
 
             //Main Loop, only activates once the bool returned from StartUpAnim(completed) is true
 
-            if (StartUp.StartUpAnim(painter))
-            {
+            
+            
                 string[] gamelist =
-            {
+                   {
                 "Space Invaders",
-                "Testgame", //neow
+                "StartUpAnim V1", //neow
                 "Dev Paint",
                 "Pong"
-            };
+                 };
                 int cursorheight = 0;
                 int cursorcool = 0;
 
@@ -43,7 +43,7 @@ namespace Graphic_Renderer
 
                 }
 
-                //painter.renderFrame();
+                painter.renderFrame();
 
                 while (true)
                 {
@@ -83,7 +83,9 @@ namespace Graphic_Renderer
                                 painter.updateFrame();
                                 break;
                             case 2:
-                                //s
+                                StartUp startUp= new StartUp();
+                                startUp.StartGame(painter);
+                                painter.updateFrame();
                                 break;
                             case 3:
                                 DevPaint Defpaint = new DevPaint();
@@ -103,7 +105,7 @@ namespace Graphic_Renderer
                     Thread.Sleep(50);
 
                 }
-            }
+            
         }
     }
 }

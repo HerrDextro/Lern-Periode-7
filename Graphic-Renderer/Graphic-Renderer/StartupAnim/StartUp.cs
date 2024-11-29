@@ -8,25 +8,42 @@ namespace Graphic_Renderer
     public class StartUp
     {
         SPainter painter;
-        StartUp startUp = new StartUp();    
+           
 
-        public static bool StartUpAnim(SPainter painter)
+        public void StartGame(SPainter painterInp)
         {
-            bool startUpAnimComplete = false; //set this to true only when start up animation is completed
+            //first red edge turning into red snow static
+            //then red snow static turns into solid block
+            //out of block there spawns a swiss flag (in middle of screen)
+            //swiss flag moves left, revealing smart painter text
+            //swiss flag is left and smartpainter text right
+
+            painter = painterInp;
+            painter.clear();
+            painter.fillRectangle("black", 0, 0, 60, 30);
+
+            bool running = true;
+
+            while(running)
+            {
+                //INSERT STARTUP ANIMATIONS HERE
+                //painter.fillRectangle("darkred", 0, 0, 60, 30);
+                //painter.fillRectangle("black", 2, 2, 56, 25);
+
+                //Thread.Sleep(2000); //dictates how long startup anim will be
+            }
+
+            
+            
             
 
-            //INSERT STARTUP ANIMATIONS HERE
-            painter.fillRectangle("darkred", 0, 0, 60, 30);
-            
-            Thread.Sleep(2000); //dictates how long startup anim will be 
-            startUpAnimComplete = true;
-            return startUpAnimComplete; //returns true for StartUpAnim completed
+
+
+
+
+
+           
           
-      
-
-
-
-
 
         }
     }
