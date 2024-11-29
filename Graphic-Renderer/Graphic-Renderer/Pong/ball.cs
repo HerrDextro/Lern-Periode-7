@@ -45,7 +45,7 @@ namespace Graphic_Renderer
             {
                 yspeed *= -1;
             }
-            if (paddle.ypos <= ypos && ypos <= paddle.ypos + 4 && xpos >= 57) // how to get paddle variable
+            if (paddle.ypos <= ypos && ypos <= paddle.ypos + 4 && xpos >= 57) //
             {
                 xspeed *= -1;
             }

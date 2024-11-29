@@ -8,14 +8,26 @@ namespace Graphic_Renderer
     public class StartUp
     {
         SPainter painter;
+        StartUp startUp = new StartUp();    
 
-        public static void Run(SPainter painter)
+        public static bool StartUpAnim(SPainter painter)
         {
-            painter.writeText("Hello World!", 30, 15);
-            painter.clear();
+            bool startUpAnimComplete = false; //set this to true only when start up animation is completed
             
+
+            //INSERT STARTUP ANIMATIONS HERE
             painter.fillRectangle("darkred", 0, 0, 60, 30);
-            Thread.Sleep(1000);
+            
+            Thread.Sleep(2000); //dictates how long startup anim will be 
+            startUpAnimComplete = true;
+            return startUpAnimComplete; //returns true for StartUpAnim completed
+          
+      
+
+
+
+
+
         }
     }
 }

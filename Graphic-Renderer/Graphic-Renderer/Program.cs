@@ -11,106 +11,99 @@ namespace Graphic_Renderer
         static void Main(string[] args)
         {
 
-           SPainter painter = new SPainter(60, 30, "Black"); //Default for a. PC (Fullscreen): 144,44
+            SPainter painter = new SPainter(60, 30, "Black"); //Default for a. PC (Fullscreen): 144,44
                                                               //Default for a. PC (Small): 60,30
-            
-            
+            //painter.renderFrame(); //moved
 
-            string[] gamelist =
+            //Startup Sequence (Animation)
+            StartUp.StartUpAnim(painter);
+            
+            painter.renderFrame(); //moved it here and the weird problem dissapreared. I think its bc startup anim cant render without it
+
+
+
+
+            //Main Loop, only activates once the bool returned from StartUpAnim(completed) is true
+
+            if (StartUp.StartUpAnim(painter))
+            {
+                string[] gamelist =
             {
                 "Space Invaders",
                 "Testgame", //neow
                 "Dev Paint",
                 "Pong"
             };
-            int cursorheight = 0;
-            int cursorcool = 0;
+                int cursorheight = 0;
+                int cursorcool = 0;
 
-
-            //SPainter painter = new SPainter(60, 30,"Black"); //Default for a. PC (Fullscreen): 144,44
-            //Default for a. PC (Small): 60,30
-
-            //Startup Sequence (Animation)
-            
-            StartUp.Run(painter);
-            //Thread.Sleep(2000); //time for startup sequence
-
-
-            //Main Loop
-
-            for (int i = 0; i < gamelist.Length; i++)
-            {
-                painter.writeText(gamelist[i], 3, i + 1);
-
-            }
-
-            //painter.renderFrame();
-
-            while (true)
-            {
-                painter.updateFrame();
-                painter.clear();
-
-                painter.fillRectangle("darkgray",1,cursorheight,10,1);
                 for (int i = 0; i < gamelist.Length; i++)
                 {
-                    painter.writeText(gamelist[i] ,3 , i+1);
+                    painter.writeText(gamelist[i], 3, i + 1);//deactivate when startupanim
 
                 }
 
-                if (cursorcool > 0)
-                {
-                    cursorcool--;
-                }
+                //painter.renderFrame();
 
-                if (painter.KeyDown(SPainter.arrowDown) && cursorcool == 0)
+                while (true)
                 {
-                    cursorheight += 1;
-                    cursorcool = 2;
-                }
-                if (painter.KeyDown(SPainter.arrowUp) && cursorcool == 0)
-                {
-                    cursorheight -= 1;
-                    cursorcool = 2;
-                }
+                    painter.updateFrame();
+                    painter.clear(); //deactivate this when startupanim
 
-                if (painter.KeyDown(SPainter.enter))
-                {
-                    switch (cursorheight)
+                    painter.fillRectangle("darkgray", 1, cursorheight, 10, 1);
+                    for (int i = 0; i < gamelist.Length; i++)
                     {
-                        case 1:
-                            SpaceInvader spaceInvaders = new SpaceInvader();
-                            spaceInvaders.StartGame(painter);
-                            painter.updateFrame();
-                            break;
-                        case 2:
-                            //s
-                            break;
-                        case 3:
-                            DevPaint Defpaint = new DevPaint();
-                            Defpaint.StartGame(painter);
-                            painter.updateFrame();
-                            break;
-                        case 4:
-                            Pong pong = new Pong();
-                            pong.StartGame(painter);
-                            painter.updateFrame();
-                            break;
+                        painter.writeText(gamelist[i], 3, i + 1);
 
                     }
+
+                    if (cursorcool > 0)
+                    {
+                        cursorcool--;
+                    }
+
+                    if (painter.KeyDown(SPainter.arrowDown) && cursorcool == 0)
+                    {
+                        cursorheight += 1;
+                        cursorcool = 2;
+                    }
+                    if (painter.KeyDown(SPainter.arrowUp) && cursorcool == 0)
+                    {
+                        cursorheight -= 1;
+                        cursorcool = 2;
+                    }
+
+                    if (painter.KeyDown(SPainter.enter))
+                    {
+                        switch (cursorheight)
+                        {
+                            case 1:
+                                SpaceInvader spaceInvaders = new SpaceInvader();
+                                spaceInvaders.StartGame(painter);
+                                painter.updateFrame();
+                                break;
+                            case 2:
+                                //s
+                                break;
+                            case 3:
+                                DevPaint Defpaint = new DevPaint();
+                                Defpaint.StartGame(painter);
+                                painter.updateFrame();
+                                break;
+                            case 4:
+                                Pong pong = new Pong();
+                                pong.StartGame(painter);
+                                painter.updateFrame();
+                                break;
+
+                        }
+                    }
+
+
+                    Thread.Sleep(50);
+
                 }
-
-
-
-
-                Thread.Sleep(50);
-
             }
-
-
-
-
-
         }
     }
 }
