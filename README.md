@@ -64,12 +64,16 @@ Neo hat ein bisschen später die erste Version von Pong fertig gemacht. Es hat n
 29.11.20247
 - [x] Neo: Pong Hitbox
 - [x] Neo: Game over screen
-- [ ] Neo: "Stupid" constructor for paddle
-- [ ] Neo: Modular constructors (textures, left righ boolean, ball size, filed size)
+- [x] Neo: StartUp Anim Program
+- [x] Neo: StartUpAnim textures (flag, text, logo)
+- [ ] Neo. STartUpAnim Animation function: red snow to square
 - [X] Alex: Tetris music track thread
 - [ ] Alex: Add more animations
 - [ ] Alex: Refine game-hub
 
+05.11.202
+- [ ] Neo: "Stupid" constructor for paddle
+- [ ] Neo: Modular constructors (textures, left righ boolean, ball size, filed size)
 
 
 
