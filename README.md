@@ -75,9 +75,9 @@ Neo: Heute habe ich Pong vollständig funktionierend gemacht. Ich habe Hitboxes 
 
 Alex: Ich habe heute all meine Ziele erreicht und noch mehr gemacht, indem ich den SmartPainter mit mehreren neuen Funktionen und einigen Patches aktualisiert habe. Ich habe auch angefangen, "Cursors zu readen". Ich habe auch Tetris ein Audiotrack gegeben auf ein separater Thread, und alle Probleme damit gefixt. Ich habe das Game Hub (aktuelles Start screen) auf Audio gegeben und leicht verbessert.
 
-05.11.202
+06.11.202
 - [x] Neo: "Stupid" constructor for paddle
-- [ ] Neo: Modular constructors (textures, left righ boolean, ball size, filed size)
+- [x] Neo: Modular constructors (textures, left righ boolean, ball size, filed size)
 - [ ] Neo: STartUpAnim Animation function: red snow to square
 - [X] Alex: Cursor Reader testprogramm
 - [X] Alex: Cursor Reader im SPainter setzen
@@ -86,4 +86,6 @@ Alex: Ich habe heute all meine Ziele erreicht und noch mehr gemacht, indem ich d
 - [ ] Alex: Alle Probleme beheben, die dadurch entstehen
 
 
-
+13.11.2024
+- [ ] Neo: dynamic hitbox variables (auto adjusting, pong)
+- [ ] 
