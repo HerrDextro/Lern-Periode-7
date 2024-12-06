@@ -29,6 +29,8 @@ namespace Graphic_Renderer
 
             SPainter painter = new SPainter(60, 30,"Black"); //Default for a. PC (Fullscreen): 144,44
                                                              //Default for a. PC (Small): 60,30
+            SReader reader = new SReader();
+
             painter.renderFrame();
 
             //Startup Sequence (Animation)
@@ -61,18 +63,18 @@ namespace Graphic_Renderer
                     cursorcool--;
                 }
 
-                if (painter.KeyDown(SPainter.arrowDown) && cursorcool == 0)
+                if (reader.KeyDown(SReader.arrowDown) && cursorcool == 0)
                 {
                     cursorheight += 1;
                     cursorcool = 2;
                 }
-                if (painter.KeyDown(SPainter.arrowUp) && cursorcool == 0)
+                if (reader.KeyDown(SReader.arrowUp) && cursorcool == 0)
                 {
                     cursorheight -= 1;
                     cursorcool = 2;
                 }
 
-                if (painter.KeyDown(SPainter.enter) && cursorheight >= 1 && cursorheight <= gamelist.Length)
+                if (reader.KeyDown(SReader.enter) && cursorheight >= 1 && cursorheight <= gamelist.Length)
                 {
                     
                     
@@ -80,7 +82,7 @@ namespace Graphic_Renderer
                     {
                         case 1:
                             SpaceInvader spaceInvaders = new SpaceInvader();
-                            spaceInvaders.StartGame(painter);
+                            spaceInvaders.StartGame(painter,reader);
                             painter.updateFrame();
                             break;
                         case 2:
@@ -90,11 +92,11 @@ namespace Graphic_Renderer
                             break;
                         case 3:
                             DevPaint devPaint = new DevPaint();
-                            devPaint.StartGame(painter);
+                            devPaint.StartGame(painter,reader);
                             painter.updateFrame();
                             break;
                         case 4:
-                            Tetris tetris = new Tetris(painter);
+                            Tetris tetris = new Tetris(painter, reader);
                             tetris.StartGame();
                             painter.updateFrame();
                             break;

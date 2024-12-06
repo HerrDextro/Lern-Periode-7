@@ -40,6 +40,7 @@ namespace Graphic_Renderer
 
         private const int VK_LBUTTON = 0x01; // Virtual key code for the left mouse button
         private const int VK_RBUTTON = 0x02; // Virtual key code for the right mouse button
+        private const int VK_MBUTTON = 0x04; // Virtual key code for the middle mouse button
 
         [StructLayout(LayoutKind.Sequential)]
         struct Coord
@@ -129,7 +130,7 @@ namespace Graphic_Renderer
         public int consoleHeight;
 
         // Constructor
-        public SReader(int width, int height,string color)
+        public SReader()
         {
             Console.Title = "GraphicsEngine";
         }
@@ -204,6 +205,11 @@ namespace Graphic_Renderer
         public bool IsRightMouseButtonDown()
         {
             return (GetAsyncKeyState(VK_RBUTTON) & 0x8000) != 0; // Check high-order bit
+        }
+
+        public bool isMiddleMouseButtonDown()
+        {
+            return (GetAsyncKeyState(VK_MBUTTON) & 0x80000) != 0;
         }
 
 

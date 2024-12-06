@@ -11,6 +11,7 @@ namespace Graphic_Renderer
     {
         // Storing Painter
         SPainter painter;
+        SReader reader;
 
         // Storing Gamegrid
         public Block[,] board = new Block[14, 28]; // Size of gamegrid
@@ -25,12 +26,14 @@ namespace Graphic_Renderer
 
         Shape shape;
 
-        public Tetris(SPainter painterInput)
+        public Tetris(SPainter painterInput, SReader readerInp)
         {
             painter = painterInput;
+            reader = readerInp;
+
             FillBlocks();
 
-            shape = new Shape(painter);
+            shape = new Shape(painter,reader);
 
         }
 
@@ -99,7 +102,7 @@ namespace Graphic_Renderer
                 shape.checkKeyboardInputs();
                 shape.writeShape();
 
-                if ((painter.KeyDown(SPainter.space) || painter.IsLeftMouseButtonDown())&& !boosting)
+                if ((reader.KeyDown(SReader.space) || reader.IsLeftMouseButtonDown())&& !boosting)
                 {
                     boosting = true;
                 }
@@ -123,7 +126,7 @@ namespace Graphic_Renderer
                         boosting = false;
                     }
 
-                    shape = new Shape(painter);
+                    shape = new Shape(painter,reader);
 
                     if (shape.isColliding(board) && shape.ypos < 2)
                     {
@@ -156,7 +159,7 @@ namespace Graphic_Renderer
             painter.writeText("Press esc to continue", 15, 19);
             painter.writeText("Music: Sma$her - Tetris Phonk", 15, 20);
 
-            while (!(painter.KeyDown(SPainter.escape)))
+            while (!(reader.KeyDown(SReader.escape)))
             {
                 painter.updateFrame();
             }
@@ -167,13 +170,6 @@ namespace Graphic_Renderer
             Thread.Sleep(100);
         }
     
-
-
-
-
-
-    
-
         private void moveLine(int line)
         {
             for (int i = 0;i < board.GetLength(0); i++)

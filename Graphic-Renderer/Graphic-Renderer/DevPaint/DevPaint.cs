@@ -54,7 +54,7 @@ namespace Graphic_Renderer
             pixels = populateList(pixels,"black");
         }
 
-        public void StartGame(SPainter painter)
+        public void StartGame(SPainter painter, SReader reader)
         {
             painter.clear();
             painter.fillRectangle("black",0, 0, 60, 30);
@@ -132,13 +132,13 @@ namespace Graphic_Renderer
                     counter = 0;
                 }
 
-                if (painter.KeyDown(SPainter.shift) && keypress)
+                if (reader.KeyDown(SReader.shift) && keypress)
                 {
                     keypress = false;
                     rectStartX = cursorX;
                     rectStartY = cursorY;
                 }
-                else if (!(painter.KeyDown(SPainter.shift)) && !(keypress))
+                else if (!(reader.KeyDown(SReader.shift)) && !(keypress))
                 {
                     int rectEndX = Math.Abs(rectStartX - (cursorX));
                     int rectEndY = Math.Abs(rectStartY - (cursorY));
@@ -162,13 +162,13 @@ namespace Graphic_Renderer
                     painter.fillRectangle(ColorsArr[CurrentColor], rectStartX,rectStartY,rectEndX,rectEndY);
                 }
 
-                if (painter.KeyDown(SPainter.C) && keypress2)
+                if (reader.KeyDown(SReader.C) && keypress2)
                 {
                     keypress2 = false;
                     rectStartX = cursorX;
                     rectStartY = cursorY;
                 }
-                else if (!(painter.KeyDown(SPainter.C)) && !(keypress2))
+                else if (!(reader.KeyDown(SReader.C)) && !(keypress2))
                 {
                     int rectEndX = Math.Abs(rectStartX - (cursorX));
                     int rectEndY = Math.Abs(rectStartY - (cursorY));
@@ -187,7 +187,7 @@ namespace Graphic_Renderer
                     painter.fillRectangle(ColorsArr[CurrentColor], rectStartX, rectStartY, rectEndX, rectEndY);
                 }
 
-                int[] cursorpos = painter.getMousePos();
+                int[] cursorpos = reader.getMousePos();
                 cursorX = cursorpos[0];
                 cursorY = cursorpos[1];
 
@@ -208,51 +208,25 @@ namespace Graphic_Renderer
                     cursorY = painter.consoleHeight-1;
                 }
 
-                if (painter.KeyDown(SPainter.escape))
+                if (reader.KeyDown(SReader.escape))
                 {
                     running = false;
                 }
-                if (painter.KeyDown(SPainter.arrowLeft) && painter.KeyDown(SPainter.alt))
+                if (reader.KeyDown(SReader.arrowLeft) && reader.KeyDown(SReader.alt))
                 {
                     CurrentColor++;
                     Thread.Sleep(100);
                 }
-                if (painter.KeyDown(SPainter.arrowRight) && painter.KeyDown(SPainter.alt))
+                if (reader.KeyDown(SReader.arrowRight) && reader.KeyDown(SReader.alt))
                 {
                     CurrentColor--;
                     Thread.Sleep(100);
                 }
 
-                if (painter.KeyDown(SPainter.space) || painter.IsRightMouseButtonDown())
+                if (reader.KeyDown(SReader.space) || reader.IsRightMouseButtonDown())
                 {
                     
                     pixels[cursorX, cursorY] = ColorsArr[CurrentColor];
-                }
-
-
-                if (!painter.KeyDown(SPainter.alt))
-                {
-
-                    if (painter.KeyDown(SPainter.arrowDown) && cursorY <= 28)
-                    {
-                        cursorY++;
-                        Thread.Sleep(25);
-                    }
-                    if (painter.KeyDown(SPainter.arrowUp) && cursorY >= 1)
-                    {
-                        cursorY--;
-                        Thread.Sleep(25);
-                    }
-                    if (painter.KeyDown(SPainter.arrowLeft) && cursorX <= 50)
-                    {
-                        cursorX++;
-                        Thread.Sleep(25);
-                    }
-                    if (painter.KeyDown(SPainter.arrowRight) && cursorX >= 1)
-                    {
-                        cursorX--;
-                        Thread.Sleep(25);
-                    }
                 }
 
 

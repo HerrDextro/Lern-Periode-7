@@ -10,6 +10,7 @@ namespace Graphic_Renderer
     {
         // Storing Painter
         SPainter painter;
+        SReader reader;
 
         // Storing Color & position
         public string color = "black";
@@ -25,9 +26,11 @@ namespace Graphic_Renderer
 
         ShapeBuilder factory;
 
-        public Shape(SPainter painterInput)
+        public Shape(SPainter painterInput, SReader readerInp)
         {
             painter = painterInput;
+            reader = readerInp;
+
             factory = new ShapeBuilder();
             texture = factory.getShape();
             color = factory.color;
@@ -96,25 +99,25 @@ namespace Graphic_Renderer
                 keyCool--;
             }
 
-            xpos = painter.getMousePos()[0];
+            xpos = reader.getMousePos()[0];
             
-            if ((painter.KeyDown(SPainter.arrowUp) || painter.IsRightMouseButtonDown()) && keyCool == 0)
+            if ((reader.KeyDown(SReader.arrowUp) || reader.IsRightMouseButtonDown()) && keyCool == 0)
             {
                 texture = RotateLeft(texture);
                 keyCool = 15;
             }
-            if (painter.KeyDown(SPainter.arrowDown) && keyCool == 0)
+            if (reader.KeyDown(SReader.arrowDown) && keyCool == 0)
             {
                 texture = RotateRight(texture);
                 keyCool = 15;
             }
 
-            if (painter.KeyDown(SPainter.arrowLeft) && keyCool == 0)
+            if (reader.KeyDown(SReader.arrowLeft) && keyCool == 0)
             {
                 xpos++;
                 keyCool = 7;
             }
-            if (painter.KeyDown(SPainter.arrowRight) && keyCool == 0)
+            if (reader.KeyDown(SReader.arrowRight) && keyCool == 0)
             {
                 xpos--;
                 keyCool = 7;

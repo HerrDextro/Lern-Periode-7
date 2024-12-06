@@ -14,10 +14,12 @@ namespace Graphic_Renderer
         List<Bullet> bullets = new List<Bullet>();
 
         SPainter painter;
+        SReader reader;
 
-        public Player(SPainter painterInp)
+        public Player(SPainter painterInp, SReader readerInp)
         {
             painter = painterInp;
+            reader = readerInp;
         }
 
         public List<Bullet> getBullets()
@@ -42,17 +44,17 @@ namespace Graphic_Renderer
                 bulletCool--;
             }
 
-            if (painter.KeyDown(SPainter.arrowLeft) && cool == 0)
+            if (reader.KeyDown(SReader.arrowLeft) && cool == 0)
             {
                 xpos++;
                 cool = 2;
             }
-            if (painter.KeyDown(SPainter.arrowRight) && cool == 0)
+            if (reader.KeyDown(SReader.arrowRight) && cool == 0)
             {
                 xpos--;
                 cool = 2;
             }
-            if (painter.KeyDown(SPainter.arrowUp) && bulletCool == 0)
+            if (reader.KeyDown(SReader.arrowUp) && bulletCool == 0)
             {
                 bullets.Add(new Bullet(xpos + 2, painter));
                 bulletCool = 7;

@@ -36,12 +36,12 @@ namespace Graphic_Renderer
         }
         volatile bool musicRunning = true;
 
-        public void StartGame(SPainter painterInp)
+        public void StartGame(SPainter painterInp, SReader reader)
         {
             
             painter = painterInp;
 
-            Player player = new Player(painter);
+            Player player = new Player(painter,reader);
 
             painter.clear();
             painter.fillRectangle("black", 0, 0, 60, 30);
@@ -104,7 +104,7 @@ namespace Graphic_Renderer
 
             painter.loadImage(4, 4, @"..\..\..\..\Graphic-Renderer\SpaceInvaders\textures\deathScreen.txt");
 
-            while (!(painter.KeyDown(SPainter.escape)))
+            while (!(reader.KeyDown(SReader.escape)))
             {
                 painter.updateFrame();
             }
