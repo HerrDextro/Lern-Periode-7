@@ -63,6 +63,9 @@ namespace Graphic_Renderer
 
             while (running)
             {
+                
+                
+                
                 counter++;
                 
                 painter.updateFrame();
@@ -184,8 +187,26 @@ namespace Graphic_Renderer
                     painter.fillRectangle(ColorsArr[CurrentColor], rectStartX, rectStartY, rectEndX, rectEndY);
                 }
 
+                int[] cursorpos = painter.getMousePos();
+                cursorX = cursorpos[0];
+                cursorY = cursorpos[1];
 
-
+                if (cursorX < 0)
+                {
+                    cursorX = 0;
+                }
+                if (cursorX >= painter.consoleWidth)
+                {
+                    cursorX = painter.consoleWidth-1;
+                }
+                if (cursorY < 0)
+                {
+                    cursorY = 0;
+                }
+                if (cursorY >= painter.consoleHeight)
+                {
+                    cursorY = painter.consoleHeight-1;
+                }
 
                 if (painter.KeyDown(SPainter.escape))
                 {
@@ -202,8 +223,9 @@ namespace Graphic_Renderer
                     Thread.Sleep(100);
                 }
 
-                if (painter.KeyDown(SPainter.space))
+                if (painter.KeyDown(SPainter.space) || painter.IsRightMouseButtonDown())
                 {
+                    
                     pixels[cursorX, cursorY] = ColorsArr[CurrentColor];
                 }
 

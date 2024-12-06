@@ -89,7 +89,7 @@ namespace Graphic_Renderer
 
                 if (score/100 >= Math.Pow((level+1),2))
                 {
-                    painter.fillRectangle("darkgray", 16, 2, 20, 3);
+                    painter.updateText();
                     level++;
                 }
 
@@ -99,7 +99,7 @@ namespace Graphic_Renderer
                 shape.checkKeyboardInputs();
                 shape.writeShape();
 
-                if (painter.KeyDown(SPainter.space)&& !boosting)
+                if ((painter.KeyDown(SPainter.space) || painter.IsLeftMouseButtonDown())&& !boosting)
                 {
                     boosting = true;
                 }
@@ -115,7 +115,7 @@ namespace Graphic_Renderer
                     List<int[]> list = new List<int[]>(shape.lockShape());
 
 
-                    painter.fillRectangle("darkgray", 16, 2, 20, 3);
+                    painter.updateText();
 
                     for (int i = 0; i < list.Count; i++)
                     {
@@ -137,6 +137,9 @@ namespace Graphic_Renderer
                 {
                     if (isRowDone(i))
                     {
+                        painter.fillRectangle("white", 1, i+1, 14, 1);
+                        painter.updateFrame();
+
                         score += 100;
                         for (int j = i; j >= 0; j--)
                         {

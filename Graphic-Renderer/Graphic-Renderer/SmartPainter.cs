@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.Marshalling;
+using System.Drawing;
 
 namespace Graphic_Renderer
 {
@@ -13,10 +14,64 @@ namespace Graphic_Renderer
         string[,] charType;
         string defaultTextColor;
         string defaultBGColor;
+        [DllImport("user32.dll")]
+        public static extern bool GetCursorPos(out POINT lpPoint);
+
 
         [DllImport("user32.dll")]
         private static extern short GetAsyncKeyState(int vKey);
 
+
+
+
+        [StructLayout(LayoutKind.Sequential)]
+        public struct POINT { public int X, Y; }
+
+        [DllImport("user32.dll")]
+        public static extern bool GetWindowRect(IntPtr hwnd, ref Rect rectangle);
+
+        [DllImport("user32.dll", EntryPoint = "FindWindow", SetLastError = true)]
+        public static extern IntPtr FindWindowByCaption(IntPtr zeroOnly, string lpWindowName);
+
+        [StructLayout(LayoutKind.Sequential)]
+        public struct Rect
+        {
+            public int Left;        // x position of upper-left corner
+            public int Top;         // y position of upper-left corner
+            public int Right;       // x position of lower-right corner
+            public int Bottom;      // y position of lower-right corner
+        }
+
+
+        private const int VK_LBUTTON = 0x01; // Virtual key code for the left mouse button
+        private const int VK_RBUTTON = 0x02; // Virtual key code for the right mouse button
+
+        [StructLayout(LayoutKind.Sequential)]
+        struct Coord
+        {
+            public short X;
+            public short Y;
+        }
+
+        [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode)]
+        struct CONSOLE_FONT_INFO_EX
+        {
+            public uint cbSize;
+            public uint nFont;
+            public Coord dwFontSize;
+            public int FontFamily;
+            public int FontWeight;
+            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 32)]
+            public string FaceName;
+        }
+
+        [DllImport("kernel32.dll", SetLastError = true)]
+        static extern bool GetCurrentConsoleFontEx(IntPtr hConsoleOutput, bool bMaximumWindow, ref CONSOLE_FONT_INFO_EX lpConsoleCurrentFontEx);
+
+        [DllImport("kernel32.dll", SetLastError = true)]
+        static extern IntPtr GetStdHandle(int nStdHandle);
+
+        const int STD_OUTPUT_HANDLE = -11;
 
         // Letters
         public const int A = 0x41;
@@ -75,12 +130,19 @@ namespace Graphic_Renderer
         public const int delete = 0x2E;
 
 
+        public int consoleWidth;
+        public int consoleHeight;
+
         // Constructor
         public SPainter(int width, int height,string color)
         {
             width *= 2;
 
             defaultBGColor = color;
+
+            consoleHeight = height;
+            consoleWidth = width/2;
+
             
             pixel = new string[width,height];
             pixel = populateList(pixel, color);
@@ -94,9 +156,83 @@ namespace Graphic_Renderer
 
             Console.CursorVisible = false;
 
-
-
+            Console.Title = "GraphicsEngine";
         }
+
+        public int[] getMousePos() // Relative to Window in SPainter Pixels
+        {
+            // Get Mouse Position
+            
+            POINT currentPos;
+            GetCursorPos(out currentPos);
+
+            int cursorRawX = currentPos.X;
+            int cursorRawY = currentPos.Y;
+
+            // Get Console Window
+
+            IntPtr handle = FindWindowByCaption(IntPtr.Zero, "GraphicsEngine");
+            Rect rect = new Rect();
+
+            int windowX;
+            int windowY;
+
+            if (GetWindowRect(handle, ref rect))
+            {
+                windowX = rect.Left;
+                windowY = rect.Top;
+            }
+            else
+            {
+                windowX = 0;
+                windowY = 0;
+            }
+
+            // Get Line Size
+            var consoleHandle = GetStdHandle(STD_OUTPUT_HANDLE);
+            var fontInfo = new CONSOLE_FONT_INFO_EX { cbSize = (uint)Marshal.SizeOf<CONSOLE_FONT_INFO_EX>() };
+
+            double fontY;
+            double fontX;
+
+            if (GetCurrentConsoleFontEx(consoleHandle, false, ref fontInfo))
+            {
+                fontY = fontInfo.dwFontSize.Y;
+                fontX = fontInfo.dwFontSize.Y / 2;
+            }
+            else
+            {
+                fontY = 1;
+                fontX = 1;
+            }
+
+            // Substract Window - Cursor
+            double cursorX = cursorRawX - windowX;
+            double cursorY = cursorRawY - windowY;
+
+            // Divide for accurate Coordinates
+
+            int cursorXLine = Convert.ToInt32(cursorX / fontX);
+            int cursorYLine = Convert.ToInt32(cursorY / fontY);
+
+            int cursoradaptX = Convert.ToInt32(Math.Floor((cursorXLine / 2.35) - 1));
+            int cursoradaptY = Convert.ToInt32(Math.Ceiling(cursorYLine * 0.85) - 3);
+
+            return [cursoradaptX,cursoradaptY];
+        }
+
+        public bool IsLeftMouseButtonDown()
+        {
+            return (GetAsyncKeyState(VK_LBUTTON) & 0x8000) != 0; // Check high-order bit
+        }
+
+        public bool IsRightMouseButtonDown()
+        {
+            return (GetAsyncKeyState(VK_RBUTTON) & 0x8000) != 0; // Check high-order bit
+        }
+
+
+
         public void updateFrame()
         {
             for (int i = 0; i < pixel.GetLength(1); i++)
@@ -122,7 +258,24 @@ namespace Graphic_Renderer
             }
             pixelLast = pixel.Clone() as string[,];
         }
+        public void updateText()
+        {
+            for (int i = 0; i < pixel.GetLength(1); i++)
+            {
+                for (int j = 0; j < pixel.GetLength(0); j++)
+                {
+                    if (charType[j,i] != "█")
+                    {
+                        Console.SetCursorPosition(j, i);
 
+                        setColor(defaultTextColor);
+                        setBGColor(pixel[j, i]);
+                        
+                        Console.Write(charType[j, i]);
+                    }
+                }
+            }
+        }
         public void clear()
         {
             pixel = populateList(pixel, defaultBGColor);

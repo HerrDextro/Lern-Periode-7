@@ -95,9 +95,10 @@ namespace Graphic_Renderer
             {
                 keyCool--;
             }
+
+            xpos = painter.getMousePos()[0];
             
-            
-            if (painter.KeyDown(SPainter.arrowUp) && keyCool == 0)
+            if ((painter.KeyDown(SPainter.arrowUp) || painter.IsRightMouseButtonDown()) && keyCool == 0)
             {
                 texture = RotateLeft(texture);
                 keyCool = 15;

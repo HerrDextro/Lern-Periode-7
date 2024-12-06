@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Data;
+using System.Media;
+using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Threading;
 using Graphic_Renderer;
@@ -8,6 +10,10 @@ namespace Graphic_Renderer
 {
      public class Program
     {
+
+
+
+
         static void Main(string[] args)
         {
             string[] gamelist =
@@ -23,22 +29,23 @@ namespace Graphic_Renderer
 
             SPainter painter = new SPainter(60, 30,"Black"); //Default for a. PC (Fullscreen): 144,44
                                                              //Default for a. PC (Small): 60,30
+            painter.renderFrame();
 
             //Startup Sequence (Animation)
+            StartUp.StartUpAnim(painter);
 
-
+            
 
 
 
             //Main Loop
+            
+            
 
-            for (int i = 0; i < gamelist.Length; i++)
-            {
-                painter.writeText(gamelist[i], 3, i + 1);
+            Program program = new Program();
+            program.PlayMusic();
 
-            }
-
-            painter.renderFrame();
+            program.ShowText(painter, gamelist);
 
             while (true)
             {
@@ -46,11 +53,8 @@ namespace Graphic_Renderer
                 painter.clear();
 
                 painter.fillRectangle("darkgray",1,cursorheight,10,1);
-                for (int i = 0; i < gamelist.Length; i++)
-                {
-                    painter.writeText(gamelist[i] ,3 , i+1);
-
-                }
+                program.ShowText(painter, gamelist);
+            
 
                 if (cursorcool > 0)
                 {
@@ -68,8 +72,10 @@ namespace Graphic_Renderer
                     cursorcool = 2;
                 }
 
-                if (painter.KeyDown(SPainter.enter))
+                if (painter.KeyDown(SPainter.enter) && cursorheight >= 1 && cursorheight <= gamelist.Length)
                 {
+                    
+                    
                     switch (cursorheight)
                     {
                         case 1:
@@ -93,20 +99,45 @@ namespace Graphic_Renderer
                             painter.updateFrame();
                             break;
                     }
+                    program.PlayMusic();
+
+                    program.ShowText(painter, gamelist);
+
+                    painter.updateText();
+                    
                 }
-
-
-
-
-
                 Thread.Sleep(50);
-
             }
-
-
-
-
-
         }
+
+        private void ShowText(SPainter painter, string[] gamelist)
+        {
+            for (int i = 0; i < gamelist.Length; i++)
+            {
+                painter.writeText(gamelist[i], 3, i + 1);
+            }
+            painter.writeText("Music: Jono - Please Hold", 3, 29);
+        }
+
+        private void PlayMusic()
+        {
+            string audioPath = @"..\..\..\Audio\mainscreen.wav";
+            SoundPlayer player = new SoundPlayer(audioPath);
+
+            Thread musicThread = new Thread(() =>
+            {
+                player.PlayLooping();
+                while (musicRunning)
+                {
+                    Thread.Sleep(100); // Small delay to prevent busy-waiting
+                }
+                player.Stop();
+            });
+
+            musicThread.IsBackground = true;
+            musicThread.Start();
+        }
+        volatile bool musicRunning = true;
     }
+
 }
