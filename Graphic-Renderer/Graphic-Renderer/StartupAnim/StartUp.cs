@@ -8,7 +8,10 @@ namespace Graphic_Renderer
     public class StartUp
     {
         SPainter painter;
-           
+
+        //change to relatives after testing
+        string SmartpainterText = @"C:\Users\Neo\Source\Repos\HerrDextro\Lern-Periode-7\Graphic-Renderer\Graphic-Renderer\StartUpAnim\textures\SPtext.txt";
+        string swissFlag = @"C:\Users\Neo\Source\Repos\HerrDextro\Lern-Periode-7\Graphic-Renderer\Graphic-Renderer\StartUpAnim\textures\SwissFlagV5.txt";
 
         public void StartGame(SPainter painterInp)
         {
@@ -20,7 +23,7 @@ namespace Graphic_Renderer
 
             painter = painterInp;
             painter.clear();
-            painter.fillRectangle("black", 0, 0, 60, 30);
+            //painter.fillRectangle("black", 0, 0, 60, 30);
 
             bool running = true;
 
@@ -31,19 +34,24 @@ namespace Graphic_Renderer
                 //painter.fillRectangle("black", 2, 2, 56, 25);
 
                 //Thread.Sleep(2000); //dictates how long startup anim will be
+
+                painter.updateFrame();
+                painter.clear();
+                painter.fillRectangle("darkred", 0, 0, 60, 30);
+                painter.fillRectangle("black", 2, 2, 56, 26);
             }
 
-            
-            
-            
 
 
 
 
 
 
-           
-          
+
+
+
+
+
 
         }
     }

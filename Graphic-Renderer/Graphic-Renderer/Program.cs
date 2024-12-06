@@ -102,7 +102,7 @@ namespace Graphic_Renderer
                     }
 
 
-                    Thread.Sleep(50);
+                    Thread.Sleep(50); //default 50, 25 for more peohfoahmense
 
                 }
             

@@ -4,26 +4,46 @@ namespace Graphic_Renderer
 {
     public class Paddle
     {
-        public Paddle(SPainter painterInp)
+        SPainter painter;
+        string paddleTexture = @"C:\Users\Neo\Source\Repos\HerrDextro\Lern-Periode-7\Graphic-Renderer\Graphic-Renderer\Pong\textures\paddle1.txt";
+        int xpos; //horizontal position of paddle, the higher the further right, make no more than 59
+        public int ypos; //public for collision access
+        int upKey;
+        int downKey;
+
+        /*default constructor*/
+        public Paddle(SPainter painterInp) 
         {
             painter = painterInp;
+            xpos = 58;
+            ypos = 15;
+            upKey = SPainter.arrowUp;
+            downKey = SPainter.arrowDown;
         }
-        SPainter painter;
+        
 
-        string paddle1Texture = @"C:\Users\Neo\Source\Repos\HerrDextro\Lern-Periode-7\Graphic-Renderer\Graphic-Renderer\Pong\textures\paddle1.txt";
-        int xpos = 58; //horizontal position of paddle, the higher the further right, make no more than 59
-        public int ypos; //public for collision access
+        /*SMART constructor*/
+        public Paddle(SPainter painterInp, string texturePath, int initialX, int initialY, int upKey, int downKey)
+        {
+            painter = painterInp;
+            paddleTexture = texturePath;
+            xpos = initialX;
+            ypos = initialY;
+
+        }
+
+        
 
         public void render()
         {
-            painter.loadImage(xpos, ypos, paddle1Texture);
+            painter.loadImage(xpos, ypos, paddleTexture);
 
-            if (painter.KeyDown(SPainter.arrowUp))
+            if (painter.KeyDown(upKey))
             {
                 ypos--;
                 
             }
-            if (painter.KeyDown(SPainter.arrowDown))
+            if (painter.KeyDown(downKey))
             {
                 ypos++;
                 

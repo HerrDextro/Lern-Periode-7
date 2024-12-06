@@ -7,18 +7,25 @@ namespace Graphic_Renderer
 {
     public class Ball
     {
-        public Ball(SPainter painterInp)
-        {
-            painter = painterInp;
-        }
+        SPainter painter;
+        Pong pong = new Pong();
 
         public int xspeed = 1;
         public int yspeed = 1;
 
-        string ballTexture = @"C:\Users\Neo\Source\Repos\HerrDextro\Lern-Periode-7\Graphic-Renderer\Graphic-Renderer\Pong\textures\ball.txt";
+        string defaultBallTexture = @"C:\Users\Neo\Source\Repos\HerrDextro\Lern-Periode-7\Graphic-Renderer\Graphic-Renderer\Pong\textures\ball.txt";
+        string ballTexture;
 
-        SPainter painter;
-        Pong pong = new Pong();
+       
+        /*only smart constructor here*/
+        public Ball(SPainter painterInp, string? ballTexturePath = null)
+        {
+            painter = painterInp;
+            ballTexture = ballTexturePath ?? defaultBallTexture;
+
+        }
+
+        
         
 
         public int xpos = 30; //middle fo filed is x 30 or x 29 or smt
