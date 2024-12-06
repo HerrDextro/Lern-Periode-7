@@ -77,7 +77,7 @@ Alex: Ich habe heute all meine Ziele erreicht und noch mehr gemacht, indem ich d
 
 06.11.202
 - [x] Neo: "Stupid" constructor for paddle
-- [x] Neo: Modular constructors (textures, left righ boolean, ball size, filed size)
+- [x] Neo: Modular constructors (textures, left righ boolean, ball size, field size)
 - [ ] Neo: STartUpAnim Animation function: red snow to square
 - [X] Alex: Cursor Reader testprogramm
 - [X] Alex: Cursor Reader im SPainter setzen
@@ -85,7 +85,9 @@ Alex: Ich habe heute all meine Ziele erreicht und noch mehr gemacht, indem ich d
 - [ ] Alex: Cursor-Reader & Key-Reader in eigene Klasse
 - [ ] Alex: Alle Probleme beheben, die dadurch entstehen
 
+Neo: Heute habe ich das Pong Programm schöner gemacht indem ich constructors mit alle nötige Parameter programmiert habe, und ich habe das Programm für unseres Programmierprojekt verbessert. (Ich werde noch heute regex für email inputs machen)
+Alex: Heute habe ich das Cursor Tracking fertiggemacht, und noch mehrere andere Inputs für das Graphic engine gemacht. Ich habe die readkeys und das Cursortracking in ein neues Programm namens SReader (SmartReader) gemacht und auch noch der middle Mouse Button und Scroll Wheen zum Input gemacht. Danach habe ich schnell ein Parcour game gemacht, wo man mit ein Jetpack von Plattform zu Plattform fliegen kann.
 
 13.11.2024
-- [ ] Neo: dynamic hitbox variables (auto adjusting, pong)
+- [x] Neo: dynamic hitbox variables (auto adjusting, pong)
 - [ ] Alex: JetPack Joyride
