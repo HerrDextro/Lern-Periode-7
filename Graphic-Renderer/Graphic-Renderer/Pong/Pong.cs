@@ -19,8 +19,7 @@ namespace Graphic_Renderer
             painter = painterInp;
             painter.clear();
             painter.fillRectangle("black", 0, 0, 60, 30);
-            int fieldX = 144;
-            int fieldY = 44;
+            
 
             string redPaddlePath = @"C:\Users\Neo\Source\Repos\HerrDextro\Lern-Periode-7\Graphic-Renderer\Graphic-Renderer\Pong\textures\redPaddle.txt";
 

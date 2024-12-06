@@ -29,7 +29,8 @@ namespace Graphic_Renderer
             paddleTexture = texturePath;
             xpos = initialX;
             ypos = initialY;
-
+            upKey = upKey;
+            downKey = upKey;
         }
 
         
@@ -50,6 +51,8 @@ namespace Graphic_Renderer
             }
 
             //field movement constraints
+            //field sizes as declared in Pong.cs, with neccesary modifiers
+
             if (ypos <= 0)
             {
                 ypos = 0;
