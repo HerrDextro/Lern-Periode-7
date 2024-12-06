@@ -64,12 +64,26 @@ Neo hat ein bisschen später die erste Version von Pong fertig gemacht. Es hat n
 29.11.20247
 - [x] Neo: Pong Hitbox
 - [x] Neo: Game over screen
-- [ ] Neo: "Stupid" constructor for paddle
-- [ ] Neo: Modular constructors (textures, left righ boolean, ball size, filed size)
+- [x] Neo: StartUp Anim Program
+- [x] Neo: StartUpAnim textures (flag, text, logo)
 - [X] Alex: Tetris music track thread
-- [ ] Alex: Add more animations
-- [ ] Alex: Refine game-hub
+- [x] Alex: Add more animations
+- [x] Alex: Refine game-hub
+- [x] Alex: SPainter update & patches (nicht commmitted)
 
+Neo: Heute habe ich Pong vollständig funktionierend gemacht. Ich habe Hitboxes hinzugefügt und einen Game-Over-Screen erstellt. Dann habe ich die Start-Up-Animation erstellt und sie in mein Branch im Game-Format (wie die anderen, Pong und Tetris) zum Testen hochgeladen, damit man beim Starten des Programms nicht immer sechs Sekunden warten muss. Ich habe die Texturen für die Animationen erstellt und auch ein bisschen getestet.
+
+Alex: Ich habe heute all meine Ziele erreicht und noch mehr gemacht, indem ich den SmartPainter mit mehreren neuen Funktionen und einigen Patches aktualisiert habe. Ich habe auch angefangen, "Cursors zu readen". Ich habe auch Tetris ein Audiotrack gegeben auf ein separater Thread, und alle Probleme damit gefixt. Ich habe das Game Hub (aktuelles Start screen) auf Audio gegeben und leicht verbessert.
+
+05.11.202
+- [x] Neo: "Stupid" constructor for paddle
+- [ ] Neo: Modular constructors (textures, left righ boolean, ball size, filed size)
+- [ ] Neo: STartUpAnim Animation function: red snow to square
+- [X] Alex: Cursor Reader testprogramm
+- [X] Alex: Cursor Reader im SPainter setzen
+- [X] Alex: Cursor Reader im DevPaint implementieren
+- [ ] Alex: Cursor-Reader & Key-Reader in eigene Klasse
+- [ ] Alex: Alle Probleme beheben, die dadurch entstehen
 
 
 
