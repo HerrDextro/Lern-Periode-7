@@ -79,9 +79,11 @@ Alex: Ich habe heute all meine Ziele erreicht und noch mehr gemacht, indem ich d
 - [x] Neo: "Stupid" constructor for paddle
 - [ ] Neo: Modular constructors (textures, left righ boolean, ball size, filed size)
 - [ ] Neo: STartUpAnim Animation function: red snow to square
-- [ ] Alex: Cursor Reader testprogramm
-- [ ] Alex: Cursor Reader im SPainter setzen
-- [ ] Alex: Cursor Reader im DevPaint implementieren
+- [X] Alex: Cursor Reader testprogramm
+- [X] Alex: Cursor Reader im SPainter setzen
+- [X] Alex: Cursor Reader im DevPaint implementieren
+- [ ] Alex: Cursor-Reader & Key-Reader in eigene Klasse
+- [ ] Alex: Alle Probleme beheben, die dadurch entstehen
 
 
 
