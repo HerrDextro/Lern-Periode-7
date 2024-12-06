@@ -88,4 +88,4 @@ Alex: Ich habe heute all meine Ziele erreicht und noch mehr gemacht, indem ich d
 
 13.11.2024
 - [ ] Neo: dynamic hitbox variables (auto adjusting, pong)
-- [ ] 
+- [ ] Alex: JetPack Joyride
