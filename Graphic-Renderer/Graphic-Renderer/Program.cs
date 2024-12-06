@@ -19,7 +19,7 @@ namespace Graphic_Renderer
             string[] gamelist =
             {
                 "Space Invaders",
-                "TestGame", //neow
+                "Parkour", //neow
                 "Dev Paint",
                 "Tetris"
             };
@@ -74,6 +74,8 @@ namespace Graphic_Renderer
                     cursorcool = 2;
                 }
 
+
+
                 if (reader.KeyDown(SReader.enter) && cursorheight >= 1 && cursorheight <= gamelist.Length)
                 {
                     
@@ -86,8 +88,8 @@ namespace Graphic_Renderer
                             painter.updateFrame();
                             break;
                         case 2:
-                            //ItemCollector itemCollector = new ItemCollector();
-                            //itemCollector.StartGame(painter);  // Corrected line
+                            Parkour parkour = new Parkour(painter,reader);
+                            parkour.StartGame();
                             painter.updateFrame();
                             break;
                         case 3:

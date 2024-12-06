@@ -1,0 +1,7 @@
+magenta;magenta;magenta;magenta;darkMagenta;darkMagenta;black;black;black;black;black;black;black;black;black;black;
+black;black;black;black;black;black;darkMagenta;darkMagenta;darkMagenta;darkMagenta;darkMagenta;darkMagenta;darkMagenta;darkMagenta;darkMagenta;darkMagenta;
+black;black;black;black;black;black;black;black;darkred;darkred;black;black;black;black;black;black;
+black;black;black;black;black;black;darkYellow;darkYellow;darkred;darkred;darkYellow;darkYellow;black;black;black;black;
+black;black;black;black;darkGray;darkGray;darkGray;darkGray;darkred;darkred;white;white;black;black;black;black;
+black;black;black;black;darkGray;darkGray;darkGray;darkGray;darkCyan;darkCyan;darkCyan;darkCyan;black;black;black;black;
+black;black;black;black;black;black;darkCyan;darkCyan;black;black;darkCyan;darkCyan;black;black;black;black;

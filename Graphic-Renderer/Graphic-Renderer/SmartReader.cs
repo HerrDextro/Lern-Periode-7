@@ -16,9 +16,6 @@ namespace Graphic_Renderer
         [DllImport("user32.dll")]
         private static extern short GetAsyncKeyState(int vKey);
 
-
-
-
         [StructLayout(LayoutKind.Sequential)]
         public struct POINT { public int X, Y; }
 
@@ -27,6 +24,9 @@ namespace Graphic_Renderer
 
         [DllImport("user32.dll", EntryPoint = "FindWindow", SetLastError = true)]
         public static extern IntPtr FindWindowByCaption(IntPtr zeroOnly, string lpWindowName);
+
+        private const int WM_MOUSEWHEEL = 0x020A;
+
 
         [StructLayout(LayoutKind.Sequential)]
         public struct Rect
@@ -38,9 +38,15 @@ namespace Graphic_Renderer
         }
 
 
+
+
         private const int VK_LBUTTON = 0x01; // Virtual key code for the left mouse button
         private const int VK_RBUTTON = 0x02; // Virtual key code for the right mouse button
         private const int VK_MBUTTON = 0x04; // Virtual key code for the middle mouse button
+
+
+
+        private static IntPtr _hookID = IntPtr.Zero;
 
         [StructLayout(LayoutKind.Sequential)]
         struct Coord
@@ -48,6 +54,8 @@ namespace Graphic_Renderer
             public short X;
             public short Y;
         }
+
+
 
         [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode)]
         struct CONSOLE_FONT_INFO_EX
@@ -212,12 +220,9 @@ namespace Graphic_Renderer
             return (GetAsyncKeyState(VK_MBUTTON) & 0x80000) != 0;
         }
 
-
-
         public bool KeyDown(int keyCode)
         {
             return (GetAsyncKeyState(keyCode) & 0x8000) != 0;
         }
-
     }
 }

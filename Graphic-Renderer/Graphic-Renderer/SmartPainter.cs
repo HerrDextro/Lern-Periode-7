@@ -189,9 +189,12 @@ namespace Graphic_Renderer
                 {
                     try
                     {
-                        if (pixel[xpos + j, ypos + i] != "none")
+                        if ((xpos + j >= 0) && (ypos + i >= 0) && (xpos + j <= consoleWidth*2) && (ypos + i <= consoleHeight*2))
                         {
-                            pixel[xpos + j, ypos + i] = line[j];
+                            if (pixel[xpos + j, ypos + i] != "none")
+                            {
+                                pixel[xpos + j, ypos + i] = line[j];
+                            }
                         }
                     }
                     catch (IndexOutOfRangeException) { }
