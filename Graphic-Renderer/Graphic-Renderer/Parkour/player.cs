@@ -14,6 +14,7 @@ public class Player
     int boostcount = 0;
     int hovercount = 0;
     bool forceground = false;
+    double score = 0;
 
 
     int fuel = 13;
@@ -121,6 +122,9 @@ public class Player
 
         ypos += yvel;
 
+        score += (globalspeed);
+        painter.writeText($"Score: {Convert.ToString(Convert.ToInt32(score))}m", 32, 0);
+        painter.updateText();
     }
     public bool colliding(Platform platform)
     {

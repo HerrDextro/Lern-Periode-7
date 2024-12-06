@@ -39,7 +39,7 @@ namespace Graphic_Renderer
 
         private void playMusic()
         {
-            string audioPath = @"..\..\..\..\Tetris\audio\tetris.wav";
+            string audioPath = @"..\..\..\Tetris\audio\tetris.wav";
             SoundPlayer player = new SoundPlayer(audioPath);
 
             Thread musicThread = new Thread(() =>

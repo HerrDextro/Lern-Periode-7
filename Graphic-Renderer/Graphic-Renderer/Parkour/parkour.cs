@@ -7,6 +7,7 @@ public class Parkour
 
     double globalspeed = 0.2;
     double globalgrav = 0.08;
+    
 
     public Parkour(SPainter painterInp, SReader readerInp)
     {
@@ -53,9 +54,6 @@ public class Parkour
                 globalspeed = 0.5;
                 globalgrav = 0.08;
             }
-
-
-
         }
         
 
