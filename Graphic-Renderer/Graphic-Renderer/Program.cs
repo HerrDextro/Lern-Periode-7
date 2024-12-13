@@ -18,12 +18,12 @@ namespace Graphic_Renderer
         {
             string[] gamelist =
             {
-                "Space Invaders",
+                "StartUpAnim",
                 "Parkour", //neow
                 "Dev Paint",
                 "Tetris",
                 "Pong",
-                "StartUpAnim"
+                "Space Invaders"
             };
             int cursorheight = 0;
             int cursorcool = 0;
@@ -82,8 +82,8 @@ namespace Graphic_Renderer
                     switch (cursorheight)
                     {
                         case 1:
-                            SpaceInvader spaceInvaders = new SpaceInvader();
-                            spaceInvaders.StartGame(painter,reader);
+                            StartUp startUp = new StartUp();
+                            startUp.StartUpAnim(painter);
                             painter.updateFrame();
                             break;
                         case 2:
@@ -99,6 +99,16 @@ namespace Graphic_Renderer
                         case 4:
                             Tetris tetris = new Tetris(painter, reader);
                             tetris.StartGame();
+                            painter.updateFrame();
+                            break;
+                        case 5:
+                            Pong pong = new Pong();
+                            pong.StartGame(painter, reader);
+                            painter.updateFrame();
+                            break;
+                        case 6:
+                            SpaceInvader spaceInvaders = new SpaceInvader();
+                            spaceInvaders.StartGame(painter, reader);
                             painter.updateFrame();
                             break;
                     }

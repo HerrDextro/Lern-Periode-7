@@ -13,8 +13,9 @@ namespace Graphic_Renderer
         public bool alive = true;
 
         SPainter painter;
+        SReader reader;
 
-        public void StartGame(SPainter painterInp)
+        public void StartGame(SPainter painterInp, SReader reader)
         {
             painter = painterInp;
             painter.clear();
