@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Neo\\Source\\Repos\\HerrDextro\\Lern-Periode-7\\Graphic-Renderer\\Graphic-Renderer\\Graphic-Renderer.csproj": {}
+    "C:\\Users\\Neo\\source\\repos\\HerrDextro\\Lern-Periode-7\\Graphic-Renderer\\Graphic-Renderer\\Graphic-Renderer.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Neo\\Source\\Repos\\HerrDextro\\Lern-Periode-7\\Graphic-Renderer\\Graphic-Renderer\\Graphic-Renderer.csproj": {
+    "C:\\Users\\Neo\\source\\repos\\HerrDextro\\Lern-Periode-7\\Graphic-Renderer\\Graphic-Renderer\\Graphic-Renderer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Neo\\Source\\Repos\\HerrDextro\\Lern-Periode-7\\Graphic-Renderer\\Graphic-Renderer\\Graphic-Renderer.csproj",
+        "projectUniqueName": "C:\\Users\\Neo\\source\\repos\\HerrDextro\\Lern-Periode-7\\Graphic-Renderer\\Graphic-Renderer\\Graphic-Renderer.csproj",
         "projectName": "Graphic-Renderer",
-        "projectPath": "C:\\Users\\Neo\\Source\\Repos\\HerrDextro\\Lern-Periode-7\\Graphic-Renderer\\Graphic-Renderer\\Graphic-Renderer.csproj",
+        "projectPath": "C:\\Users\\Neo\\source\\repos\\HerrDextro\\Lern-Periode-7\\Graphic-Renderer\\Graphic-Renderer\\Graphic-Renderer.csproj",
         "packagesPath": "C:\\Users\\Neo\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Neo\\Source\\Repos\\HerrDextro\\Lern-Periode-7\\Graphic-Renderer\\Graphic-Renderer\\obj\\",
+        "outputPath": "C:\\Users\\Neo\\source\\repos\\HerrDextro\\Lern-Periode-7\\Graphic-Renderer\\Graphic-Renderer\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
