@@ -6,7 +6,7 @@ namespace Graphic_Renderer
     {
         SPainter painter;
         SReader reader;
-        string paddleTexture = @"..\..\Graphic-Renderer\Pong\textures\paddle1.txt";
+        string paddleTexture = @"..\..\..\Pong\textures\paddle1.txt";
         int xpos; //horizontal position of paddle, the higher the further right, make no more than 59
         public int ypos; //public for collision access
         int upKey;
@@ -24,14 +24,15 @@ namespace Graphic_Renderer
         
 
         /*SMART constructor*/
-        public Paddle(SPainter painterInp, string texturePath, int initialX, int initialY, int upKey, int downKey)
+        public Paddle(SReader readerInp, SPainter painterInp, string texturePath, int initialX, int initialY, int keyUp, int keyDown)
         {
             painter = painterInp;
+            reader = readerInp;
             paddleTexture = texturePath;
             xpos = initialX;
             ypos = initialY;
-            upKey = upKey;
-            downKey = upKey;
+            upKey = keyUp;
+            downKey = keyDown;
         }
 
         
