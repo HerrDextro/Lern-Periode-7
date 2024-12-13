@@ -55,10 +55,10 @@ namespace Graphic_Renderer
                 program.ShowText(painter, gamelist);
             
 
-                if (cursorcool > 0)
-                {
-                    cursorcool--;
-                }
+                    if (cursorcool > 0)
+                    {
+                        cursorcool--;
+                    }
 
                 if (reader.KeyDown(SReader.arrowDown) && cursorcool == 0)
                 {

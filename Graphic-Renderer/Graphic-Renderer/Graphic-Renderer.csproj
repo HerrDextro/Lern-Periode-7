@@ -10,10 +10,10 @@
 
   <ItemGroup>
     <Folder Include="DevPaint\Textures\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="System.Windows.Extensions" Version="9.0.0" />
+    <Folder Include="SpaceInvaders\textures\" />
+	<Folder Include="TestGame\"/>
+	<Folder Include="Pong\"/>
+	<Folder Include="StartUp\"/>
   </ItemGroup>
 
 </Project>
