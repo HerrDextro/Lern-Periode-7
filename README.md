@@ -78,11 +78,11 @@ Alex: Ich habe heute all meine Ziele erreicht und noch mehr gemacht, indem ich d
 06.11.202
 - [x] Neo: "Stupid" constructor for paddle
 - [x] Neo: Modular constructors (textures, left righ boolean, ball size, field size)
-- [ ] Neo: STartUpAnim Animation function: red snow to square
+- [ ] Neo: StartUpAnim Animation function: red snow to square
 - [X] Alex: Cursor Reader testprogramm
 - [X] Alex: Cursor Reader im SPainter setzen
 - [X] Alex: Cursor Reader im DevPaint implementieren
-- [ ] Alex: Cursor-Reader & Key-Reader in eigene Klasse
+- [x] Alex: Cursor-Reader & Key-Reader in eigene Klasse
 - [ ] Alex: Alle Probleme beheben, die dadurch entstehen
 
 Neo: Heute habe ich das Pong Programm schöner gemacht indem ich constructors mit alle nötige Parameter programmiert habe, und ich habe das Programm für unseres Programmierprojekt verbessert. (Ich werde noch heute regex für email inputs machen)
@@ -91,4 +91,11 @@ Alex: Heute habe ich das Cursor Tracking fertiggemacht, und noch mehrere andere 
 
 13.11.2024
 - [x] Neo: dynamic hitbox variables (auto adjusting, pong)
-- [ ] Alex: JetPack Joyride
+- [x] Alex: Parkour (Jetpack Joyride x Amongus)
+- [ ] 
+
+Heute haben wir die zwei GitHub Branches vollständig gemerged, meherere kleine Bugs gefixt und eine neue Dokumentation erstellt. Es hat lange gebraucht, um zu entscheiden was zu behalten und was nicht, und dann ancher die nötige packages wieder zu installieren, weil die irgendwie weg waren. Auch müssten die Programme, die noch für die alten Programme (outdated) geschrieben waren, umschreiben. 
+
+20.11.2024
+- [ ] Neo: Startup vollständig fertig
+- [ ] Alex: Krankenhaus überleben (that feeling when knee surgery is tomorrow)
