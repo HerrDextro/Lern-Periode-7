@@ -22,11 +22,11 @@ namespace Graphic_Renderer
             painter.fillRectangle("black", 0, 0, 60, 30);
             
 
-            string redPaddlePath = @"..\..\Pong\textures\redPaddle.txt";
+            string redPaddlePath = @"..\..\..\Pong\textures\redPaddle.txt";
 
             Pong pong = new Pong();
             //Paddle paddleLeft = new Paddle(painter); //add .render for each added paddle
-            Paddle paddleRight = new Paddle(painter,redPaddlePath, 58, 15, SReader.arrowUp, SReader.arrowDown);
+            Paddle paddleRight = new Paddle(reader, painter,redPaddlePath, 58, 15, SReader.arrowUp, SReader.arrowDown);
             Ball ball = new Ball(painter);
 
             while (running)

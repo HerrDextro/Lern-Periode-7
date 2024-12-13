@@ -13,7 +13,7 @@ namespace Graphic_Renderer
         public int xspeed = 1;
         public int yspeed = 1;
 
-        string defaultBallTexture = @"..\..\Graphic-Renderer\Pong\textures\ball.txt";
+        string defaultBallTexture = @"..\..\..\Pong\textures\ball.txt";
         string ballTexture;
 
        
