@@ -32,3 +32,7 @@ C:\Users\alex\Source\Repos\HerrDextro\Lern-Periode-7\Graphic-Renderer\Graphic-Re
 C:\Users\alex\Source\Repos\HerrDextro\Lern-Periode-7\Graphic-Renderer\Graphic-Renderer\bin\Debug\net8.0\System.Windows.Extensions.dll
 C:\Users\alex\Source\Repos\HerrDextro\Lern-Periode-7\Graphic-Renderer\Graphic-Renderer\bin\Debug\net8.0\runtimes\win\lib\net8.0\System.Windows.Extensions.dll
 C:\Users\alex\Source\Repos\HerrDextro\Lern-Periode-7\Graphic-Renderer\Graphic-Renderer\obj\Debug\net8.0\Graphic-.E94219CA.Up2Date
+C:\Users\Neo\source\repos\HerrDextro\Lern-Periode-7\Graphic-Renderer\Graphic-Renderer\bin\Debug\net8.0\System.Windows.Extensions.dll
+C:\Users\Neo\source\repos\HerrDextro\Lern-Periode-7\Graphic-Renderer\Graphic-Renderer\bin\Debug\net8.0\runtimes\win\lib\net8.0\System.Windows.Extensions.dll
+C:\Users\Neo\source\repos\HerrDextro\Lern-Periode-7\Graphic-Renderer\Graphic-Renderer\obj\Debug\net8.0\Graphic-Renderer.csproj.AssemblyReference.cache
+C:\Users\Neo\source\repos\HerrDextro\Lern-Periode-7\Graphic-Renderer\Graphic-Renderer\obj\Debug\net8.0\Graphic-.E94219CA.Up2Date
