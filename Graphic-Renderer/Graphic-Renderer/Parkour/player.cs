@@ -78,7 +78,7 @@ public class Player
             yvel *= -0.2;
         }
 
-        if (reader.IsLeftMouseButtonDown() && fuel > 0)
+        if ((reader.IsLeftMouseButtonDown() || reader.KeyDown(SReader.arrowUp) && fuel > 0))
         {
             yvel-= 0.24;
             boostcount++;
@@ -91,7 +91,7 @@ public class Player
             }
         }
 
-        if (reader.IsRightMouseButtonDown() && durability > 0)
+        if ((reader.IsRightMouseButtonDown() || reader.KeyDown(SReader.arrowDown)) && durability > 0)
         {
             texture = textureFly;
             hovercount++;

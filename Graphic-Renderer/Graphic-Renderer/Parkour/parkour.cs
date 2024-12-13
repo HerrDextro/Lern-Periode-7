@@ -42,7 +42,7 @@ public class Parkour
             platform1.Checkpos();
             platform2.Checkpos();
 
-            Thread.Sleep(50);
+            Thread.Sleep(25);
 
             if (player.isFlying())
             {

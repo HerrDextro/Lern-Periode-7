@@ -9,37 +9,42 @@ namespace Graphic_Renderer
 {
     public class SPainter
     {
+        // Position arrays
         string[,] pixel;
         string[,] pixelLast;
         string[,] charType;
+
+        // Setting default colors
         string defaultTextColor;
         string defaultBGColor;
 
+        // Setting console size
         public int consoleWidth;
         public int consoleHeight;
 
-        // Constructor
         public SPainter(int width, int height,string color)
         {
-            width *= 2;
+            width *= 2; // Adapting coords for Console
 
             defaultBGColor = color;
 
             consoleHeight = height;
             consoleWidth = width/2;
 
-            
-            pixel = new string[width,height];
-            pixel = populateList(pixel, color);
-
-            pixelLast = pixel.Clone() as string[,];
-
-            charType = new string[width,height];
-            charType = populateList(charType,"█");
-
             defaultTextColor = "White";
 
             Console.CursorVisible = false;
+
+
+            pixel = new string[width,height];
+            pixel = populateList(pixel, color); // Initialising pixel array
+
+            pixelLast = pixel.Clone() as string[,]; // Initialising pixelLast array
+
+            charType = new string[width,height]; // Initialising charType array
+            charType = populateList(charType,"█");
+
+
         }
 
         public void updateFrame()
@@ -62,12 +67,12 @@ namespace Graphic_Renderer
                         }
                         Console.Write(charType[j, i]);
                     }
-                    //pixelLast[j, i] = pixel[j, i];
                 }
             }
             pixelLast = pixel.Clone() as string[,];
         }
-        public void updateText()
+
+        public void updateText() // Update all texts (not done by updateFrame)
         {
             for (int i = 0; i < pixel.GetLength(1); i++)
             {
@@ -85,15 +90,14 @@ namespace Graphic_Renderer
                 }
             }
         }
-        public void clear()
+        public void clear() // Clear backlog
         {
             pixel = populateList(pixel, defaultBGColor);
             charType = populateList(charType, "█");
         }
 
-        public void renderFrame()
+        public void renderFrame() // Initialisation of the Console
         {
-            
             for (int i = 0; i < pixel.GetLength(1)-1; i++)
             {
                 for (int j = 0; j < pixel.GetLength(0); j++)
@@ -128,7 +132,7 @@ namespace Graphic_Renderer
 
         public void changePixel(string color, int xpos, int ypos)
         {
-            xpos *= 2;
+            xpos *= 2; //Adapting coords for Console
             try
             {
                 pixel[xpos, ypos] = color;
@@ -138,28 +142,27 @@ namespace Graphic_Renderer
         }
         public void fillRectangle(string color,int xstart, int ystart, int xsize, int ysize)
         {
-            xsize *= 2;
+            xsize *= 2; //Adapting coords for Console
             xstart *= 2;
 
             for (int i = 0; i < xsize; i++)
             {
                 for (int j = 0;j < ysize; j++)
                 {
+                    
                     try
                     {
                         pixel[i + xstart, j + ystart] = color;
                         charType[i + xstart, j + ystart] = "█";
                     }
                     catch (IndexOutOfRangeException) { }
-
                 }
             }
         }
-
         public void saveImage(int xstart, int ystart, int xsize, int ysize,string filepath)
         {
-            xsize *= 2;
-            xstart *= 2;
+            xsize *= 2; 
+            xstart *= 2; //Adapting coords for Console
 
             string[] save = new string[ysize];
 
@@ -179,7 +182,7 @@ namespace Graphic_Renderer
         public void loadImage(int xpos, int ypos, string filepath)
         {
             string[] textInpRaw = File.ReadAllLines(filepath);
-            xpos *= 2;
+            xpos *= 2; // Adapting coords for Console
 
             for (int i = 0;i < textInpRaw.Length; i++)
             {
@@ -189,7 +192,7 @@ namespace Graphic_Renderer
                 {
                     try
                     {
-                        if ((xpos + j >= 0) && (ypos + i >= 0) && (xpos + j <= consoleWidth*2) && (ypos + i <= consoleHeight*2))
+                        if ((xpos + j >= 0) && (ypos + i >= 0) && (xpos + j <= consoleWidth*2-1) && (ypos + i <= consoleHeight*2-1))
                         {
                             if (pixel[xpos + j, ypos + i] != "none")
                             {

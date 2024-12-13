@@ -36,9 +36,6 @@ namespace Graphic_Renderer
             //Startup Sequence (Animation)
             StartUp.StartUpAnim(painter);
 
-            
-
-
 
             //Main Loop
             
