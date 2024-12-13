@@ -21,7 +21,9 @@ namespace Graphic_Renderer
                 "Space Invaders",
                 "Parkour", //neow
                 "Dev Paint",
-                "Tetris"
+                "Tetris",
+                "Pong",
+                "StartUpAnim"
             };
             int cursorheight = 0;
             int cursorcool = 0;
@@ -34,7 +36,7 @@ namespace Graphic_Renderer
             painter.renderFrame();
 
             //Startup Sequence (Animation)
-            StartUp.StartUpAnim(painter);
+            //StartUp.StartUpAnim(painter);
 
 
             //Main Loop
