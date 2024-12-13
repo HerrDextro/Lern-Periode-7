@@ -10,8 +10,8 @@ namespace Graphic_Renderer
         SPainter painter;
 
         //change to relatives after testing
-        string SmartpainterText = @"..\..\Graphic-Renderer\Graphic-Renderer\StartUpAnim\textures\SPtext.txt";
-        string swissFlag = @"..\..\Graphic-Renderer\StartUpAnim\textures\SwissFlagV5.txt";
+        string SmartpainterText = @"..\..\..\StartUpAnim\textures\SPtext.txt";
+        string swissFlag = @"..\..\..\StartUpAnim\textures\SwissFlagV5.txt";
 
         public void StartUpAnim(SPainter painterInp)
         {
