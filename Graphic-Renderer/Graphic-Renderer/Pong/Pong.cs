@@ -13,19 +13,20 @@ namespace Graphic_Renderer
         public bool alive = true;
 
         SPainter painter;
+        SReader reader;
 
-        public void StartGame(SPainter painterInp)
+        public void StartGame(SPainter painterInp, SReader reader)
         {
             painter = painterInp;
             painter.clear();
             painter.fillRectangle("black", 0, 0, 60, 30);
             
 
-            string redPaddlePath = @"C:\Users\Neo\Source\Repos\HerrDextro\Lern-Periode-7\Graphic-Renderer\Graphic-Renderer\Pong\textures\redPaddle.txt";
+            string redPaddlePath = @"..\..\Pong\textures\redPaddle.txt";
 
             Pong pong = new Pong();
             //Paddle paddleLeft = new Paddle(painter); //add .render for each added paddle
-            Paddle paddleRight = new Paddle(painter,redPaddlePath, 58, 15, SPainter.arrowUp, SPainter.arrowDown);
+            Paddle paddleRight = new Paddle(painter,redPaddlePath, 58, 15, SReader.arrowUp, SReader.arrowDown);
             Ball ball = new Ball(painter);
 
             while (running)

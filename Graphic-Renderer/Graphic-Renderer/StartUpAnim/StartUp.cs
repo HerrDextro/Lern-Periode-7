@@ -10,10 +10,10 @@ namespace Graphic_Renderer
         SPainter painter;
 
         //change to relatives after testing
-        string SmartpainterText = @"C:\Users\Neo\Source\Repos\HerrDextro\Lern-Periode-7\Graphic-Renderer\Graphic-Renderer\StartUpAnim\textures\SPtext.txt";
-        string swissFlag = @"C:\Users\Neo\Source\Repos\HerrDextro\Lern-Periode-7\Graphic-Renderer\Graphic-Renderer\StartUpAnim\textures\SwissFlagV5.txt";
+        string SmartpainterText = @"..\..\Graphic-Renderer\Graphic-Renderer\StartUpAnim\textures\SPtext.txt";
+        string swissFlag = @"..\..\Graphic-Renderer\StartUpAnim\textures\SwissFlagV5.txt";
 
-        public void StartGame(SPainter painterInp)
+        public void StartUpAnim(SPainter painterInp)
         {
             //first red edge turning into red snow static
             //then red snow static turns into solid block

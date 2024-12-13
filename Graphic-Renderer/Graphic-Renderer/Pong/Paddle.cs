@@ -5,7 +5,8 @@ namespace Graphic_Renderer
     public class Paddle
     {
         SPainter painter;
-        string paddleTexture = @"C:\Users\Neo\Source\Repos\HerrDextro\Lern-Periode-7\Graphic-Renderer\Graphic-Renderer\Pong\textures\paddle1.txt";
+        SReader reader;
+        string paddleTexture = @"..\..\Graphic-Renderer\Pong\textures\paddle1.txt";
         int xpos; //horizontal position of paddle, the higher the further right, make no more than 59
         public int ypos; //public for collision access
         int upKey;
@@ -17,8 +18,8 @@ namespace Graphic_Renderer
             painter = painterInp;
             xpos = 58;
             ypos = 15;
-            upKey = SPainter.arrowUp;
-            downKey = SPainter.arrowDown;
+            upKey = SReader.arrowUp;
+            downKey = SReader.arrowDown;
         }
         
 
@@ -39,12 +40,12 @@ namespace Graphic_Renderer
         {
             painter.loadImage(xpos, ypos, paddleTexture);
 
-            if (painter.KeyDown(upKey))
+            if (reader.KeyDown(upKey))
             {
                 ypos--;
                 
             }
-            if (painter.KeyDown(downKey))
+            if (reader.KeyDown(downKey))
             {
                 ypos++;
                 
