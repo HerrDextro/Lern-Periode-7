@@ -51,6 +51,7 @@ namespace Graphic_Renderer
             while (true)
             {
                 painter.updateFrame();
+                painter.updateText();
                 painter.clear();
 
                 painter.fillRectangle("darkgray",1,cursorheight,10,1);
