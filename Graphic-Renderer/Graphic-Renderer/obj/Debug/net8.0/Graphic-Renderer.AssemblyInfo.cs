@@ -3,7 +3,7 @@
 //     Dieser Code wurde von einem Tool generiert.
 //     Laufzeitversion:4.0.30319.42000
 //
-//     Änderungen an dieser Datei können falsches Verhalten verursachen und gehen verloren, wenn
+//     �nderungen an dieser Datei k�nnen falsches Verhalten verursachen und gehen verloren, wenn
 //     der Code erneut generiert wird.
 // </auto-generated>
 //------------------------------------------------------------------------------
@@ -19,6 +19,7 @@ using System.Reflection;
 =======
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1d60c87ebf20a5039d7197ae178e02db5a308786")]
 >>>>>>> 2de3286a95e545f0d93fe7aa7c7a5680f85191b9
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2de3286a95e545f0d93fe7aa7c7a5680f85191b9")]
 [assembly: System.Reflection.AssemblyProductAttribute("Graphic-Renderer")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Graphic-Renderer")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

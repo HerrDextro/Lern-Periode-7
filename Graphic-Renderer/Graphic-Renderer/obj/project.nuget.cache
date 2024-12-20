@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "TlVQorUIHg0=",
+  "dgSpecHash": "TmS0ObKOEnw=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Neo\\source\\repos\\HerrDextro\\Lern-Periode-7\\Graphic-Renderer\\Graphic-Renderer\\Graphic-Renderer.csproj",
+  "projectFilePath": "C:\\Users\\Neo\\Source\\Repos\\HerrDextro\\Lern-Periode-7\\Graphic-Renderer\\Graphic-Renderer\\Graphic-Renderer.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Neo\\.nuget\\packages\\system.windows.extensions\\9.0.0\\system.windows.extensions.9.0.0.nupkg.sha512"
   ],

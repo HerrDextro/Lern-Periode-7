@@ -61,9 +61,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Neo\\source\\repos\\HerrDextro\\Lern-Periode-7\\Graphic-Renderer\\Graphic-Renderer\\Graphic-Renderer.csproj",
+      "projectUniqueName": "C:\\Users\\Neo\\Source\\Repos\\HerrDextro\\Lern-Periode-7\\Graphic-Renderer\\Graphic-Renderer\\Graphic-Renderer.csproj",
       "projectName": "Graphic-Renderer",
-      "projectPath": "C:\\Users\\Neo\\source\\repos\\HerrDextro\\Lern-Periode-7\\Graphic-Renderer\\Graphic-Renderer\\Graphic-Renderer.csproj",
+      "projectPath": "C:\\Users\\Neo\\Source\\Repos\\HerrDextro\\Lern-Periode-7\\Graphic-Renderer\\Graphic-Renderer\\Graphic-Renderer.csproj",
       "packagesPath": "C:\\Users\\Neo\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\Neo\\source\\repos\\HerrDextro\\Lern-Periode-7\\Graphic-Renderer\\Graphic-Renderer\\obj\\",
       "projectStyle": "PackageReference",
@@ -128,13 +128,5 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problem beim Lesen der Cachedatei \"C:\\Users\\alex\\Source\\Repos\\HerrDextro\\Lern-Periode-7\\Graphic-Renderer\\Graphic-Renderer\\obj\\project.nuget.cache\": Invalid property identifier character: <. Path 'version', line 3, position 0."
-    }
-  ]
+  }
 }

@@ -12,6 +12,7 @@ namespace Graphic_Renderer
 
         public int xspeed = 1;
         public int yspeed = 1;
+        public bool alive = true;
 
         string defaultBallTexture = @"..\..\..\Pong\textures\ball.txt";
         string ballTexture;
@@ -28,7 +29,7 @@ namespace Graphic_Renderer
         
         
 
-        public int xpos = 30; //middle fo filed is x 30 or x 29 or smt
+        public int xpos = 30; //middle of field is x 30 
         public int ypos = 15; //middle of field is y15 //public for collision checker  
         //PLS DONOUT RESET IN RENDER YOU DAMABSS
         
@@ -61,7 +62,8 @@ namespace Graphic_Renderer
                 xspeed = 0; 
                 yspeed = 0;
                 painter.fillRectangle("darkred", 0, 0, 60, 30);
-                painter.writeText("Game Over", 30, 15);
+                painter.writeText("Game Over, press \"ESC\" to exit.", 30, 15);
+                alive = false;
             }
             if (ypos >= 29)
             {
