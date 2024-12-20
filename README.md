@@ -92,10 +92,12 @@ Alex: Heute habe ich das Cursor Tracking fertiggemacht, und noch mehrere andere 
 13.11.2024
 - [x] Neo: dynamic hitbox variables (auto adjusting, pong)
 - [x] Alex: Parkour (Jetpack Joyride x Amongus)
-- [ ] 
+
 
 Heute haben wir die zwei GitHub Branches vollständig gemerged, meherere kleine Bugs gefixt und eine neue Dokumentation erstellt. Es hat lange gebraucht, um zu entscheiden was zu behalten und was nicht, und dann ancher die nötige packages wieder zu installieren, weil die irgendwie weg waren. Auch müssten die Programme, die noch für die alten Programme (outdated) geschrieben waren, umschreiben. 
 
 20.11.2024
-- [ ] Neo: Startup vollständig fertig
-- [ ] Alex: Krankenhaus überleben (that feeling when knee surgery is tomorrow)
+- [x] Neo: Startup Animation vollständig fertig
+- [ ] Startup statt manuell aktivieren sofort am Anfang laufen lassen
+- [x] Pong: add ESC after dead
+- [x] Alex: Krankenhaus überleben (that feeling when knee surgery is tomorrow)
