@@ -37,11 +37,15 @@ namespace Graphic_Renderer
 
             //Startup Sequence (Animation)
             //StartUp.StartUpAnim(painter);
-
+            StartUp startUp = new StartUp();
+            startUp.StartUpAnim(painter, reader);
+            painter.updateFrame();
+            
 
             //Main Loop
-            
-            
+
+
+
 
             Program program = new Program();
             program.PlayMusic();
@@ -83,9 +87,9 @@ namespace Graphic_Renderer
                     switch (cursorheight)
                     {
                         case 1:
-                            StartUp startUp = new StartUp();
-                            startUp.StartUpAnim(painter);
-                            painter.updateFrame();
+                            //StartUp startUp = new StartUp();
+                            //startUp.StartUpAnim(painter,reader);
+                            //painter.updateFrame();
                             break;
                         case 2:
                             Parkour parkour = new Parkour(painter,reader);

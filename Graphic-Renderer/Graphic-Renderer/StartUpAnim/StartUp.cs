@@ -8,15 +8,18 @@ namespace Graphic_Renderer
     public class StartUp
     {
         SPainter painter;
+        SReader reader;
         Helper helper = new Helper();
         
 
         string smartPainterText = @"..\..\..\StartUpAnim\textures\SPtext.txt";
         string swissFlag = @"..\..\..\StartUpAnim\textures\SwissFlagV5.txt";
 
-        public void StartUpAnim(SPainter painterInp)
+        public void StartUpAnim(SPainter painterInp, SReader readerInp)
         {
             painter = painterInp;
+            reader = readerInp;
+
             painter.clear();
             painter.fillRectangle("black", 0, 0, 60, 30);
 
@@ -25,27 +28,37 @@ namespace Graphic_Renderer
             int sptXpos = 23; //final position for smart painter text
             int sptYpos = 8;
             bool running = true;
+            bool animationDone = false;
 
             while(running)
             {
                 painter.updateFrame();
                 painter.clear();
-               
+
 
                 painter.loadImage(sfXpos, sfYpos, swissFlag);
-                if (sfXpos >= 10)
+                if (sfXpos >= 8)
                 {
                     sfXpos--;
                 }
-                if (sfXpos == 9)
+                if (sfXpos == 7)
                 {
+                    painter.clear();
                     painter.loadImage(sptXpos, sptYpos, smartPainterText);
+                    painter.loadImage(7, sfYpos, swissFlag);
+                    running = false;
+                    painter.updateFrame();
+                    Thread.Sleep(1000);
                 }
 
                 //helper.SmartGrower(painter); //grows single center pixel to swiss flag
                 
-
+                if (reader.KeyDown(SReader.escape))
+                {
+                    running = false;
+                }
                 
+
 
 
                 Thread.Sleep(50); //animation speed (default: 50ms)
