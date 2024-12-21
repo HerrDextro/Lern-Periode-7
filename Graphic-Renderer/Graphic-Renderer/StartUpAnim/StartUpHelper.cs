@@ -1,5 +1,6 @@
 using System.ComponentModel.Design;
 using System.Reflection;
+using System.Reflection.PortableExecutable;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 
@@ -11,12 +12,47 @@ namespace Graphic_Renderer
 
 
 		//change to relatives after testing
-		string SmartpainterText = @"C:\Users\Neo\Source\Repos\HerrDextro\Lern-Periode-7\Graphic-Renderer\Graphic-Renderer\StartUpAnim\textures\SPtext.txt";
+		string SmartpainterText = @"..\..\..\StartUpAnim\textures\SPtext.txt";
 		string swissFlag = @"C:\Users\Neo\Source\Repos\HerrDextro\Lern-Periode-7\Graphic-Renderer\Graphic-Renderer\StartUpAnim\textures\SwissFlagV5.txt";
 
-		static void DotDot() //for the dot to dot (damit es punkten kann)
+		public static void DotDot(SPainter painterInp) //for the dot to dot (damit es punkten kann) (unbenutzt)
 		{
+			SPainter painter;
+			painter = painterInp;
+			painter.fillRectangle("black", 0, 0, 60, 30);
 			
 		}
-	}
+
+		public void SmartGrower(SPainter painterInp)
+		{
+            painter = painterInp;
+            int xpos = 30;
+            int ypos = 15;
+            int xsize = 1;
+            int ysize = 1;
+
+            painter.fillRectangle("blue", xpos, ypos, xsize, ysize);
+
+			while (xpos >= 23 && ypos >= 8)
+			{
+                if (xpos >= 23)
+                {
+                    
+                    /*xpos -= 3;
+                    xsize += 2;
+                    painter.updateFrame();*/
+
+                }
+                if (ypos >= 8)
+                {
+                    
+                    /*ypos -= 3;
+                    ysize += 2;
+                    painter.updateFrame();*/
+                }
+            }
+			
+			
+        }
+    }
 }
