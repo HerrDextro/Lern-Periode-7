@@ -1,4 +1,4 @@
-using Graphic_Renderer;
+using Graphic_Renderer.SmartPainterFiles;
 using System.Net.Mail;
 using System.Runtime.InteropServices.Marshalling;
 

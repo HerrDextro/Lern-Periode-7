@@ -4,8 +4,11 @@ using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.Marshalling;
 using System.Drawing;
+using System.Text.Json;
+using System.Xml.Linq;
+using Graphic_Renderer.SmartPainterFiles.DataObjects;
 
-namespace Graphic_Renderer
+namespace Graphic_Renderer.SmartPainterFiles
 {
     public class SPainter
     {
@@ -22,27 +25,30 @@ namespace Graphic_Renderer
         public int consoleWidth;
         public int consoleHeight;
 
-        public SPainter(int width, int height,string color)
+        public SPainter(int width, int height, string color)
         {
             width *= 2; // Adapting coords for Console
 
             defaultBGColor = color;
 
             consoleHeight = height;
-            consoleWidth = width/2;
+            consoleWidth = width / 2;
 
             defaultTextColor = "White";
 
             Console.CursorVisible = false;
 
 
-            pixel = new string[width,height];
+            pixel = new string[width, height];
             pixel = populateList(pixel, color); // Initialising pixel array
 
             pixelLast = pixel.Clone() as string[,]; // Initialising pixelLast array
 
-            charType = new string[width,height]; // Initialising charType array
-            charType = populateList(charType,"█");
+            charType = new string[width, height]; // Initialising charType array
+            charType = populateList(charType, "█");
+
+            // for opening console
+
 
 
         }
@@ -78,13 +84,13 @@ namespace Graphic_Renderer
             {
                 for (int j = 0; j < pixel.GetLength(0); j++)
                 {
-                    if (charType[j,i] != "█")
+                    if (charType[j, i] != "█")
                     {
                         Console.SetCursorPosition(j, i);
 
                         setColor(defaultTextColor);
                         setBGColor(pixel[j, i]);
-                        
+
                         Console.Write(charType[j, i]);
                     }
                 }
@@ -98,11 +104,11 @@ namespace Graphic_Renderer
 
         public void renderFrame() // Initialisation of the Console
         {
-            for (int i = 0; i < pixel.GetLength(1)-1; i++)
+            for (int i = 0; i < pixel.GetLength(1) - 1; i++)
             {
                 for (int j = 0; j < pixel.GetLength(0); j++)
                 {
-                    if (charType[j,i] == "█")
+                    if (charType[j, i] == "█")
                     {
                         setColor(pixel[j, i]);
                     }
@@ -112,7 +118,7 @@ namespace Graphic_Renderer
                         setBGColor(pixel[j, i]);
                     }
 
-                    Console.Write(charType[j,i]);
+                    Console.Write(charType[j, i]);
                 }
                 Console.WriteLine();
             }
@@ -140,16 +146,16 @@ namespace Graphic_Renderer
             }
             catch (IndexOutOfRangeException) { }
         }
-        public void fillRectangle(string color,int xstart, int ystart, int xsize, int ysize)
+        public void fillRectangle(string color, int xstart, int ystart, int xsize, int ysize)
         {
             xsize *= 2; //Adapting coords for Console
             xstart *= 2;
 
             for (int i = 0; i < xsize; i++)
             {
-                for (int j = 0;j < ysize; j++)
+                for (int j = 0; j < ysize; j++)
                 {
-                    
+
                     try
                     {
                         pixel[i + xstart, j + ystart] = color;
@@ -159,9 +165,9 @@ namespace Graphic_Renderer
                 }
             }
         }
-        public void saveImage(int xstart, int ystart, int xsize, int ysize,string filepath)
+        public void saveImage(int xstart, int ystart, int xsize, int ysize, string filepath)
         {
-            xsize *= 2; 
+            xsize *= 2;
             xstart *= 2; //Adapting coords for Console
 
             string[] save = new string[ysize];
@@ -172,7 +178,7 @@ namespace Graphic_Renderer
                 {
                     try
                     {
-                        save[j] += (pixel[xstart + i, ystart + j]+";");
+                        save[j] += pixel[xstart + i, ystart + j] + ";";
                     }
                     catch { }
                 }
@@ -181,28 +187,63 @@ namespace Graphic_Renderer
         }
         public void loadImage(int xpos, int ypos, string filepath)
         {
-            string[] textInpRaw = File.ReadAllLines(filepath);
-            xpos *= 2; // Adapting coords for Console
-
-            for (int i = 0;i < textInpRaw.Length; i++)
+            string extension = Path.GetExtension(filepath).ToLower();
+            if(extension == ".txt")
             {
-                string[] line = textInpRaw[i].Split(";");
+                string[] textInpRaw = File.ReadAllLines(filepath);
+                xpos *= 2; // Adapting coords for Console
 
-                for (int j = 0;j < line.Length-1; j++)
+                for (int i = 0; i < textInpRaw.Length; i++)
                 {
-                    try
+                    string[] line = textInpRaw[i].Split(";");
+
+                    for (int j = 0; j < line.Length - 1; j++)
                     {
-                        if ((xpos + j >= 0) && (ypos + i >= 0) && (xpos + j <= consoleWidth*2-1) && (ypos + i <= consoleHeight*2-1))
+                        try
                         {
-                            if (pixel[xpos + j, ypos + i] != "none")
+                            if (xpos + j >= 0 && ypos + i >= 0 && xpos + j <= consoleWidth * 2 - 1 && ypos + i <= consoleHeight * 2 - 1)
                             {
-                                pixel[xpos + j, ypos + i] = line[j];
+                                if (line[j] != "none")
+                                {
+                                    pixel[xpos + j, ypos + i] = line[j];
+                                }
                             }
                         }
+                        catch (IndexOutOfRangeException) { }
                     }
-                    catch (IndexOutOfRangeException) { }
                 }
             }
+            else if (extension == ".json")
+            {
+                string jsonString = File.ReadAllText(filepath);
+
+                // Throw if invalid JSON
+                if (jsonString == null) { throw new InvalidDataException("Targeted file is empty"); }
+
+                Image? imageJson = JsonSerializer.Deserialize<Image>(jsonString);
+
+                if (imageJson == null) { throw new InvalidDataException("Targeted file is empty"); }
+
+                for (int i = 0; i < imageJson.pixels.GetLength(0); i++) // YES IT DOES COMPLAIN BUT NO IT CANNOT BE NULL
+                {
+                    for (int j = 0; j < imageJson.pixels.GetLength(1); j++)
+                    {
+                        try
+                        {
+                            if (xpos + j >= 0 && ypos + i >= 0 && xpos + j <= consoleWidth * 2 - 1 && ypos + i <= consoleHeight * 2 - 1)
+                            {
+                                var imgPixel = imageJson.pixels[i, j];
+
+                                pixel[xpos + j, ypos + i] = imgPixel.color;
+                            }
+                        }
+                        catch (IndexOutOfRangeException) { }
+                    }
+                }
+
+            }
+
+
         }
         private string[,] populateList(string[,] list, string input)
         {
@@ -215,14 +256,14 @@ namespace Graphic_Renderer
             }
             return list;
         }
-        
+
         private string toSingleString(string[] input)
         {
             string result = string.Empty;
 
-            for (int x = 0;x < input.Length; x++)
+            for (int x = 0; x < input.Length; x++)
             {
-                result += (input[x] + "\n");
+                result += input[x] + "\n";
             }
             return result;
         }

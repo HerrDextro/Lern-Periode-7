@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.XPath;
+using Graphic_Renderer.SmartPainterFiles;
 
 namespace Graphic_Renderer
 {

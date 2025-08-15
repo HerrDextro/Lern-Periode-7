@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <Folder Include="DevPaint\Textures\" />
+    <Folder Include="RacingGame\" />
     <Folder Include="SpaceInvaders\textures\" />
 	<Folder Include="TestGame\" />
 	<Folder Include="Pong\" />

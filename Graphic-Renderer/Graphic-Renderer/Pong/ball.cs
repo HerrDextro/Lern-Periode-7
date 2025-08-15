@@ -2,6 +2,7 @@ using System.Reflection;
 using System.Reflection.Metadata.Ecma335;
 using System.Runtime.InteropServices.Marshalling;
 using System.Text;
+using Graphic_Renderer.SmartPainterFiles;
 
 namespace Graphic_Renderer
 {

@@ -2,6 +2,7 @@ using System.ComponentModel.Design;
 using System.Reflection;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
+using Graphic_Renderer.SmartPainterFiles;
 
 namespace Graphic_Renderer
 {

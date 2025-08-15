@@ -1,4 +1,4 @@
-using Graphic_Renderer;
+using Graphic_Renderer.SmartPainterFiles;
 
 public class Parkour
 {

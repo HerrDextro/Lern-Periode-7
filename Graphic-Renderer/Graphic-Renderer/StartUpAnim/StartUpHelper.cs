@@ -3,10 +3,11 @@ using System.Reflection;
 using System.Reflection.PortableExecutable;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
+using Graphic_Renderer.SmartPainterFiles;
 
 namespace Graphic_Renderer
 {
-	public class Helper
+    public class Helper
 	{
 		SPainter painter;
 

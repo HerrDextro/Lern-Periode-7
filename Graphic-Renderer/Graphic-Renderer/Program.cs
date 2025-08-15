@@ -4,16 +4,12 @@ using System.Media;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Threading;
-using Graphic_Renderer;
+using Graphic_Renderer.SmartPainterFiles;
 
 namespace Graphic_Renderer
 {
-     public class Program
-    {
-
-
-
-
+    public class Program
+     {
         static void Main(string[] args)
         {
             string[] gamelist =
@@ -23,7 +19,9 @@ namespace Graphic_Renderer
                 "Dev Paint",
                 "Tetris",
                 "Pong",
-                "Space Invaders"
+                "Space Invaders",
+                "The Rig Idle",
+                "Racing Game"
             };
             int cursorheight = 0;
             int cursorcool = 0;
@@ -115,6 +113,13 @@ namespace Graphic_Renderer
                             SpaceInvader spaceInvaders = new SpaceInvader();
                             spaceInvaders.StartGame(painter, reader);
                             painter.updateFrame();
+                            break;
+                        case 7:
+                            GCI gci = new GCI(painter,reader);
+                            gci.startGame();
+                            painter.updateFrame();
+                            break;
+                        case 8:
                             break;
                     }
                     program.PlayMusic();

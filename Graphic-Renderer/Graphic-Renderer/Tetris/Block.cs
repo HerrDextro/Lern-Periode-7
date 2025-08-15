@@ -3,6 +3,7 @@ using System.Text;
 using System.Media;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using System.Security.Cryptography.X509Certificates;
+using Graphic_Renderer.SmartPainterFiles;
 
 namespace Graphic_Renderer
 {

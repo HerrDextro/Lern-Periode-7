@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.Marshalling;
 using System.Drawing;
 
-namespace Graphic_Renderer
+namespace Graphic_Renderer.SmartPainterFiles
 {
     public class SReader
     {
@@ -20,10 +20,10 @@ namespace Graphic_Renderer
         public struct POINT { public int X, Y; }
 
         [DllImport("user32.dll")]
-        public static extern bool GetWindowRect(IntPtr hwnd, ref Rect rectangle);
+        public static extern bool GetWindowRect(nint hwnd, ref Rect rectangle);
 
         [DllImport("user32.dll", EntryPoint = "FindWindow", SetLastError = true)]
-        public static extern IntPtr FindWindowByCaption(IntPtr zeroOnly, string lpWindowName);
+        public static extern nint FindWindowByCaption(nint zeroOnly, string lpWindowName);
 
         private const int WM_MOUSEWHEEL = 0x020A;
 
@@ -46,7 +46,7 @@ namespace Graphic_Renderer
 
 
 
-        private static IntPtr _hookID = IntPtr.Zero;
+        private static nint _hookID = nint.Zero;
 
         [StructLayout(LayoutKind.Sequential)]
         struct Coord
@@ -70,10 +70,10 @@ namespace Graphic_Renderer
         }
 
         [DllImport("kernel32.dll", SetLastError = true)]
-        static extern bool GetCurrentConsoleFontEx(IntPtr hConsoleOutput, bool bMaximumWindow, ref CONSOLE_FONT_INFO_EX lpConsoleCurrentFontEx);
+        static extern bool GetCurrentConsoleFontEx(nint hConsoleOutput, bool bMaximumWindow, ref CONSOLE_FONT_INFO_EX lpConsoleCurrentFontEx);
 
         [DllImport("kernel32.dll", SetLastError = true)]
-        static extern IntPtr GetStdHandle(int nStdHandle);
+        static extern nint GetStdHandle(int nStdHandle);
 
         const int STD_OUTPUT_HANDLE = -11;
 
@@ -146,7 +146,7 @@ namespace Graphic_Renderer
         public int[] getMousePos() // Relative to Window in SPainter Pixels
         {
             // Get Mouse Position
-            
+
             POINT currentPos;
             GetCursorPos(out currentPos);
 
@@ -155,7 +155,7 @@ namespace Graphic_Renderer
 
             // Get Console Window
 
-            IntPtr handle = FindWindowByCaption(IntPtr.Zero, "GraphicsEngine");
+            nint handle = FindWindowByCaption(nint.Zero, "GraphicsEngine");
             Rect rect = new Rect();
 
             int windowX;
@@ -199,10 +199,10 @@ namespace Graphic_Renderer
             int cursorXLine = Convert.ToInt32(cursorX / fontX);
             int cursorYLine = Convert.ToInt32(cursorY / fontY);
 
-            int cursoradaptX = Convert.ToInt32(Math.Floor((cursorXLine / 2.35) - 1));
+            int cursoradaptX = Convert.ToInt32(Math.Floor(cursorXLine / 2.35 - 1));
             int cursoradaptY = Convert.ToInt32(Math.Ceiling(cursorYLine * 0.85) - 3);
 
-            return [cursoradaptX,cursoradaptY];
+            return [cursoradaptX, cursoradaptY];
         }
 
         public bool IsLeftMouseButtonDown()
