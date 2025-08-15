@@ -24,7 +24,7 @@ namespace Graphic_Renderer
 			
 		}
 
-		public void SmartGrower(SPainter painterInp)
+		public void FlaggusInflatus(SPainter painterInp) //Logic broken do not call
 		{
             painter = painterInp;
             int xpos = 30;
@@ -39,18 +39,20 @@ namespace Graphic_Renderer
                 if (xpos >= 23)
                 {
                     
-                    /*xpos -= 3;
+                    xpos -= 3;
                     xsize += 2;
-                    painter.updateFrame();*/
+                    painter.fillRectangle("blue", xpos, ypos, xsize, ysize);
+                    painter.updateFrame();
 
                 }
-                if (ypos >= 8)
+                /*if (ypos >= 8)
                 {
                     
-                    /*ypos -= 3;
+                    ypos += 3;
                     ysize += 2;
-                    painter.updateFrame();*/
-                }
+                    painter.fillRectangle("blue", xpos, ypos, xsize, ysize);
+                    painter.updateFrame();
+                }*/
             }
 			
 			

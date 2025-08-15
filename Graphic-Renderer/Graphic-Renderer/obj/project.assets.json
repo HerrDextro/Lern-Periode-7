@@ -106,9 +106,9 @@
     "restore": {
       "projectUniqueName": "C:\\Users\\alex\\Source\\Repos\\HerrDextro\\Lern-Periode-7\\Graphic-Renderer\\Graphic-Renderer\\Graphic-Renderer.csproj",
       "projectName": "Graphic-Renderer",
-      "projectPath": "C:\\Users\\alex\\Source\\Repos\\HerrDextro\\Lern-Periode-7\\Graphic-Renderer\\Graphic-Renderer\\Graphic-Renderer.csproj",
-      "packagesPath": "C:\\Users\\alex\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\alex\\Source\\Repos\\HerrDextro\\Lern-Periode-7\\Graphic-Renderer\\Graphic-Renderer\\obj\\",
+      "projectPath": "C:\\Users\\Neo\\Source\\Repos\\HerrDextro\\Lern-Periode-7\\Graphic-Renderer\\Graphic-Renderer\\Graphic-Renderer.csproj",
+      "packagesPath": "C:\\Users\\Neo\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Neo\\Source\\Repos\\HerrDextro\\Lern-Periode-7\\Graphic-Renderer\\Graphic-Renderer\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\alex\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -136,7 +136,8 @@
         "enableAudit": "true",
         "auditLevel": "low",
         "auditMode": "direct"
-      }
+      },
+      "SdkAnalysisLevel": "9.0.100"
     },
     "frameworks": {
       "net8.0": {
@@ -167,7 +168,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.102/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
