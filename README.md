@@ -115,3 +115,12 @@ Für Alex war dieses Programm ebenfalls eine gute Lernmöglichkeit. Er konnte si
 Um das Cursor-Tracking zu implementieren, musste er sehr komplizierte Dinge tun, wie den Kernel zu importieren und dann Berechnungen durchzuführen, die bestimmen, wo sich der Cursor relativ zum offenen Fenster befindet.
 
 Insgesamt hat dieses Programm uns beide herausgefordert und auf ein höheres Niveau gebracht.
+
+
+## REVISIT: 22.08.2025
+Die Arbeit am Graphic renderer geht weiter! Dieses mal machen wir multiplayer games, welche über Trello (als backend🥀🤡) online gespielt werden können. Es funktioniert so, indem wir mit dem Trello-API in Trello Karten erstellen, welche alle Daten für das Game speichern. Wir können es so dann auch abrufen. Alex hat schon Das SPainter dafür vorbereitet, und für Neo kann die Arbeit am Schach Frontend beginnen.
+
+29.08.2025
+- [ ] GameStart Funktion. (Wenn im SPainter die Start Funktion abgerufen wird dann werden alle UID's und Objekte erstellt. 
+- [ ] Schachbrett Texture. (Um zu testen und zu entwicklen brauchen wir dieses ganz am Anfang. Wähle ein passendes Farbschema, damit die Stücken sichtbar sind auf ihre eigene Felder. ZB: Stücken sind S/W, Brett ist Grün/Khaki)
+- [ ] Schachstück Texturen. (Es sollten alle vorhanden sein)
