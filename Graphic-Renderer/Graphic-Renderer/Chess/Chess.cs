@@ -6,11 +6,14 @@ using System.Threading.Tasks;
 
 namespace Graphic_Renderer.Chess
 {
-    internal class Chess
+    public class Chess
     {
-        static void StartTurn()
+        public static void StartGame()
         {
-            Guid guid = Guid.NewGuid();
+            //Guid guid = Guid.NewGuid();
+
+            //create GUID's for all
+
 
         }
     }
