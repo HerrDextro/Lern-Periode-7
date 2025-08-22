@@ -15,7 +15,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="DevPaint\Textures\" />
     <Folder Include="RacingGame\" />
     <Folder Include="SpaceInvaders\textures\" />
 	<Folder Include="TestGame\" />
@@ -23,7 +22,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="System.Windows.Extensions" Version="9.0.0" />
   </ItemGroup>
+
+  <ProjectExtensions><VisualStudio><UserProperties test_1json__JsonSchema="Image" /></VisualStudio></ProjectExtensions>
 
 </Project>

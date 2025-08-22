@@ -13,6 +13,14 @@ namespace Graphic_Renderer
     {
 
         int CurrentColor = 0;
+        PaintMode CurrentMode = PaintMode.Draw;
+
+        enum PaintMode
+        {
+            Draw,
+            Write
+        }
+
 
 
         string[] ColorsArr =
@@ -55,7 +63,7 @@ namespace Graphic_Renderer
             pixels = populateList(pixels,"black");
         }
 
-        public void StartGame(SPainter painter, SReader reader)
+        public async void StartGame(SPainter painter, SReader reader)
         {
             painter.clear();
             painter.fillRectangle("black",0, 0, 60, 30);
@@ -82,6 +90,13 @@ namespace Graphic_Renderer
                 }
 
 
+
+                if (reader.KeyDown(SReader.arrowDown) && reader.KeyDown(SReader.alt))
+                {
+                    CurrentMode = (CurrentMode == PaintMode.Draw) ? PaintMode.Write : PaintMode.Draw;
+                    Thread.Sleep(100);
+                }
+                
 
 
 
@@ -115,16 +130,54 @@ namespace Graphic_Renderer
                 painter.changePixel(ColorsArr[colnex], 59, 2);
 
 
+                string modeText = null;
+                if (CurrentMode == PaintMode.Write)
+                {
+                    modeText = "Text";
+                }
+                else
+                {
+                    modeText = "Draw";
+                }
+
+
+
+
+                painter.writeText(modeText, (56*2)+1, 2, "black");
+                if (CurrentColor == 1)
+                {
+                    painter.writeText(modeText, (56 * 2) + 1, 2, "white");
+                }
+
+
+                // Paint cursor
+                var f = painter.changePixel;
+                f("red",0,0);
+
 
                 if (counter > 6)
                 {
                     if (!(CurrentColor == 1))
                     {
-                        painter.changePixel(ColorsArr[CurrentColor], cursorX, cursorY);
+                        if (CurrentMode == PaintMode.Draw)
+                        {
+                            painter.changePixel(ColorsArr[CurrentColor], cursorX, cursorY);
+                        }
+                        else
+                        {
+                            painter.writeText("I", cursorX * 2, cursorY, ColorsArr[CurrentColor]);
+                        }
                     }
                     else
                     {
-                        painter.changePixel("white", cursorX, cursorY);
+                        if (CurrentMode == PaintMode.Draw)
+                        {
+                            painter.changePixel("white", cursorX, cursorY);
+                        }
+                        else
+                        {
+                            painter.writeText("I", cursorX * 2, cursorY, "white");
+                        }
                     }
                 }
 
@@ -174,7 +227,7 @@ namespace Graphic_Renderer
                     int rectEndX = Math.Abs(rectStartX - (cursorX));
                     int rectEndY = Math.Abs(rectStartY - (cursorY));
 
-                    painter.saveImage(rectStartX, rectStartY, rectEndX, rectEndY, @"..\..\..\DevPaint\Textures\texture.txt");
+                    painter.saveImage(rectStartX, rectStartY, rectEndX, rectEndY, @"..\..\..\DevPaint\Textures\texture.json");
 
                     keypress2 = true;
                 }
@@ -243,12 +296,6 @@ namespace Graphic_Renderer
                 Thread.Sleep(50);
 
             }
-
-
-
-
-
-
         }
         private string[,] populateList(string[,] list, string input)
         {

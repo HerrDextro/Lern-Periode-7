@@ -53,8 +53,8 @@ namespace Graphic_Renderer
             while (true)
             {
                 painter.updateFrame();
-                painter.updateText();
                 painter.clear();
+                painter.loadImage(20, 10, "../../../test.json");
 
                 painter.fillRectangle("darkgray",1,cursorheight,10,1);
                 program.ShowText(painter, gamelist);
@@ -126,7 +126,8 @@ namespace Graphic_Renderer
 
                     program.ShowText(painter, gamelist);
 
-                    painter.updateText();
+
+
                     
                 }
                 Thread.Sleep(50);

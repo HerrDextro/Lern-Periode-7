@@ -4,9 +4,10 @@ using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.Marshalling;
 using System.Drawing;
-using System.Text.Json;
 using System.Xml.Linq;
 using Graphic_Renderer.SmartPainterFiles.DataObjects;
+using Newtonsoft.Json;
+using System.Security.Principal;
 
 namespace Graphic_Renderer.SmartPainterFiles
 {
@@ -16,6 +17,9 @@ namespace Graphic_Renderer.SmartPainterFiles
         string[,] pixel;
         string[,] pixelLast;
         string[,] charType;
+        string[,] charTypeLast;
+        string[,] letterColor;
+        string[,] letterColorLast;
 
         // Setting default colors
         string defaultTextColor;
@@ -47,6 +51,12 @@ namespace Graphic_Renderer.SmartPainterFiles
             charType = new string[width, height]; // Initialising charType array
             charType = populateList(charType, "█");
 
+            letterColor = new string[width, height];
+            letterColor = populateList(letterColor, defaultTextColor);
+
+            letterColorLast = letterColor.Clone() as string[,];
+
+
             // for opening console
 
 
@@ -59,7 +69,7 @@ namespace Graphic_Renderer.SmartPainterFiles
             {
                 for (int j = 0; j < pixel.GetLength(0); j++)
                 {
-                    if (pixel[j, i] != pixelLast[j, i])
+                    if (pixel[j, i] != pixelLast[j, i] || charType[j, i] != charTypeLast[j, i] || letterColor[j, i] != letterColorLast[j, i])
                     {
                         Console.SetCursorPosition(j, i);
                         if (charType[j, i] == "█")
@@ -68,7 +78,7 @@ namespace Graphic_Renderer.SmartPainterFiles
                         }
                         else
                         {
-                            setColor(defaultTextColor);
+                            setColor(letterColor[j,i]);
                             setBGColor(pixel[j, i]);
                         }
                         Console.Write(charType[j, i]);
@@ -76,6 +86,8 @@ namespace Graphic_Renderer.SmartPainterFiles
                 }
             }
             pixelLast = pixel.Clone() as string[,];
+            charTypeLast = charType.Clone() as string[,];
+            letterColorLast = letterColor.Clone() as string[,];
         }
 
         public void updateText() // Update all texts (not done by updateFrame)
@@ -100,6 +112,7 @@ namespace Graphic_Renderer.SmartPainterFiles
         {
             pixel = populateList(pixel, defaultBGColor);
             charType = populateList(charType, "█");
+            letterColor = populateList(letterColor, defaultTextColor);
         }
 
         public void renderFrame() // Initialisation of the Console
@@ -124,11 +137,17 @@ namespace Graphic_Renderer.SmartPainterFiles
             }
             pixelLast = pixel.Clone() as string[,];
         }
-        public void writeText(string text, int xpos, int ypos)
+        public void writeText(string text, int xpos, int ypos, string color = "defaultTextColor")
         {
+            
+            
             for (int i = 0; i < text.Length; i++)
             {
                 charType[xpos + i, ypos] = Convert.ToString(text[i]);
+                if (color != "defaultTextColor") 
+                {
+                    letterColor[xpos + i, ypos] = color;
+                }
             }
         }
         public void changeTextColor(string color)
@@ -170,20 +189,26 @@ namespace Graphic_Renderer.SmartPainterFiles
             xsize *= 2;
             xstart *= 2; //Adapting coords for Console
 
-            string[] save = new string[ysize];
 
-            for (int i = 0; i < xsize; i++)
+            Image.Pixel[][] pixels = new Image.Pixel[ysize][];
+            for (int y = 0; y < ysize; y++)
             {
-                for (int j = 0; j < ysize; j++)
+                pixels[y] = new Image.Pixel[xsize];
+                for (int x = 0; x < xsize; x++)
                 {
-                    try
-                    {
-                        save[j] += pixel[xstart + i, ystart + j] + ";";
-                    }
-                    catch { }
+                    string color = pixel[xstart + x, ystart + y];
+                    char letter = charType[xstart + x, ystart + y][0];
+                    string letterCol = letterColor[xstart + x, ystart + y];
+
+                    pixels[y][x] = new Image.Pixel { color = color, letter = letter, letterColor = letterCol };
                 }
             }
-            File.WriteAllText(filepath, toSingleString(save));
+            Image image = new Image() { pixels = pixels };
+
+            string json = JsonConvert.SerializeObject(image, Formatting.Indented);
+
+            File.WriteAllText(filepath, json);
+
         }
         public void loadImage(int xpos, int ypos, string filepath)
         {
@@ -217,24 +242,29 @@ namespace Graphic_Renderer.SmartPainterFiles
             {
                 string jsonString = File.ReadAllText(filepath);
 
+                xpos *= 2;
+
                 // Throw if invalid JSON
                 if (jsonString == null) { throw new InvalidDataException("Targeted file is empty"); }
 
-                Image? imageJson = JsonSerializer.Deserialize<Image>(jsonString);
+                Image? imageJson = JsonConvert.DeserializeObject<Image>(jsonString);
 
                 if (imageJson == null) { throw new InvalidDataException("Targeted file is empty"); }
 
                 for (int i = 0; i < imageJson.pixels.GetLength(0); i++) // YES IT DOES COMPLAIN BUT NO IT CANNOT BE NULL
                 {
-                    for (int j = 0; j < imageJson.pixels.GetLength(1); j++)
+                    for (int j = 0; j < imageJson.pixels[i].GetLength(0); j++)
                     {
                         try
                         {
                             if (xpos + j >= 0 && ypos + i >= 0 && xpos + j <= consoleWidth * 2 - 1 && ypos + i <= consoleHeight * 2 - 1)
                             {
-                                var imgPixel = imageJson.pixels[i, j];
+                                var imgPixel = imageJson.pixels[i][j];
 
                                 pixel[xpos + j, ypos + i] = imgPixel.color;
+                                charType[xpos + j, ypos + i] = imgPixel.letter.ToString();
+                                letterColor[xpos + j, ypos + i] = imgPixel.letterColor;
+
                             }
                         }
                         catch (IndexOutOfRangeException) { }

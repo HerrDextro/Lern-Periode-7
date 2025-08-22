@@ -9,13 +9,14 @@ namespace Graphic_Renderer.SmartPainterFiles.DataObjects
 {
     public record Image
     {
-        public Pixel[,]? pixels {  get; set; }
+        public Pixel[][]? pixels {  get; set; }
 
 
         public record Pixel
         {
             public required string color { get; set; }
             public required char letter { get; set; }
+            public required string letterColor { get; set; }
         }
     }
 }
