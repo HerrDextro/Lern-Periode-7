@@ -124,7 +124,9 @@ Die Arbeit am Graphic renderer geht weiter! Dieses mal machen wir multiplayer ga
 - [x] GameStart Funktion. (Wenn im SPainter die Start Funktion abgerufen wird dann werden alle UID's und Objekte erstellt. 
 - [ ] Schachbrett Texture. (Um zu testen und zu entwicklen brauchen wir dieses ganz am Anfang. Wähle ein passendes Farbschema, damit die Stücken sichtbar sind auf ihre eigene Felder. ZB: Stücken sind S/W, Brett ist Grün/Khaki)
 - [ ] Schachstück Texturen. (Es sollten alle vorhanden sein)
+
 ! Kleine Änderung, da das DevPaint im Moment broken ist !
+
 - [x] Board wird mit Stücken initialisiert. (Breite das "Piece.cs" aus indem man eine liste oder so von allen möglichen Stücken macht, und initialiser diese in die richtige positionen im Chessboard. Das wäre das Attribut Boardstate im Game object (GameState.cs) Mach für das Initalisieren auch eine Funktion im GameState
 - [x] mach (mit GPT warscheinlich) ein Player turn change (also wenn W move gemacht hat, dann geht es zu B)
 - [ ] Hintergrund Textboxen implementieren
