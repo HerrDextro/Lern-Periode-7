@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.Marshalling;
 using System.Drawing;
+using System.Text;
 
 namespace Graphic_Renderer.SmartPainterFiles
 {
@@ -77,6 +78,27 @@ namespace Graphic_Renderer.SmartPainterFiles
 
         const int STD_OUTPUT_HANDLE = -11;
 
+        // Full Keyboard Input
+        [DllImport("user32.dll")]
+        private static extern int ToUnicodeEx(
+            uint wVirtKey,
+            uint wScanCode,
+            byte[] lpKeyState,
+            [Out, MarshalAs(UnmanagedType.LPWStr)] StringBuilder pwszBuff,
+            int cchBuff,
+            uint wFlags,
+            IntPtr dwhkl);
+
+        [DllImport("user32.dll")]
+        private static extern bool GetKeyboardState(byte[] lpKeyState);
+
+        [DllImport("user32.dll")]
+        private static extern uint MapVirtualKey(uint uCode, uint uMapType);
+
+        [DllImport("user32.dll")]
+        private static extern IntPtr GetKeyboardLayout(uint idThread);
+        // ---------------
+
         // Letters
         public const int A = 0x41;
         public const int B = 0x42;
@@ -133,6 +155,55 @@ namespace Graphic_Renderer.SmartPainterFiles
         public const int capslock = 0x14;
         public const int delete = 0x2E;
 
+
+        private int[] _allKeys = [
+            A,
+            B,
+            C,
+            D,
+            E,
+            F,
+            G,
+            H,
+            I,
+            J,
+            K,
+            L,
+            M,
+            N,
+            O,
+            P,
+            Q,
+            R,
+            S,
+            T,
+            U,
+            V,
+            W,
+            X,
+            Y,
+            Z,
+            n0,
+            n1,
+            n2,
+            n3,
+            n4,
+            n5,
+            n6,
+            n7,
+            n8,
+            n9,
+            space,
+            enter,
+            escape,
+            arrowLeft,
+            arrowRight,
+            arrowUp,
+            arrowDown,
+            tab,
+            backspace,
+            delete
+            ];
 
         public int consoleWidth;
         public int consoleHeight;
@@ -224,5 +295,136 @@ namespace Graphic_Renderer.SmartPainterFiles
         {
             return (GetAsyncKeyState(keyCode) & 0x8000) != 0;
         }
+
+        //----------------------------------------------------------------
+        // Key Captures
+        //
+        //----------------------------------------------------------------
+
+        private readonly object _lock = new object();
+        private CancellationTokenSource? _cts;
+        private Task? _captureTask;
+        private string _captureState = "";
+
+        public void StartKeyCapture()
+        {
+            if (_captureTask != null && !_captureTask.IsCompleted)
+            {
+                return;
+            }
+            _cts = new CancellationTokenSource();
+            var token = _cts.Token;
+
+            _captureTask = Task.Run(() => RunCapture(token),token);
+        }
+        public string ReadKeyCapture()
+        {
+            lock (_lock)
+            {
+                return _captureState;
+            }
+        }
+
+        public string EndCapture()
+        {
+            if (_cts == null)
+                return "Not running";
+            _cts.Cancel();
+
+            try
+            {
+                _captureTask?.Wait();
+            }
+            catch (AggregateException) {/* Ignore Exception */ }
+            finally
+            {
+                _cts.Dispose();
+                _cts = null;
+                _captureTask = null;
+            }
+
+            lock (_lock)
+            {
+                return _captureState;
+            }
+
+        }
+
+
+        
+        private void RunCapture(CancellationToken token)
+        {
+            while (!token.IsCancellationRequested)
+            {
+                string f = DateTime.Now.ToString();
+                // Execute Key Capturing
+                string key = GetActiveKey();
+
+
+
+
+                lock (_lock)
+                {
+                    if (key == "backspace")
+                    {
+                        _captureState = _captureState.Remove(_captureState.Length-1);
+                    }
+                    else
+                    {
+                        _captureState += key;
+                    }
+                    
+                }
+            }
+        }
+
+        private string GetActiveKey()
+        {
+            foreach (int key in _allKeys)
+            {
+                if (KeyDown(key))
+                {
+                    while (KeyDown(key)) { }
+                    return KeyCodeToUnicode((uint)key);
+                }
+                if (KeyDown(backspace))
+                {
+                    while (KeyDown(backspace)) { }
+                    return "backspace";
+                }
+            }
+            return "";
+        }
+
+
+        // idk how it works but it does UPDATE:nt
+
+        private string KeyCodeToUnicode(uint virtualKey)
+        {
+            byte[] keyboardState = new byte[256];
+
+            // Get the current state of all keys
+            if (!GetKeyboardState(keyboardState))
+                return "";
+
+            // Manually set the state of the Shift key to "down"
+            // VK_SHIFT is the virtual key code for the Shift key
+            if (KeyDown(shift) || KeyDown(control))
+            {
+                keyboardState[0x10] = 0x80; // WA DE HEEEEEEL IS THIS
+            }
+
+            uint scanCode = MapVirtualKey(virtualKey, 0);
+            StringBuilder sb = new StringBuilder(10);
+            IntPtr layout = GetKeyboardLayout(0);
+
+            int result = ToUnicodeEx(virtualKey, scanCode, keyboardState, sb, sb.Capacity, 0, layout);
+            if (result > 0)
+                return sb.ToString();
+            return "";
+        }
+
+
+
     }
 }

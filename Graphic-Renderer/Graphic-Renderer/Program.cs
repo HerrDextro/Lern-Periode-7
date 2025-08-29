@@ -58,12 +58,16 @@ namespace Graphic_Renderer
 
                 painter.fillRectangle("darkgray",1,cursorheight,10,1);
                 program.ShowText(painter, gamelist);
+
+                // TEMP TEST!!!!
+                reader.StartKeyCapture();
+                painter.writeText(reader.ReadKeyCapture(), 20, 3);
             
 
-                    if (cursorcool > 0)
-                    {
-                        cursorcool--;
-                    }
+                if (cursorcool > 0)
+                {
+                     cursorcool--;
+                }
 
                 if (reader.KeyDown(SReader.arrowDown) && cursorcool == 0)
                 {
