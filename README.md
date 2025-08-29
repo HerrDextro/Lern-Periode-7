@@ -133,4 +133,4 @@ Die Arbeit am Graphic renderer geht weiter! Dieses mal machen wir multiplayer ga
 # Zusammenfassung 29.08.2025
 Ich habe ein StartGame und die wichtigsten Classes jetzt erstellt. Da ich mit Multiplayer games noch ganz unerfahren bin wusste ich trotz Diagramm nicht genau wie ich mein program gestalten sollte, ich glaube ZB dass ein "Room list" hinzugefügt werden muss für Matchmaking (Dann kann ein anderer Spieler welche SPainter verwendet ein Room auswählen. 
 
-![WhatsApp Bild 2025-08-29 um 08.48.36_ec8926f8.jpg]
+![WhatsApp Bild 2025-08-29 um 08.48.36_ec8926f8.jpg](https://github.com/HerrDextro/Lern-Periode-7/blob/745ec94678e17bdef7bf1f3a8afb1f44c6ee0a3d/WhatsApp%20Bild%202025-08-29%20um%2008.48.36_ec8926f8.jpg)
