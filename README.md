@@ -125,5 +125,4 @@ Die Arbeit am Graphic renderer geht weiter! Dieses mal machen wir multiplayer ga
 - [ ] Schachbrett Texture. (Um zu testen und zu entwicklen brauchen wir dieses ganz am Anfang. Wähle ein passendes Farbschema, damit die Stücken sichtbar sind auf ihre eigene Felder. ZB: Stücken sind S/W, Brett ist Grün/Khaki)
 - [ ] Schachstück Texturen. (Es sollten alle vorhanden sein)
 - [ ] Hintergrund Textboxen implementieren
-- [ ] Hintergrund Textboxen in DevPaint
-- [ ] Hintergrund Textboxen laufen im Hintergrund
+- [ ] Trello API requests planen
