@@ -6,7 +6,21 @@ using System.Threading.Tasks;
 
 namespace Graphic_Renderer.Chess
 {
-    public class Chess
+    public static class Chess
+    {
+        private static GameState? currentGame;
+
+        public static void StartGame(string roomID, string whiteUID, string blackUID)
+        {
+            currentGame = new GameState(roomID, whiteUID, blackUID);
+        }
+
+        public static GameState? UpdateGame()
+        {
+            return currentGame;
+        }
+    }
+    /*public class Chess
     {
         public static void StartGame()
         {
@@ -16,5 +30,5 @@ namespace Graphic_Renderer.Chess
 
 
         }
-    }
+    }*/
 }
