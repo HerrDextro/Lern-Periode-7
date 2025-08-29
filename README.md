@@ -130,9 +130,14 @@ Die Arbeit am Graphic renderer geht weiter! Dieses mal machen wir multiplayer ga
 - [x] Board wird mit Stücken initialisiert. (Breite das "Piece.cs" aus indem man eine liste oder so von allen möglichen Stücken macht, und initialiser diese in die richtige positionen im Chessboard. Das wäre das Attribut Boardstate im Game object (GameState.cs) Mach für das Initalisieren auch eine Funktion im GameState
 - [x] mach (mit GPT warscheinlich) ein Player turn change (also wenn W move gemacht hat, dann geht es zu B)
 - [ ] Hintergrund Textboxen implementieren
-- [ ] Trello API requests planen
+- [X] Trello API requests planen
 
 # Zusammenfassung 29.08.2025
 Ich habe ein StartGame und die wichtigsten Classes jetzt erstellt. Da ich mit Multiplayer games noch ganz unerfahren bin wusste ich trotz Diagramm nicht genau wie ich mein program gestalten sollte, ich glaube ZB dass ein "Room list" hinzugefügt werden muss für Matchmaking (Dann kann ein anderer Spieler welche SPainter verwendet ein Room auswählen. 
 
 ![WhatsApp Bild 2025-08-29 um 08.48.36_ec8926f8.jpg](https://github.com/HerrDextro/Lern-Periode-7/blob/745ec94678e17bdef7bf1f3a8afb1f44c6ee0a3d/WhatsApp%20Bild%202025-08-29%20um%2008.48.36_ec8926f8.jpg)
+
+Ich konnte heute den Hintergrund Texttracer implementieren. Er ist noch nicht komplett fertig jedoch kann man schon grundsätzlichen text eingeben. Ein nächster schritt ist es die fehlenden Tasten hinzuzufügen um alle Keys abzurufen können.
+
+![WhatsApp Bild 2025-08-29 um 10 32 13_31622181](https://github.com/user-attachments/assets/f7e5882e-e80b-450a-95d8-fe9d7456364e)
+
