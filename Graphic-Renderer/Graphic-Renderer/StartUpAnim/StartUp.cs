@@ -52,7 +52,7 @@ namespace Graphic_Renderer
                     Thread.Sleep(1000);
                 }
 
-                //helper.SmartGrower(painter); //grows single center pixel to swiss flag
+                
                 
                 if (reader.KeyDown(SReader.escape))
                 {
