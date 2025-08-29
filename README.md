@@ -141,3 +141,7 @@ Ich konnte heute den Hintergrund Texttracer implementieren. Er ist noch nicht ko
 
 ![WhatsApp Bild 2025-08-29 um 10 32 13_31622181](https://github.com/user-attachments/assets/f7e5882e-e80b-450a-95d8-fe9d7456364e)
 
+- [ ] Alex: Alle Zeichen können eingetippt werden
+- [ ] Alex: Dev Paint kann im Texteingabemodus text-texturen erstellen
+- [ ] Alex: Dev Paint kann transparente bilder erstellen
+- [ ] Alex: Genaue Funktionsweise (Aufteilung) mit Neo Besprochen
