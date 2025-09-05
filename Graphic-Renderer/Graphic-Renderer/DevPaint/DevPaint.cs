@@ -54,6 +54,9 @@ namespace Graphic_Renderer
 
 
         string[,] pixels = new string[60,30];
+        string[,] characters = new string[60, 30];
+        string[,] characterColors = new string[60, 30];
+
 
         bool keypress = true;
         bool keypress2 = true;
@@ -61,6 +64,7 @@ namespace Graphic_Renderer
         public DevPaint()
         {
             pixels = populateList(pixels,"black");
+            characters = populateList(characters, "");
         }
 
         public async void StartGame(SPainter painter, SReader reader)
@@ -69,6 +73,7 @@ namespace Graphic_Renderer
             painter.fillRectangle("black",0, 0, 60, 30);
 
             bool running = true;
+            bool boxActive = false;
 
             while (running)
             {
@@ -181,64 +186,79 @@ namespace Graphic_Renderer
                     }
                 }
 
-                if (counter == 15)
+                if (CurrentMode == PaintMode.Draw)
                 {
-                    counter = 0;
-                }
-
-                if (reader.KeyDown(SReader.shift) && keypress)
-                {
-                    keypress = false;
-                    rectStartX = cursorX;
-                    rectStartY = cursorY;
-                }
-                else if (!(reader.KeyDown(SReader.shift)) && !(keypress))
-                {
-                    int rectEndX = Math.Abs(rectStartX - (cursorX));
-                    int rectEndY = Math.Abs(rectStartY - (cursorY));
-
-                    for (int i = 0; i < rectEndX; i++)
+                    if (counter == 15)
                     {
-                        for (int j = 0; j < rectEndY; j++)
-                        {
-                            pixels[rectStartX + i, rectStartY + j] = ColorsArr[CurrentColor];
-                        }
+                        counter = 0;
                     }
-                    keypress = true;
+
+                    if (reader.KeyDown(SReader.shift) && keypress)
+                    {
+                        keypress = false;
+                        rectStartX = cursorX;
+                        rectStartY = cursorY;
+                    }
+                    else if (!(reader.KeyDown(SReader.shift)) && !(keypress))
+                    {
+                        int rectEndX = Math.Abs(rectStartX - (cursorX));
+                        int rectEndY = Math.Abs(rectStartY - (cursorY));
+
+                        for (int i = 0; i < rectEndX; i++)
+                        {
+                            for (int j = 0; j < rectEndY; j++)
+                            {
+                                pixels[rectStartX + i, rectStartY + j] = ColorsArr[CurrentColor];
+                            }
+                        }
+                        keypress = true;
+                    }
+
+                    if (!keypress)
+                    {
+
+                        int rectEndX = Math.Abs(rectStartX - cursorX);
+                        int rectEndY = Math.Abs(rectStartY - cursorY);
+
+                        painter.fillRectangle(ColorsArr[CurrentColor], rectStartX, rectStartY, rectEndX, rectEndY);
+                    }
+
+                    if (reader.KeyDown(SReader.C) && keypress2)
+                    {
+                        keypress2 = false;
+                        rectStartX = cursorX;
+                        rectStartY = cursorY;
+                    }
+                    else if (!(reader.KeyDown(SReader.C)) && !(keypress2))
+                    {
+                        int rectEndX = Math.Abs(rectStartX - (cursorX));
+                        int rectEndY = Math.Abs(rectStartY - (cursorY));
+
+                        painter.saveImage(rectStartX, rectStartY, rectEndX, rectEndY, @"..\..\..\DevPaint\Textures\texture.json");
+
+                        keypress2 = true;
+                    }
+
+                    if (!keypress2)
+                    {
+
+                        int rectEndX = Math.Abs(rectStartX - cursorX);
+                        int rectEndY = Math.Abs(rectStartY - cursorY);
+
+                        painter.fillRectangle(ColorsArr[CurrentColor], rectStartX, rectStartY, rectEndX, rectEndY);
+                    }
                 }
-
-                if (!keypress)
+                else
                 {
-
-                    int rectEndX = Math.Abs(rectStartX - cursorX);
-                    int rectEndY = Math.Abs(rectStartY - cursorY);
-
-                    painter.fillRectangle(ColorsArr[CurrentColor], rectStartX,rectStartY,rectEndX,rectEndY);
-                }
-
-                if (reader.KeyDown(SReader.C) && keypress2)
-                {
-                    keypress2 = false;
-                    rectStartX = cursorX;
-                    rectStartY = cursorY;
-                }
-                else if (!(reader.KeyDown(SReader.C)) && !(keypress2))
-                {
-                    int rectEndX = Math.Abs(rectStartX - (cursorX));
-                    int rectEndY = Math.Abs(rectStartY - (cursorY));
-
-                    painter.saveImage(rectStartX, rectStartY, rectEndX, rectEndY, @"..\..\..\DevPaint\Textures\texture.json");
-
-                    keypress2 = true;
-                }
-
-                if (!keypress2)
-                {
-
-                    int rectEndX = Math.Abs(rectStartX - cursorX);
-                    int rectEndY = Math.Abs(rectStartY - cursorY);
-
-                    painter.fillRectangle(ColorsArr[CurrentColor], rectStartX, rectStartY, rectEndX, rectEndY);
+                    if(reader.KeyDown(SReader.space) || reader.IsRightMouseButtonDown())
+                    {
+                        reader.StartKeyCapture();
+                        boxActive = true;
+                    }
+                    if (boxActive)
+                    {
+                        painter.writeText(reader.ReadKeyCapture(),cursorX*2,cursorY);
+                    }
                 }
 
                 int[] cursorpos = reader.getMousePos();

@@ -1,13 +1,14 @@
-﻿using System;
+﻿using Graphic_Renderer.SmartPainterFiles.DataObjects;
+using Newtonsoft.Json;
+using System;
 using System.Diagnostics;
+using System.Drawing;
 using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.Marshalling;
-using System.Drawing;
-using System.Xml.Linq;
-using Graphic_Renderer.SmartPainterFiles.DataObjects;
-using Newtonsoft.Json;
 using System.Security.Principal;
+using System.Text.RegularExpressions;
+using System.Xml.Linq;
 
 namespace Graphic_Renderer.SmartPainterFiles
 {
@@ -28,6 +29,17 @@ namespace Graphic_Renderer.SmartPainterFiles
         // Setting console size
         public int consoleWidth;
         public int consoleHeight;
+
+
+
+        [DllImport("kernel32.dll")]
+        static extern IntPtr GetStdHandle(int nStdHandle);
+
+        [DllImport("kernel32.dll")]
+        static extern bool GetConsoleMode(IntPtr hConsoleHandle, out uint lpMode);
+
+        [DllImport("kernel32.dll")]
+        static extern bool SetConsoleMode(IntPtr hConsoleHandle, uint dwMode);
 
         public SPainter(int width, int height, string color)
         {
@@ -59,8 +71,18 @@ namespace Graphic_Renderer.SmartPainterFiles
 
             // for opening console
 
+            EnableAnsi();
 
+        }
 
+        public static void EnableAnsi()
+        {
+            const int STD_OUTPUT_HANDLE = -11;
+            const uint ENABLE_VIRTUAL_TERMINAL_PROCESSING = 0x0004;
+
+            IntPtr handle = GetStdHandle(STD_OUTPUT_HANDLE);
+            GetConsoleMode(handle, out uint mode);
+            SetConsoleMode(handle, mode | ENABLE_VIRTUAL_TERMINAL_PROCESSING);
         }
 
         public void updateFrame()
@@ -78,8 +100,8 @@ namespace Graphic_Renderer.SmartPainterFiles
                         }
                         else
                         {
-                            setColor(letterColor[j,i]);
                             setBGColor(pixel[j, i]);
+                            setColor(letterColor[j,i]);
                         }
                         Console.Write(charType[j, i]);
                     }
@@ -100,7 +122,7 @@ namespace Graphic_Renderer.SmartPainterFiles
                     {
                         Console.SetCursorPosition(j, i);
 
-                        setColor(defaultTextColor);
+                        setColor(letterColor[j, i]);
                         setBGColor(pixel[j, i]);
 
                         Console.Write(charType[j, i]);
@@ -127,7 +149,7 @@ namespace Graphic_Renderer.SmartPainterFiles
                     }
                     else
                     {
-                        setColor(defaultTextColor);
+                        setColor(letterColor[j, i]);
                         setBGColor(pixel[j, i]);
                     }
 
@@ -139,15 +161,17 @@ namespace Graphic_Renderer.SmartPainterFiles
         }
         public void writeText(string text, int xpos, int ypos, string color = "defaultTextColor")
         {
-            
-            
             for (int i = 0; i < text.Length; i++)
             {
-                charType[xpos + i, ypos] = Convert.ToString(text[i]);
-                if (color != "defaultTextColor") 
+                try
                 {
-                    letterColor[xpos + i, ypos] = color;
+                    charType[xpos + i, ypos] = Convert.ToString(text[i]);
+                    if (color != "defaultTextColor")
+                    {
+                        letterColor[xpos + i, ypos] = color;
+                    }
                 }
+                catch (IndexOutOfRangeException) { }
             }
         }
         public void changeTextColor(string color)
@@ -298,27 +322,95 @@ namespace Graphic_Renderer.SmartPainterFiles
             return result;
         }
 
+
+        private string currentBG = null; // tracks current ANSI background
+
         private void setColor(string color)
         {
-            try
-            {
-                Console.ForegroundColor = (ConsoleColor)Enum.Parse(typeof(ConsoleColor), color, true);
-            }
-            catch (ArgumentException)
-            {
-                Console.ForegroundColor = ConsoleColor.White; // Default color if the string is invalid
-            }
+            // Try named ConsoleColor first
+            if (TrySetConsoleColor(color, true)) return;
+
+            // Try hex color
+            if (TrySetHexColor(color, true)) return;
+
+            // Fallback
+            Console.ForegroundColor = ConsoleColor.White;
         }
+
         private void setBGColor(string color)
         {
-            try
+            // Try named ConsoleColor first
+            if (TrySetConsoleColor(color, false))
             {
-                Console.BackgroundColor = (ConsoleColor)Enum.Parse(typeof(ConsoleColor), color, true);
+                currentBG = null; // clear tracking when using ConsoleColor
+                return;
             }
-            catch (ArgumentException)
+
+            // Try hex color
+            if (TrySetHexColor(color, false))
             {
-                Console.BackgroundColor = ConsoleColor.White; // Default color if the string is invalid
+                currentBG = color; // store hex background for setColor
+                return;
             }
+
+            // Fallback
+            Console.BackgroundColor = ConsoleColor.Black;
+            currentBG = null;
         }
+
+        // --- Helpers ---
+
+        private bool TrySetConsoleColor(string color, bool foreground)
+        {
+            if (Enum.TryParse(typeof(ConsoleColor), color, true, out object result))
+            {
+                if (foreground) Console.ForegroundColor = (ConsoleColor)result;
+                else Console.BackgroundColor = (ConsoleColor)result;
+
+                return true;
+            }
+            return false;
+        }
+
+        // --- Helpers ---
+        private bool TrySetHexColor(string color, bool foreground)
+        {
+            var match = Regex.Match(color, @"^#([0-9a-fA-F]{6})$");
+            if (!match.Success) return false;
+
+            int r = Convert.ToInt32(match.Groups[1].Value.Substring(0, 2), 16);
+            int g = Convert.ToInt32(match.Groups[1].Value.Substring(2, 2), 16);
+            int b = Convert.ToInt32(match.Groups[1].Value.Substring(4, 2), 16);
+
+            if (foreground)
+            {
+                int br = 0, bg = 0, bb = 0;
+
+                // Always read current background for ANSI combination
+                if (!string.IsNullOrEmpty(currentBG))
+                {
+                    var bgMatch = Regex.Match(currentBG, @"^#([0-9a-fA-F]{6})$");
+                    if (bgMatch.Success)
+                    {
+                        br = Convert.ToInt32(bgMatch.Groups[1].Value.Substring(0, 2), 16);
+                        bg = Convert.ToInt32(bgMatch.Groups[1].Value.Substring(2, 2), 16);
+                        bb = Convert.ToInt32(bgMatch.Groups[1].Value.Substring(4, 2), 16);
+                    }
+                }
+
+                if (br != 0 || bg != 0 || bb != 0)
+                    Console.Write($"\u001b[38;2;{r};{g};{b}m\u001b[48;2;{br};{bg};{bb}m");
+                else
+                    Console.Write($"\u001b[38;2;{r};{g};{b}m");
+            }
+            else
+            {
+                Console.Write($"\u001b[48;2;{r};{g};{b}m");
+                currentBG = color; // track hex background
+            }
+
+            return true;
+        }
+
     }
 }

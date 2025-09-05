@@ -6,6 +6,8 @@ using System.Runtime.InteropServices;
 using System.Threading;
 using Graphic_Renderer.SmartPainterFiles;
 
+using HyperPaint;
+
 namespace Graphic_Renderer
 {
     public class Program
@@ -21,7 +23,7 @@ namespace Graphic_Renderer
                 "Pong",
                 "Space Invaders",
                 "The Rig Idle",
-                "Racing Game"
+                "Hyperpaint"
             };
             int cursorheight = 0;
             int cursorcool = 0;
@@ -56,12 +58,12 @@ namespace Graphic_Renderer
                 painter.clear();
                 painter.loadImage(20, 10, "../../../test.json");
 
-                painter.fillRectangle("darkgray",1,cursorheight,10,1);
+                painter.fillRectangle("#b0918f", 1,cursorheight,10,1);
                 program.ShowText(painter, gamelist);
 
                 // TEMP TEST!!!!
                 reader.StartKeyCapture();
-                painter.writeText(reader.ReadKeyCapture(), 20, 3);
+                painter.writeText(reader.ReadKeyCapture(), 20, 3,"#ff99cc");
             
 
                 if (cursorcool > 0)
@@ -124,6 +126,12 @@ namespace Graphic_Renderer
                             painter.updateFrame();
                             break;
                         case 8:
+                            HyperPaintApp paint = new(painter, reader);
+                            paint.Start();
+                            painter.updateFrame();
+
+
+
                             break;
                     }
                     program.PlayMusic();
@@ -142,7 +150,7 @@ namespace Graphic_Renderer
         {
             for (int i = 0; i < gamelist.Length; i++)
             {
-                painter.writeText(gamelist[i], 3, i + 1);
+                painter.writeText(gamelist[i], 3, i + 1, "#ffffff");
             }
             painter.writeText("Music: Jono - Please Hold", 3, 29);
         }

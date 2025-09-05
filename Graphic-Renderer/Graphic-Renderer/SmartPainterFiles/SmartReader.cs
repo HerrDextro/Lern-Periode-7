@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Drawing;
+using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.Marshalling;
-using System.Drawing;
 using System.Text;
+using TextCopy;
 
 namespace Graphic_Renderer.SmartPainterFiles
 {
@@ -92,8 +93,8 @@ namespace Graphic_Renderer.SmartPainterFiles
         [DllImport("user32.dll")]
         private static extern bool GetKeyboardState(byte[] lpKeyState);
 
-        [DllImport("user32.dll")]
-        private static extern uint MapVirtualKey(uint uCode, uint uMapType);
+        //[DllImport("user32.dll")]
+        //private static extern uint MapVirtualKey(uint uCode, uint uMapType);
 
         [DllImport("user32.dll")]
         private static extern IntPtr GetKeyboardLayout(uint idThread);
@@ -345,12 +346,22 @@ namespace Graphic_Renderer.SmartPainterFiles
 
             lock (_lock)
             {
-                return _captureState;
+                string temp = _captureState;
+                _captureState = "";
+                
+                return temp;
             }
 
         }
 
-
+        public int CaptureLength { get // Get length of chars
+            {
+                lock (_lock)
+                {
+                    return _captureState.Length;
+                }
+            }
+        }
         
         private void RunCapture(CancellationToken token)
         {
@@ -358,73 +369,127 @@ namespace Graphic_Renderer.SmartPainterFiles
             {
                 string f = DateTime.Now.ToString();
                 // Execute Key Capturing
-                string key = GetActiveKey();
+                string key = GetKeyInput();
 
-
+                
 
 
                 lock (_lock)
                 {
-                    if (key == "backspace")
+                    if (key == "back")
                     {
-                        _captureState = _captureState.Remove(_captureState.Length-1);
+                        if (_captureState.Length >= 1)
+                        {
+                            _captureState = _captureState.Remove(_captureState.Length-1);
+                        }
+                    }
+                    else if (key == "paste")
+                    {
+                        try
+                        {
+                            string clipboardContent = ClipboardService.GetText();
+                            _captureState += clipboardContent;
+                        }
+                        catch { }
                     }
                     else
                     {
-                        _captureState += key;
+                        _captureState += key; 
                     }
                     
                 }
             }
         }
 
-        private string GetActiveKey()
+        // Get active key:
+
+        [DllImport("user32.dll")]
+        private static extern int ToUnicode(
+            uint wVirtKey,
+            uint wScanCode,
+            byte[] lpKeyState,
+            [Out, MarshalAs(UnmanagedType.LPWStr, SizeParamIndex = 4)]
+        StringBuilder pwszBuff,
+            int cchBuff,
+            uint wFlags);
+
+
+        [DllImport("user32.dll")]
+        private static extern uint MapVirtualKey(uint uCode, uint uMapType);
+
+        // Special virtual key codes
+        private const int VK_BACK = 0x08;
+        private const int VK_CONTROL = 0x11;
+        private const int VK_SHIFT = 0x10;
+        private const int VK_MENU = 0x12; // Alt
+        private const int VK_V = 0x56;
+
+        // Left/right variants
+        private const int VK_LSHIFT = 0xA0;
+        private const int VK_RSHIFT = 0xA1;
+        private const int VK_LCONTROL = 0xA2;
+        private const int VK_RCONTROL = 0xA3;
+        private const int VK_LMENU = 0xA4;
+        private const int VK_RMENU = 0xA5;
+
+        private static bool IsModifier(int key) =>
+            key == VK_SHIFT || key == VK_CONTROL || key == VK_MENU ||
+            key == VK_LSHIFT || key == VK_RSHIFT ||
+            key == VK_LCONTROL || key == VK_RCONTROL ||
+            key == VK_LMENU || key == VK_RMENU;
+
+        public static string GetKeyInput()
         {
-            foreach (int key in _allKeys)
+            for (int key = 0x08; key <= 0xFE; key++)
             {
-                if (KeyDown(key))
+                if ((GetAsyncKeyState(key) & 0x8000) != 0)
                 {
-                    while (KeyDown(key)) { }
-                    return KeyCodeToUnicode((uint)key);
-                }
-                if (KeyDown(backspace))
-                {
-                    while (KeyDown(backspace)) { }
-                    return "backspace";
+                    if (IsModifier(key))
+                        continue;
+
+                    if (key >= 0xF0)
+                        continue;
+
+                    // Handle Backspace
+                    if (key == VK_BACK)
+                    {
+                        while ((GetAsyncKeyState(key) & 0x8000) != 0) { }
+                        return "back";
+                    }
+
+                    // Handle Ctrl+V
+                    if ((GetAsyncKeyState(VK_CONTROL) & 0x8000) != 0 && key == VK_V)
+                    {
+                        while ((GetAsyncKeyState(key) & 0x8000) != 0) { }
+                        return "paste";
+                    }
+
+                    // Capture keyboard state *before* ToUnicode
+                    byte[] keyboardState = new byte[256];
+                    if (!GetKeyboardState(keyboardState))
+                        return null;
+
+                    // Force modifiers from GetAsyncKeyState
+                    if ((GetAsyncKeyState(VK_SHIFT) & 0x8000) != 0)
+                        keyboardState[VK_SHIFT] = 0x80;
+                    if ((GetAsyncKeyState(VK_CONTROL) & 0x8000) != 0)
+                        keyboardState[VK_CONTROL] = 0x80;
+                    if ((GetAsyncKeyState(VK_MENU) & 0x8000) != 0)
+                        keyboardState[VK_MENU] = 0x80;
+
+                    uint scanCode = MapVirtualKey((uint)key, 0);
+                    StringBuilder sb = new StringBuilder(5);
+
+                    int result = ToUnicode((uint)key, scanCode, keyboardState, sb, sb.Capacity, 0);
+
+                    // Wait for key release *after* translating character
+                    while ((GetAsyncKeyState(key) & 0x8000) != 0) { }
+
+                    if (result > 0)
+                        return sb.ToString();
                 }
             }
-            return "";
+            return null;
         }
-
-
-        // idk how it works but it does UPDATE:nt
-
-        private string KeyCodeToUnicode(uint virtualKey)
-        {
-            byte[] keyboardState = new byte[256];
-
-            // Get the current state of all keys
-            if (!GetKeyboardState(keyboardState))
-                return "";
-
-            // Manually set the state of the Shift key to "down"
-            // VK_SHIFT is the virtual key code for the Shift key
-            if (KeyDown(shift) || KeyDown(control))
-            {
-                keyboardState[0x10] = 0x80; // WA DE HEEEEEEL IS THIS
-            }
-
-            uint scanCode = MapVirtualKey(virtualKey, 0);
-            StringBuilder sb = new StringBuilder(10);
-            IntPtr layout = GetKeyboardLayout(0);
-
-            int result = ToUnicodeEx(virtualKey, scanCode, keyboardState, sb, sb.Capacity, 0, layout);
-            if (result > 0)
-                return sb.ToString();
-            return "";
-        }
-
-
-
     }
 }

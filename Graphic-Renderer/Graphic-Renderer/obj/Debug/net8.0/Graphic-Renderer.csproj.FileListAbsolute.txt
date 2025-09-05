@@ -38,3 +38,5 @@ C:\Users\Neo\source\repos\HerrDextro\Lern-Periode-7\Graphic-Renderer\Graphic-Ren
 C:\Users\Neo\source\repos\HerrDextro\Lern-Periode-7\Graphic-Renderer\Graphic-Renderer\obj\Debug\net8.0\Graphic-.E94219CA.Up2Date
 C:\Users\alex\Source\Repos\HerrDextro\Lern-Periode-7\Graphic-Renderer\Graphic-Renderer\bin\Debug\net8.0\Newtonsoft.Json.dll
 C:\Users\Neo\Source\Repos\HerrDextro\Lern-Periode-7\Graphic-Renderer\Graphic-Renderer\bin\Debug\net8.0\Newtonsoft.Json.dll
+C:\Users\alex\Source\Repos\HerrDextro\Lern-Periode-7\Graphic-Renderer\Graphic-Renderer\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\alex\Source\Repos\HerrDextro\Lern-Periode-7\Graphic-Renderer\Graphic-Renderer\bin\Debug\net8.0\TextCopy.dll
