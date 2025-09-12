@@ -151,14 +151,19 @@ Heute konnte ich nur wenige meiner ursprünglichen Ziele erreichen. Ich konnte j
 
 ![WhatsApp Bild 2025-09-05 um 08 31 17_558a7b8c](https://github.com/user-attachments/assets/99a5b925-d9bf-4970-be47-73c68e26e1ed)
 
-- [ ] Alex: Trello Board Erstellen
-- [ ] Akex: Nötige requests manuell mit Postman planen
+- [X] Alex: Trello Board Erstellen
+- [X] Akex: Nötige requests manuell mit Postman planen
 - [ ] Alex: Create game UI teil erstellt
-- [ ] Alex: Create game erstellt game als karte
+- [X] Alex: Create game erstellt game als karte
 
 # Zusammenfassung 12.09.2025
-Heute habe ich das ganze Chess logic gemacht in ein Konsolenprogramm. Ich habe für das Legal move checking und sonstige Chess mechanics Gera.Chess verwendet, um es zu vereinfachen. Auch habe ich die Chess Klassen vereinfacht damit sie lesbarer sind und es einfacher ist damit zu arbeiten.
+(Neo) Heute habe ich das ganze Chess logic gemacht in ein Konsolenprogramm. Ich habe für das Legal move checking und sonstige Chess mechanics Gera.Chess verwendet, um es zu vereinfachen. Auch habe ich die Chess Klassen vereinfacht damit sie lesbarer sind und es einfacher ist damit zu arbeiten.
+(Alex) Ich konnte heute mit der Umsetzung der StartGame Funktion anfangen. Hierfür habe API requests von C# aus gemacht. Zudem musste ich noch einige bugs in Hyperpaint fixen, was jetzt aber funktioniert.
 
 17.09.2025
 - [ ] Neo: UI Schachboard mit JSON als texture statt csb (wie bei Devpaint)
 - [ ] Neo: Änderung der Piece Klasse mit texture
+- [ ] Alex: UI für Join/Create game implementieren
+- [ ] Alex: Piece nicht mit OwnerID sondern farbe speichern
+- [ ] Alex: Create Game wartet auf 2. Spieler
+- [ ] Alex: Umsetzung des hauptteils nach PAP beginnen
