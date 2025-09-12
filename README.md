@@ -156,3 +156,9 @@ Heute konnte ich nur wenige meiner ursprünglichen Ziele erreichen. Ich konnte j
 - [ ] Alex: Create game UI teil erstellt
 - [ ] Alex: Create game erstellt game als karte
 
+# Zusammenfassung 12.09.2025
+Heute habe ich das ganze Chess logic gemacht in ein Konsolenprogramm. Ich habe für das Legal move checking und sonstige Chess mechanics Gera.Chess verwendet, um es zu vereinfachen. Auch habe ich die Chess Klassen vereinfacht damit sie lesbarer sind und es einfacher ist damit zu arbeiten.
+
+17.09.2025
+- [ ] Neo: UI Schachboard mit JSON als texture statt csb (wie bei Devpaint)
+- [ ] Neo: Änderung der Piece Klasse mit texture
