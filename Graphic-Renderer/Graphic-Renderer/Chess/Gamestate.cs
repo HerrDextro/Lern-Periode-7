@@ -8,11 +8,11 @@ namespace Graphic_Renderer.Chess
 {
     public class GameState
     {
-        public string RoomID { get; private set; }
-        public string WhiteUID { get; private set; }
-        public string BlackUID { get; private set; }
-        public string CurrentPlayerID { get; private set; }
-        public List<ChessPiece> BoardState { get; private set; }
+        public string RoomID { get;  set; }
+        public string WhiteUID { get;  set; }
+        public string BlackUID { get;  set; }
+        public string CurrentPlayerID { get;  set; }
+        public List<ChessPiece> BoardState { get;  set; }
 
         public GameState(string roomID, string whiteUID, string blackUID)
         {
@@ -21,6 +21,24 @@ namespace Graphic_Renderer.Chess
             BlackUID = blackUID;
             CurrentPlayerID = whiteUID; // white moves first
             BoardState = InitializeBoard();
+        }
+
+        public GameState(Guid player1)
+        {
+            WhiteUID = player1.ToString();
+            
+            
+            BoardState = InitializeBoard();
+        }
+
+        public GameState() // For Deserialisation
+        {
+
+        }
+
+        public void JoinPlayer(Guid player2)
+        {
+            BlackUID = player2.ToString();
         }
 
         private List<ChessPiece> InitializeBoard()

@@ -7,6 +7,8 @@ using System.Threading;
 using Graphic_Renderer.SmartPainterFiles;
 
 using HyperPaint;
+using Graphic_Renderer.Chess;
+
 
 namespace Graphic_Renderer
 {
@@ -23,7 +25,8 @@ namespace Graphic_Renderer
                 "Pong",
                 "Space Invaders",
                 "The Rig Idle",
-                "Hyperpaint"
+                "Hyperpaint",
+                "Chess"
             };
             int cursorheight = 0;
             int cursorcool = 0;
@@ -129,9 +132,11 @@ namespace Graphic_Renderer
                             HyperPaintApp paint = new(painter, reader);
                             paint.Start();
                             painter.updateFrame();
-
-
-
+                            break;
+                        case 9:
+                            Chess.Chess chess = new(painter, reader);
+                            chess.StartGame();
+                            painter.updateFrame();
                             break;
                     }
                     program.PlayMusic();
