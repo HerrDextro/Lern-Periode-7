@@ -15,7 +15,7 @@ namespace Graphic_Renderer.Chess
             currentGame = new GameState(roomID, whiteUID, blackUID);
         }
 
-        public static GameState? UpdateGame()
+        public static GameState? UpdateFrame()
         {
             return currentGame;
         }
