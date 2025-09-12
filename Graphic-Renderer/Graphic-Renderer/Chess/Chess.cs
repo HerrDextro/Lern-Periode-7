@@ -13,11 +13,21 @@ namespace Graphic_Renderer.Chess
         public static void StartGame(string roomID, string whiteUID, string blackUID)
         {
             currentGame = new GameState(roomID, whiteUID, blackUID);
+            RenderChess(currentGame);
         }
 
-        public static GameState? UpdateGame()
+        public static GameState? RenderChess(GameState gameState)
         {
-            return currentGame;
+            if (gameState.BoardState == currentGame.BoardState)
+            {
+                return null; // No changes detected
+            }
+            else
+            {
+                currentGame = gameState;
+                return currentGame;
+            }
+                
         }
     }
     /*public class Chess
