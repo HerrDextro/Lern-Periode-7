@@ -254,7 +254,8 @@ namespace Graphic_Renderer.SmartPainterFiles
             if (GetCurrentConsoleFontEx(consoleHandle, false, ref fontInfo))
             {
                 fontY = fontInfo.dwFontSize.Y;
-                fontX = fontInfo.dwFontSize.Y / 2;
+                fontX = fontY * 0.5;
+
             }
             else
             {
@@ -268,8 +269,8 @@ namespace Graphic_Renderer.SmartPainterFiles
 
             // Divide for accurate Coordinates
 
-            int cursorXLine = Convert.ToInt32(cursorX / fontX);
-            int cursorYLine = Convert.ToInt32(cursorY / fontY);
+            double cursorXLine = (cursorX / fontX)*1.0;
+            double cursorYLine = (cursorY / fontY)*1.0;
 
             int cursoradaptX = Convert.ToInt32(Math.Floor(cursorXLine / 2.35 - 1));
             int cursoradaptY = Convert.ToInt32(Math.Ceiling(cursorYLine * 0.85) - 3);

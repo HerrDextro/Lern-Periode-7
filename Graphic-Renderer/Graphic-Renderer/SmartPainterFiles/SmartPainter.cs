@@ -94,15 +94,20 @@ namespace Graphic_Renderer.SmartPainterFiles
                     if (pixel[j, i] != pixelLast[j, i] || charType[j, i] != charTypeLast[j, i] || letterColor[j, i] != letterColorLast[j, i])
                     {
                         Console.SetCursorPosition(j, i);
+
+
+
                         if (charType[j, i] == "█")
                         {
-                            setColor(pixel[j, i]);
+                            setColor(getColor(j,i,pixel[j, i]));
                         }
                         else
                         {
-                            setBGColor(pixel[j, i]);
-                            setColor(letterColor[j,i]);
+                            setBGColor(getColor(j, i, pixel[j, i]));
+                            setColor(getColor(j, i, letterColor[j, i]));
                         }
+
+
                         Console.Write(charType[j, i]);
                     }
                 }
@@ -179,13 +184,18 @@ namespace Graphic_Renderer.SmartPainterFiles
             defaultTextColor = color;
         }
 
-        public void changePixel(string color, int xpos, int ypos)
+        public void changePixel(string color, int xpos, int ypos, bool overrideText = false)
         {
             xpos *= 2; //Adapting coords for Console
             try
             {
                 pixel[xpos, ypos] = color;
                 pixel[xpos + 1, ypos] = color;
+                if (overrideText)
+                {
+                    charType[xpos, ypos] = "█";
+                    charType[xpos + 1, ypos] = "█";
+                }
             }
             catch (IndexOutOfRangeException) { }
         }
@@ -296,8 +306,68 @@ namespace Graphic_Renderer.SmartPainterFiles
                 }
 
             }
+        }
+
+        public int[][] GetBounds(int minX, int minY, int maxX, int maxY) // ONLY USE WHEN NECESSARY!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        {
+            int rows = maxX - minX;
+            int cols = maxY - minY;
+            
+            
+            int minRow = rows, maxRow = -1;
+            int minCol = cols, maxCol = -1;
+
+            for (int r = minX; r < maxX; r++)
+            {
+                for (int c = minY; c < maxY; c++)
+                {
+                    if (pixel[r, c] != "none")
+                    {
+                        if (r < minRow) minRow = r;
+                        if (r > maxRow) maxRow = r;
+                        if (c < minCol) minCol = c;
+                        if (c > maxCol) maxCol = c;
+                    }
+                }
+            }
 
 
+            int[][] returnPackage = new int[2][];
+
+
+            if (maxRow >= 0 && maxCol >= 0)
+            {
+                returnPackage[0] = new int[] { minX, minY };
+                returnPackage[1] = new int[] { maxX, maxY };
+            }
+            else
+            {
+                returnPackage[0] = new[] { 0, 0 };
+                returnPackage[1] = new[] { 0, 0 };
+            }
+
+
+            return returnPackage;
+
+        }
+
+        private string getColor(int x, int y, string color)
+        {
+            if (color == "none")
+            {
+                if (((int)(x / 2) + y) % 2 == 0)
+                {
+                    return "#ededed";
+                }
+                else
+                {
+                    return "#d6d6d6";
+                }
+            }
+            else
+            {
+                return color;
+            }
         }
         private string[,] populateList(string[,] list, string input)
         {
@@ -377,6 +447,8 @@ namespace Graphic_Renderer.SmartPainterFiles
         {
             var match = Regex.Match(color, @"^#([0-9a-fA-F]{6})$");
             if (!match.Success) return false;
+
+            
 
             int r = Convert.ToInt32(match.Groups[1].Value.Substring(0, 2), 16);
             int g = Convert.ToInt32(match.Groups[1].Value.Substring(2, 2), 16);
