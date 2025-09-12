@@ -15,7 +15,7 @@ namespace Graphic_Renderer.SmartPainterFiles.DataObjects
         public record Pixel
         {
             public required string color { get; set; }
-            public required char letter { get; set; }
+            public required string letter { get; set; }
             public required string letterColor { get; set; }
         }
     }

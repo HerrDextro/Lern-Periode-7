@@ -231,7 +231,7 @@ namespace Graphic_Renderer.SmartPainterFiles
                 for (int x = 0; x < xsize; x++)
                 {
                     string color = pixel[xstart + x, ystart + y];
-                    char letter = charType[xstart + x, ystart + y][0];
+                    string letter = charType[xstart + x, ystart + y];
                     string letterCol = letterColor[xstart + x, ystart + y];
 
                     pixels[y][x] = new Image.Pixel { color = color, letter = letter, letterColor = letterCol };
@@ -321,7 +321,7 @@ namespace Graphic_Renderer.SmartPainterFiles
             {
                 for (int c = minY; c < maxY; c++)
                 {
-                    if (pixel[r, c] != "none")
+                    if (pixel[r, c] != "none" || charType[r,c] != "█")
                     {
                         if (r < minRow) minRow = r;
                         if (r > maxRow) maxRow = r;
@@ -337,8 +337,8 @@ namespace Graphic_Renderer.SmartPainterFiles
 
             if (maxRow >= 0 && maxCol >= 0)
             {
-                returnPackage[0] = new int[] { minX, minY };
-                returnPackage[1] = new int[] { maxX, maxY };
+                returnPackage[0] = new int[] { minRow, minCol };
+                returnPackage[1] = new int[] { maxRow, maxCol };
             }
             else
             {

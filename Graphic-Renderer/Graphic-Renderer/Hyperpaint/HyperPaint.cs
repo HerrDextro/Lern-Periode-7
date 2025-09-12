@@ -158,7 +158,12 @@ namespace HyperPaint
                 {
                     int[][] bounds = painter.GetBounds(0, 5, 60*2, 25);
 
-                    painter.saveImage(bounds[0][0], bounds[0][1], bounds[1][0], bounds[1][1], "..\\..\\..\\Hyperpaint\\Images\\image.json");
+                    painter.saveImage((int)(bounds[0][0]/2), bounds[0][1], (int)(bounds[1][0]/2)- (int)(bounds[0][0] / 2), bounds[1][1] - bounds[0][1], "..\\..\\..\\Hyperpaint\\Images\\image.json");
+
+                    painter.clear();
+                    painter.loadImage(0, 0, "..\\..\\..\\Hyperpaint\\Images\\image.json");
+                    painter.updateFrame();
+                    Thread.Sleep(3000);
 
                 }
 
