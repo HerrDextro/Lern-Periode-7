@@ -141,7 +141,18 @@ Ich konnte heute den Hintergrund Texttracer implementieren. Er ist noch nicht ko
 
 ![WhatsApp Bild 2025-08-29 um 10 32 13_31622181](https://github.com/user-attachments/assets/f7e5882e-e80b-450a-95d8-fe9d7456364e)
 
-- [ ] Alex: Alle Zeichen können eingetippt werden
-- [ ] Alex: Dev Paint kann im Texteingabemodus text-texturen erstellen
-- [ ] Alex: Dev Paint kann transparente bilder erstellen
-- [ ] Alex: Genaue Funktionsweise (Aufteilung) mit Neo Besprochen
+- [X] Alex: Alle Zeichen können eingetippt werden
+- [X] Alex: SPainter hat rgb farben
+- [ ] Alex: Dev Paint hat text fähigkeiten
+- [X] Alex: PAP zu API request erstellen
+
+# Zusammenfassung 05.09.2025
+Heute konnte ich nur wenige meiner ursprünglichen Ziele erreichen. Ich konnte jedoch das Problem lösen, sodass ich jetzt jeden Textcharakter auf meiner Tastatur eingeben kann. Aufgrund einer Idee von Vincent wurde ich jedoch abgelenkt und habe RGB-Farben in SPainter implementiert. Zudem fand ich heraus, dass ich bei der Entwicklung von DevPaint einfach irgendetwas falsch gemacht habe. Ich habe mich entschieden, eine neue Malapplikation zu entwickeln, die ich hoffentlich unter der Woche aus Spaß fertigstellen werde. Sonst ist auch kein Problem, aber ich werde vermutlich nächste Woche mit der Umsetzung des Trello-Backends anfangen, da ich jetzt alle dafür nötigen Features habe.
+
+![WhatsApp Bild 2025-09-05 um 08 31 17_558a7b8c](https://github.com/user-attachments/assets/99a5b925-d9bf-4970-be47-73c68e26e1ed)
+
+- [ ] Alex: Trello Board Erstellen
+- [ ] Akex: Nötige requests manuell mit Postman planen
+- [ ] Alex: Create game UI teil erstellt
+- [ ] Alex: Create game erstellt game als karte
+
