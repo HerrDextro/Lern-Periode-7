@@ -1,13 +1,13 @@
-﻿using System;
+﻿using Graphic_Renderer.Chess;
+using Graphic_Renderer.Neo;
+using Graphic_Renderer.SmartPainterFiles;
+using HyperPaint;
+using System;
 using System.Data;
 using System.Media;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Threading;
-using Graphic_Renderer.SmartPainterFiles;
-
-using HyperPaint;
-using Graphic_Renderer.Chess;
 
 
 namespace Graphic_Renderer
@@ -26,7 +26,8 @@ namespace Graphic_Renderer
                 "Space Invaders",
                 "The Rig Idle",
                 "Hyperpaint",
-                "Chess"
+                "Chess",
+                "Neo"
             };
             int cursorheight = 0;
             int cursorcool = 0;
@@ -136,6 +137,11 @@ namespace Graphic_Renderer
                         case 9:
                             Chess.Chess chess = new(painter, reader);
                             chess.StartGame();
+                            painter.updateFrame();
+                            break;
+                        case 10:
+                            ChessGame chessGame = new ChessGame(painter, reader);
+                            chessGame.StartChessGame();
                             painter.updateFrame();
                             break;
                     }
