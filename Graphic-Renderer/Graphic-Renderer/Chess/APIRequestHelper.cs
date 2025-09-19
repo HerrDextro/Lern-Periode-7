@@ -32,5 +32,6 @@ namespace Graphic_Renderer.Chess
             HttpResponseMessage response = await client.PutAsync(url, new StringContent("",Encoding.UTF8,"application/json"));
             return response;
         }
+
     }
 }

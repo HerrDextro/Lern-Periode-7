@@ -154,8 +154,8 @@ namespace Graphic_Renderer.SmartPainterFiles
                     }
                     else
                     {
-                        setColor(letterColor[j, i]);
                         setBGColor(pixel[j, i]);
+                        setColor(letterColor[j, i]);
                     }
 
                     Console.Write(charType[j, i]);
@@ -295,8 +295,14 @@ namespace Graphic_Renderer.SmartPainterFiles
                             {
                                 var imgPixel = imageJson.pixels[i][j];
 
-                                pixel[xpos + j, ypos + i] = imgPixel.color;
+                                if(imgPixel.color != "none")
+                                {
+                                   pixel[xpos + j, ypos + i] = imgPixel.color;
+                                }
                                 charType[xpos + j, ypos + i] = imgPixel.letter.ToString();
+
+
+
                                 letterColor[xpos + j, ypos + i] = imgPixel.letterColor;
 
                             }
@@ -401,6 +407,7 @@ namespace Graphic_Renderer.SmartPainterFiles
             if (TrySetConsoleColor(color, true)) return;
 
             // Try hex color
+            currentBG = null;
             if (TrySetHexColor(color, true)) return;
 
             // Fallback
@@ -445,8 +452,9 @@ namespace Graphic_Renderer.SmartPainterFiles
         // --- Helpers ---
         private bool TrySetHexColor(string color, bool foreground)
         {
-            var match = Regex.Match(color, @"^#([0-9a-fA-F]{6})$");
-            if (!match.Success) return false;
+            var match = Regex.Match(color, @"^#([0-9a-fA-F]{6})$*");
+            if (!match.Success) 
+                return false;
 
             
 

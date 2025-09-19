@@ -44,10 +44,9 @@ namespace Graphic_Renderer.Chess
              User Interface
              */
             painter.clear();
-            painter.loadImage(1, 1, @"C:\Users\alex\source\repos\HerrDextro\Lern-Periode-7\Graphic-Renderer\Graphic-Renderer\Chess\Assets\title.json");
+            painter.loadImage(15, 1, @"..\..\..\Chess\Assets\title.json");
             painter.updateFrame();
 
-            Thread.Sleep(10000);
 
             
             
@@ -56,35 +55,164 @@ namespace Graphic_Renderer.Chess
             if (multiplayerForm == 1)
             {
                 _gameId = CreateGame();
+                AwaitGameStart(_gameId);
+
             }
             else
             {
                 bool validIDGiven = false;
-                
+                bool firstTry = true;
+
                 while (!validIDGiven)
                 {
-                    string gameID = GetGameIdFromUser();
+                    string gameID = GetGameIdFromUser(firstTry);
+                    firstTry = false;
                     bool sucess = LogIntoGame(gameID);
                     if (sucess)
                     {
                         validIDGiven = true;
                         _gameId = gameID;
                     }
+
+                    
+
                 }
             }
 
+            while (true)
+            {
 
-            RenderChess(currentGame);
+                // Do stuff ig
+            }
         }
 
         private int DisplayMenu()
         {
+            // dark green #4E7837
+            // light green #69923e
+            // cream #ECDC9F
+            // dark gray 4b4847
+            // dark green / cream for chess board
+
+
+            bool validInputGiven = false;
+            while (!validInputGiven)
+            {
+                int[] mouse = reader.getMousePos();
+                
+                if (InBounds(5, mouse[0], 19) && InBounds(10, mouse[1], 14))
+                {
+                    painter.fillRectangle("#69923e", 5, 10, 14, 4);
+                    if (reader.IsLeftMouseButtonDown())
+                    {
+                        return 2;
+                    }
+                }
+                else
+                {
+                    painter.fillRectangle("#4E7837", 5,10, 14, 4);
+                }
+
+                if (InBounds(25, mouse[0], 50) && InBounds(10, mouse[1], 14))
+                {
+                    painter.fillRectangle("#69923e", 30, 10, 25, 4);
+
+                    if (reader.IsLeftMouseButtonDown())
+                    {
+                        return 1;
+                    }
+                }
+                else
+                {
+                    painter.fillRectangle("#4E7837", 30, 10, 25, 4);
+                }
+
+
+                painter.loadImage(5, 10, @"..\..\..\Chess\Assets\join_game.json");
+                painter.loadImage(30, 10, @"..\..\..\Chess\Assets\create_game.json");
+
+                painter.updateFrame();
+            }
+            
+
+
+
+
             return 2;
+
         }
 
-        private string GetGameIdFromUser()
+        private string GetGameIdFromUser(bool isFirstTry)
         {
-            return "68c3deac8808395fc1b4114c";
+            painter.clear();
+
+            painter.loadImage(15, 1, @"..\..\..\Chess\Assets\title.json");
+            painter.writeText("Paste Game Code", 3,10);
+
+            reader.StartKeyCapture();
+
+            if (!isFirstTry)
+            {
+                painter.writeText("Invalid Code, Try again", 22,10, "#5a1010");
+            }
+
+            bool done = false;
+            while (!done)
+            {
+                painter.writeText(reader.ReadKeyCapture() + " ", 3, 11);
+
+                if (reader.KeyDown(SReader.enter)) done = true;
+
+                painter.updateFrame();
+            }
+
+            return reader.EndCapture();
+
+
+
+
+
+        }
+
+        private void AwaitGameStart(string code)
+        {
+            bool playerJoined = false;
+
+            painter.clear();
+            painter.loadImage(15, 1, @"..\..\..\Chess\Assets\title.json");
+            painter.writeText("Awaiting second player...", 3, 10, "#69923e");
+
+            painter.writeText("Your Code: " + code, 3, 11, "#69923e");
+            painter.updateFrame();
+
+            while (!playerJoined)
+            {
+                string url = $"https://api.trello.com/1/cards/{_gameId}?key={secrets.API_key}&token={secrets.API_token}&fields=desc";
+
+
+                var response = APIRequestHelper.GetCard(url).GetAwaiter().GetResult();
+
+                if (response.StatusCode != System.Net.HttpStatusCode.OK)
+                {
+                    continue;
+                }
+
+                string stringified = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+
+                using JsonDocument doc = JsonDocument.Parse(stringified);
+                string gameStateJson = doc.RootElement.GetProperty("desc").GetString();
+
+                GameState gameState = JsonSerializer.Deserialize<GameState>(gameStateJson);
+
+                if(gameState.BlackUID != null)
+                {
+                    playerJoined = true;
+                }
+
+            }
+
+            painter.clear();
+            painter.updateFrame();
         }
 
         private string CreateGame()
@@ -143,7 +271,10 @@ namespace Graphic_Renderer.Chess
 
         }
 
-
+        private bool InBounds(int min, int value, int max)
+        {
+            return (min <= value && value <= max);
+        }
 
 
         public GameState? RenderChess(GameState gameState)

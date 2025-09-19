@@ -15,6 +15,16 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Chess\Assets\title.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Chess\Assets\title.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Hyperpaint\Images\" />
     <Folder Include="SpaceInvaders\textures\" />
 	<Folder Include="TestGame\" />

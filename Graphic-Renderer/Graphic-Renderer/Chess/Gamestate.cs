@@ -21,6 +21,9 @@ namespace Graphic_Renderer.Chess
             BlackUID = blackUID;
             CurrentPlayerID = whiteUID; // white moves first
             BoardState = InitializeBoard();
+
+            
+
         }
 
         public GameState(Guid player1)
