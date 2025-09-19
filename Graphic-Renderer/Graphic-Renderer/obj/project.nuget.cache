@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "j4NKbCX3EmA=",
+  "dgSpecHash": "xiLX3bnSnAw=",
   "success": true,
   "projectFilePath": "C:\\Users\\alex\\Source\\Repos\\HerrDextro\\Lern-Periode-7\\Graphic-Renderer\\Graphic-Renderer\\Graphic-Renderer.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\alex\\.nuget\\packages\\ardalis.smartenum\\2.0.1\\ardalis.smartenum.2.0.1.nupkg.sha512",
+    "C:\\Users\\alex\\.nuget\\packages\\gera.chess\\1.2.0\\gera.chess.1.2.0.nupkg.sha512",
     "C:\\Users\\alex\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\7.0.0\\microsoft.extensions.dependencyinjection.abstractions.7.0.0.nupkg.sha512",
     "C:\\Users\\alex\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
     "C:\\Users\\alex\\.nuget\\packages\\system.windows.extensions\\9.0.9\\system.windows.extensions.9.0.9.nupkg.sha512",

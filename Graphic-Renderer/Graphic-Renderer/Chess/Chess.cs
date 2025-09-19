@@ -1,4 +1,5 @@
 ﻿using Graphic_Renderer.SmartPainterFiles;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,6 +37,42 @@ namespace Graphic_Renderer.Chess
 
             this.reader = reader;
             this.painter = painter;
+        }
+
+
+        // Asynchronous state getter
+        private readonly object _getterLock = new object();
+        private GameState _gameState;
+        private Task? _gameStateGetterTask;
+        private CancellationTokenSource? _cts;
+
+        private void GetGameStateParralel(CancellationToken token)
+        {
+            while (!token.IsCancellationRequested)
+            {
+                string url = $"https://api.trello.com/1/cards/{_gameId}?key={secrets.API_key}&token={secrets.API_token}&fields=desc";
+
+
+                var response = APIRequestHelper.GetCard(url).GetAwaiter().GetResult();
+
+                if (response.StatusCode != System.Net.HttpStatusCode.OK)
+                {
+                    continue;
+                }
+
+                string stringified = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+
+                using JsonDocument doc = JsonDocument.Parse(stringified);
+                string gameStateJson = doc.RootElement.GetProperty("desc").GetString();
+
+                GameState gameState = JsonSerializer.Deserialize<GameState>(gameStateJson);
+
+                lock (_getterLock)
+                {
+                    _gameState = gameState;
+                }
+
+            }
         }
 
         public void StartGame()
@@ -79,10 +116,33 @@ namespace Graphic_Renderer.Chess
                 }
             }
 
+            // Start game state getter
+            _cts = new CancellationTokenSource();
+            var token = _cts.Token;
+
+            _gameStateGetterTask = Task.Run(() => GetGameStateParralel(token), token);
+
+
             while (true)
             {
+                GameState currentStatePoint;
+                lock (_getterLock)
+                {
+                    currentStatePoint = _gameState;
+                }
 
-                // Do stuff ig
+                if (currentStatePoint != null)
+                {
+                    bool isYourTurn = currentStatePoint.CurrentPlayerID == yourID.ToString();
+                }
+
+                // Imitate Neo stuff
+                painter.clear();
+                painter.writeText("I am a very good chess", 10, 10);
+                painter.updateFrame();
+
+
+
             }
         }
 
