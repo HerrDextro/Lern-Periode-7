@@ -167,3 +167,12 @@ Heute konnte ich nur wenige meiner ursprünglichen Ziele erreichen. Ich konnte j
 - [ ] Alex: Piece nicht mit OwnerID sondern farbe speichern
 - [ ] Alex: Create Game wartet auf 2. Spieler
 - [ ] Alex: Umsetzung des hauptteils nach PAP beginnen
+
+
+# Zusammenfassung 19.09.2025
+(Alex) Ich konnte heute einen unerwarteten Bug reparieren der rot nicht rot machte. Zudem konnte ich ein UI für das Join/Create game erstellen. Danach konnte ich machen, dass man einem Spiel von einem 2. Gerät beitreten kann.
+
+
+ - [ ] Alex: Main Game Loop holt spielstand ab
+ - [ ] Alex: Neos funktion wird ausgeführt
+ - [ ] Alex: Spielstand wird auf Trello gepusht
