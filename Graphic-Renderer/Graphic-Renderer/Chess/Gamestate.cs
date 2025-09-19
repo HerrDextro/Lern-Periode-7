@@ -12,7 +12,7 @@ namespace Graphic_Renderer.Chess
         public string WhiteUID { get;  set; }
         public string BlackUID { get;  set; }
         public string CurrentPlayerID { get;  set; }
-        public List<ChessPiece> BoardState { get;  set; }
+        public List<ChessPiece> BoardState { get;  set; } //dis gotta go
 
         public GameState(string roomID, string whiteUID, string blackUID)
         {
@@ -20,7 +20,8 @@ namespace Graphic_Renderer.Chess
             WhiteUID = whiteUID;
             BlackUID = blackUID;
             CurrentPlayerID = whiteUID; // white moves first
-            BoardState = InitializeBoard();
+            BoardState = InitializeBoard(); //dis gotta go
+
         }
 
         public GameState(Guid player1)
@@ -79,7 +80,7 @@ namespace Graphic_Renderer.Chess
             pieces.Add(new ChessPiece { OwnerID = BlackUID, Type = PieceType.King, Position = (4, 7) });
 
             return pieces;
-        }
+        }//dis gotta go
 
         public void NextTurn()
         {
