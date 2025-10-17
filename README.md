@@ -174,13 +174,17 @@ Heute konnte ich nur wenige meiner ursprünglichen Ziele erreichen. Ich konnte j
 (Neo) Ich habe heute die Renderchess Methode das Board rendern lassen, und auch das Programm teilweise umgeändert damit es GERA.chess verwenden kann. Ich habe die ParseFen Methode angefangen, aber dieses ist super kompliziert und ich möchte es nicht mit GPT machen. Auch habe ich eine Klasse erstellt für baordObj, damit es die erlaubte moves und sonstige möglichkeiten speichern kann.
 
 
- - [ ] Alex: Main Game Loop holt spielstand ab
+ - [X] Alex: Main Game Loop holt spielstand ab
  - [ ] Alex: Neos funktion wird ausgeführt
- - [ ] Alex: Spielstand wird auf Trello gepusht
+ - [X] Alex: Spielstand wird auf Trello gepusht
  - [x] Neo: FenParsing to boardObj method must be finished
  - [x] Neo: pass boardObj.boardState to RenderChess
  - [x] Neo: Stateless MakeMove method
 
+
+https://github.com/user-attachments/assets/f2387d79-01f0-47c7-a019-e1ce9c8e30e7
+
+
 # Zusammenfassung 17.10.2025
 (Neo) Ich habe heute das RenderChess() fertig gemacht und eine Methode erstellt die es erlaubt Squares vom Chessboard mit Maus zu selektieren. 
-
+(Alex) Heute konnte ich nicht so viel machen, da Neo noch nicht mit seinem Teil fertig war. Jeoch konnte ich in der Zwischenzeit seit dem letzten mal noch einiges Neues implementieren. Über die Ferien schrieb ich eine komplett neue Version von SPainter umd weil mir langeweilig war implementierte ich Kreise mit AntiAliasing heute.
