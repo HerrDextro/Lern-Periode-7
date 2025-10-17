@@ -177,7 +177,10 @@ Heute konnte ich nur wenige meiner ursprünglichen Ziele erreichen. Ich konnte j
  - [ ] Alex: Main Game Loop holt spielstand ab
  - [ ] Alex: Neos funktion wird ausgeführt
  - [ ] Alex: Spielstand wird auf Trello gepusht
- - [ ] Neo: FenParsing to boardObj method must be finished
- - [ ] Neo: pass boardObj.boardState to RenderChess
- - [ ] Neo: Stateless MakeMove method
+ - [x] Neo: FenParsing to boardObj method must be finished
+ - [x] Neo: pass boardObj.boardState to RenderChess
+ - [x] Neo: Stateless MakeMove method
+
+# Zusammenfassung 17.10.2025
+(Neo) Ich habe heute das RenderChess() fertig gemacht und eine Methode erstellt die es erlaubt Squares vom Chessboard mit Maus zu selektieren. 
 
