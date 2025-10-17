@@ -48,3 +48,4 @@ C:\Users\Neo\Source\Repos\HerrDextro\Lern-Periode-7\Graphic-Renderer\Graphic-Ren
 C:\Users\Neo\Source\Repos\HerrDextro\Lern-Periode-7\Graphic-Renderer\Graphic-Renderer\obj\Debug\net8.0\Graphic-Renderer.pdb
 C:\Users\Neo\Source\Repos\HerrDextro\Lern-Periode-7\Graphic-Renderer\Graphic-Renderer\obj\Debug\net8.0\Graphic-Renderer.genruntimeconfig.cache
 C:\Users\Neo\Source\Repos\HerrDextro\Lern-Periode-7\Graphic-Renderer\Graphic-Renderer\obj\Debug\net8.0\ref\Graphic-Renderer.dll
+C:\Users\alex\Source\Repos\HerrDextro\Lern-Periode-7\Graphic-Renderer\Graphic-Renderer\bin\Debug\net8.0\SmartPainterFiles\GraphicRendererNewCPP.dll

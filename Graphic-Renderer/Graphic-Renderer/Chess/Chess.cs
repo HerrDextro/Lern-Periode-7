@@ -17,6 +17,8 @@ namespace Graphic_Renderer.Chess
         private SPainter painter;
         private SReader reader;
 
+        private int _pushTimeSlot;
+
         record SecretData
         {
             public string API_key { get; set; }
@@ -45,6 +47,9 @@ namespace Graphic_Renderer.Chess
         private GameState _gameState;
         private Task? _gameStateGetterTask;
         private CancellationTokenSource? _cts;
+
+        private Task? _gameStatePusherTask;
+
 
         private void GetGameStateParralel(CancellationToken token)
         {
@@ -75,6 +80,17 @@ namespace Graphic_Renderer.Chess
             }
         }
 
+        public void PushGameStateParralel(GameState state)
+        {
+            int second = DateTime.Now.Second;
+            while (!(second % 4 == _pushTimeSlot))
+            {
+                // Busy waiting
+            }
+            string gameStateJson = JsonSerializer.Serialize(state);
+            string url = $"https://api.trello.com/1/cards/{_gameId}?key={secrets.API_key}&token={secrets.API_token}&desc={gameStateJson}";
+        }
+
         public void StartGame()
         {
             /*
@@ -93,6 +109,8 @@ namespace Graphic_Renderer.Chess
             {
                 _gameId = CreateGame();
                 AwaitGameStart(_gameId);
+
+                _pushTimeSlot = 0;
 
             }
             else
@@ -114,6 +132,7 @@ namespace Graphic_Renderer.Chess
                     
 
                 }
+                _pushTimeSlot = 2;
             }
 
             // Start game state getter
@@ -140,7 +159,14 @@ namespace Graphic_Renderer.Chess
                 painter.clear();
                 painter.writeText("I am a very good chess", 10, 10);
                 painter.updateFrame();
+                GameState? newStatePoint = null;
 
+                // Push new GameState to board
+                if(newStatePoint != null && (_gameStatePusherTask != null && !_gameStatePusherTask.IsCompleted))
+                {
+                    _gameStatePusherTask = Task.Run(() => PushGameStateParralel(newStatePoint));
+                }
+                
 
 
             }
@@ -277,6 +303,13 @@ namespace Graphic_Renderer.Chess
 
         private string CreateGame()
         {
+            DateTime dueDateTime = DateTime.UtcNow;
+            dueDateTime = dueDateTime.AddHours(3);
+
+            // Convert to ISO 8601 string in UTC format with 'Z'
+            string trelloDue = dueDateTime.ToString("yyyy-MM-ddTHH:mm:ss.fffZ", System.Globalization.CultureInfo.InvariantCulture);
+
+
             GameState emptyGame = new GameState(yourID);
 
 
@@ -287,7 +320,8 @@ namespace Graphic_Renderer.Chess
                 token = secrets.API_token,
 
                 name = Guid.NewGuid().ToString(),
-                desc = JsonSerializer.Serialize(emptyGame)
+                desc = JsonSerializer.Serialize(emptyGame),
+                due = trelloDue
             };
 
             var result = APIRequestHelper.PostCard(createCard, "https://api.trello.com/1/cards").GetAwaiter().GetResult();
