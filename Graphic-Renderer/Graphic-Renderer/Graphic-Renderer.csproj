@@ -6,6 +6,7 @@
     <RootNamespace>Graphic_Renderer</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
 
   <ItemGroup>
@@ -16,10 +17,14 @@
 
   <ItemGroup>
     <None Remove="Chess\Assets\title.json" />
+    <None Remove="SmartPainterFiles\GraphicRendererNewCPP.dll" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Include="Chess\Assets\title.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SmartPainterFiles\GraphicRendererNewCPP.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

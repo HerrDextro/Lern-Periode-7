@@ -27,7 +27,8 @@ namespace Graphic_Renderer
                 "The Rig Idle",
                 "Hyperpaint",
                 "Chess",
-                "Neo"
+                "Neo",
+                "NewPainter"
             };
             int cursorheight = 0;
             int cursorcool = 0;
@@ -60,7 +61,6 @@ namespace Graphic_Renderer
             {
                 painter.updateFrame();
                 painter.clear();
-                painter.loadImage(20, 10, "../../../test.json");
 
                 painter.fillRectangle("#b0918f", 1,cursorheight,10,1);
                 program.ShowText(painter, gamelist);
@@ -142,6 +142,11 @@ namespace Graphic_Renderer
                         case 10:
                             ChessGame chessGame = new ChessGame(painter, reader);
                             chessGame.StartChessGame();
+                            painter.updateFrame();
+                            break;
+                        case 11:
+                            NewPainterTesting newTest = new(painter, reader);
+                            newTest.Start();
                             painter.updateFrame();
                             break;
                     }

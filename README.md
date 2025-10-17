@@ -167,3 +167,17 @@ Heute konnte ich nur wenige meiner ursprünglichen Ziele erreichen. Ich konnte j
 - [ ] Alex: Piece nicht mit OwnerID sondern farbe speichern
 - [ ] Alex: Create Game wartet auf 2. Spieler
 - [ ] Alex: Umsetzung des hauptteils nach PAP beginnen
+
+
+# Zusammenfassung 19.09.2025
+(Alex) Ich konnte heute einen unerwarteten Bug reparieren der rot nicht rot machte. Zudem konnte ich ein UI für das Join/Create game erstellen. Danach konnte ich machen, dass man einem Spiel von einem 2. Gerät beitreten kann.
+(Neo) Ich habe heute die Renderchess Methode das Board rendern lassen, und auch das Programm teilweise umgeändert damit es GERA.chess verwenden kann. Ich habe die ParseFen Methode angefangen, aber dieses ist super kompliziert und ich möchte es nicht mit GPT machen. Auch habe ich eine Klasse erstellt für baordObj, damit es die erlaubte moves und sonstige möglichkeiten speichern kann.
+
+
+ - [ ] Alex: Main Game Loop holt spielstand ab
+ - [ ] Alex: Neos funktion wird ausgeführt
+ - [ ] Alex: Spielstand wird auf Trello gepusht
+ - [ ] Neo: FenParsing to boardObj method must be finished
+ - [ ] Neo: pass boardObj.boardState to RenderChess
+ - [ ] Neo: Stateless MakeMove method
+

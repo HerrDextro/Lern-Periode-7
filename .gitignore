@@ -2,3 +2,6 @@ bin/*
 obj/*
 .vs/*
 /Pong/PongV8.cs
+# Visual Studio temporary files
+.vs/
+*.ipch

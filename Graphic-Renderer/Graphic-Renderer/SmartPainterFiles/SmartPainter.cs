@@ -75,6 +75,11 @@ namespace Graphic_Renderer.SmartPainterFiles
 
         }
 
+        public int[] GetSize()
+        {
+            return new int[] { consoleWidth, consoleHeight };
+        }
+
         public static void EnableAnsi()
         {
             const int STD_OUTPUT_HANDLE = -11;

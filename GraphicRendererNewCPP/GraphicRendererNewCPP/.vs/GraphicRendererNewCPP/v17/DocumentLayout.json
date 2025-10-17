@@ -1,0 +1,65 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\alex\\source\\repos\\HerrDextro\\Lern-Periode-7\\GraphicRendererNewCPP\\GraphicRendererNewCPP\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{B99690C4-006D-434B-9600-BC533F29852A}|GraphicRendererNewCPP\\GraphicRendererNewCPP.vcxproj|C:\\Users\\alex\\source\\repos\\HerrDextro\\Lern-Periode-7\\GraphicRendererNewCPP\\GraphicRendererNewCPP\\GraphicRendererNewCPP\\dllmain.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{B99690C4-006D-434B-9600-BC533F29852A}|GraphicRendererNewCPP\\GraphicRendererNewCPP.vcxproj|solutionrelative:GraphicRendererNewCPP\\dllmain.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B99690C4-006D-434B-9600-BC533F29852A}|GraphicRendererNewCPP\\GraphicRendererNewCPP.vcxproj|C:\\Users\\alex\\source\\repos\\HerrDextro\\Lern-Periode-7\\GraphicRendererNewCPP\\GraphicRendererNewCPP\\GraphicRendererNewCPP\\pch.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{B99690C4-006D-434B-9600-BC533F29852A}|GraphicRendererNewCPP\\GraphicRendererNewCPP.vcxproj|solutionrelative:GraphicRendererNewCPP\\pch.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 3,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:2:0:{fabf9319-47eb-497e-b8f6-d9f73fba5f55}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "dllmain.cpp",
+              "DocumentMoniker": "C:\\Users\\alex\\source\\repos\\HerrDextro\\Lern-Periode-7\\GraphicRendererNewCPP\\GraphicRendererNewCPP\\GraphicRendererNewCPP\\dllmain.cpp",
+              "RelativeDocumentMoniker": "GraphicRendererNewCPP\\dllmain.cpp",
+              "ToolTip": "C:\\Users\\alex\\source\\repos\\HerrDextro\\Lern-Periode-7\\GraphicRendererNewCPP\\GraphicRendererNewCPP\\GraphicRendererNewCPP\\dllmain.cpp",
+              "RelativeToolTip": "GraphicRendererNewCPP\\dllmain.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-09-22T15:22:43.04Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "pch.cpp",
+              "DocumentMoniker": "C:\\Users\\alex\\source\\repos\\HerrDextro\\Lern-Periode-7\\GraphicRendererNewCPP\\GraphicRendererNewCPP\\GraphicRendererNewCPP\\pch.cpp",
+              "RelativeDocumentMoniker": "GraphicRendererNewCPP\\pch.cpp",
+              "ToolTip": "C:\\Users\\alex\\source\\repos\\HerrDextro\\Lern-Periode-7\\GraphicRendererNewCPP\\GraphicRendererNewCPP\\GraphicRendererNewCPP\\pch.cpp",
+              "RelativeToolTip": "GraphicRendererNewCPP\\pch.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-09-24T15:32:46.05Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
