@@ -382,7 +382,6 @@ namespace Graphic_Renderer.Chess
                 currentGame = gameState;
                 return currentGame;
             }
-                
         }
     }
     /*public class Chess

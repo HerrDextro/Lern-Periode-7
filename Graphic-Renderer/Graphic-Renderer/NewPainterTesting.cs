@@ -1,6 +1,4 @@
-﻿using FFMpegCore;
-using FFMpegCore;
-using FFMpegCore.Pipes;
+﻿
 using Graphic_Renderer.SmartPainterFiles;
 using Graphic_Renderer.SmartPainterFiles.DataObjects;
 using Microsoft.VisualBasic;
@@ -12,21 +10,12 @@ using System.Linq;
 using System.Runtime.ConstrainedExecution;
 using System.Text;
 using System.Threading.Tasks;
-using YoutubeExplode;
-using YoutubeExplode.Converter;
-using YoutubeExplode.Videos;
-using YoutubeExplode.Videos.Streams;
+
 
 using System;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using YoutubeExplode;
-using YoutubeExplode.Videos.Streams;
-using FFMpegCore;
-using FFMpegCore.Arguments;
-using FFMpegCore.Enums;
-using FFMpegCore.Enums;
 
 namespace Graphic_Renderer
 {
@@ -187,7 +176,7 @@ namespace Graphic_Renderer
                 painter.FillRectangle(0, 0, 120, 120, "#ffffff");
 
                 //Put filepath of folder of images
-                painter.LoadImage(-1, 0, $@"", 0.4);
+                painter.LoadImage(-1, 0, $@"C:\Users\alex\Downloads\maxwellCatGif\Maxwell_Cat-{ctr}.png", 0.4);
 
                 painter.WriteText(0, 0, "FPS: " + Convert.ToString(painter.FPS), "#000000");
 
@@ -209,72 +198,7 @@ namespace Graphic_Renderer
 
         public async void Test5()
         {
-            var youtube = new YoutubeClient();
-            var videoUrlo = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
-            var framesDir = "frames";
 
-            // --- 1. Get Stream Manifest & Select Best Video Stream ---
-            var streamManifest = await youtube.Videos.Streams.GetManifestAsync(videoUrlo);
-            var videoStreamInfo = streamManifest
-                .GetVideoOnlyStreams()
-                .Where(s => s.Container == Container.Mp4)
-                .GetWithHighestVideoQuality();
-
-            // Use the string URL directly for FromUrlInput
-            string videoUrl = videoStreamInfo.Url;
-
-            // --- 2. 403 Forbidden Header Solution ---
-            string userAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36";
-            string headersArgument = $"-headers \"User-Agent: {userAgent}\"";
-
-
-            // --- 3. Clean Up and Prepare Directory ---
-            if (Directory.Exists(framesDir))
-            {
-                Directory.Delete(framesDir, true);
-            }
-            Directory.CreateDirectory(framesDir);
-
-            // --- 4. FIX: Correct FFMpegCore Method for Remote URL Input ---
-            await FFMpegArguments
-                // 🛑 FIX IS HERE: Use FromUrlInput(string url, Action<IArgumentOptions> options)
-                // This is the correct method for remote stream strings that accepts an options lambda.
-                .FromUrlInput(new System.Uri(videoUrl), options =>
-                {
-                    // This applies the required header argument to the input stream.
-                    options.WithCustomArgument(headersArgument);
-                })
-
-                .OutputToFile(
-                    $"{framesDir}/frame_%04d.png",
-                    overwrite: true,
-                    options =>
-                    {
-                        options
-                            .WithCustomArgument("-r 1")
-                            .ForceFormat("image2");
-                    })
-                .ProcessAsynchronously();
-
-            // --- 5. Your Custom Image Loop ---
-            int ctr = 1;
-            while (true)
-            {
-                // Assuming 'painter' is defined and accessible
-                painter.FillRectangle(0, 0, 120, 120, "#ffffff");
-
-                string index = ctr.ToString("D4");
-                painter.LoadImage(-16, 0, $@"{framesDir}/frame_{index}.png", 0.027);
-
-                ctr++;
-                if (ctr >= 210)
-                {
-                    ctr = 1;
-                }
-
-                painter.UpdateFrameAsync();
-                Thread.Sleep(10);
-            }
         }
 
         public void Start()
