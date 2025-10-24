@@ -38,7 +38,7 @@ namespace Graphic_Renderer.Chess
         public string DebugMsg = "";
         public ChessBoard GeraBoard { get; private set; } = new ChessBoard(); //gera
         //public GameState BoardObj { get; private set; }
-        private GameState BoardObj;
+        public GameState BoardObj { get; set; }
 
         public ChessLogic(SPainter painter, SReader reader, GameState emptyGame)
         {

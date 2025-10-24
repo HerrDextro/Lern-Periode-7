@@ -166,9 +166,8 @@ namespace Graphic_Renderer.Chess
                     continue;
                 }
 
-                _chessLogic.RenderFrame(currentStatePoint);
+                GameState? newStatePoint = _chessLogic.RenderFrame(currentStatePoint);
                 painter.updateFrame();
-                GameState? newStatePoint = null;
 
                 // Push new GameState to board
                 if(newStatePoint != null && (_gameStatePusherTask != null && !_gameStatePusherTask.IsCompleted))
@@ -334,7 +333,7 @@ namespace Graphic_Renderer.Chess
                 token = secrets.API_token,
 
                 name = Guid.NewGuid().ToString(),
-                desc = JsonSerializer.Serialize(emptyGame),
+                desc = JsonSerializer.Serialize(_chessLogic.BoardObj),
                 due = trelloDue
             };
 
