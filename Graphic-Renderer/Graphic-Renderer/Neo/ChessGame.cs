@@ -1,15 +1,17 @@
 ﻿using Chess;
+using Graphic_Renderer.Chess;
 using Graphic_Renderer.SmartPainterFiles;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Graphic_Renderer.Neo
 {
-    class GameManager
+    /*class GameManager
     {
         public void StartChessGame(SPainter painter, SReader reader)
         {
@@ -17,15 +19,23 @@ namespace Graphic_Renderer.Neo
             
 
         }
-    }
+    }*/
     class ChessGame
     {
         private readonly SPainter painter;
         private readonly SReader reader;
         private string _testCode;
-        public CurrentPlayerEnum CurrentPlayer { get; set; } = CurrentPlayerEnum.white; //white starts //invert after every incoming different game obj
-        //public Piece[,] Board { get; set; } = new Piece[8, 8]; //together with initboard method
 
+        //stateless of the MakeMove()
+        public int SelectedOriginR = -1;
+        public int SelectedOriginC = -1;
+        public bool originSelectionMade = false;
+        public int SelectedDestinationR;
+        public int SelectedDestinationC;
+        public bool destinationSelectionMade = false;
+        public bool moveChosen = false;
+        //for debugging
+        public string DebugMsg = "";
         public ChessBoard GeraBoard { get; private set; } = new ChessBoard(); //gera
         public BoardObj BoardObj { get; private set; }
 
@@ -33,12 +43,6 @@ namespace Graphic_Renderer.Neo
         {
             this.painter = painter;
             this.reader = reader;
-        }
-
-        public enum CurrentPlayerEnum
-        {
-            white,
-            black
         }
 
         public void StartChessGame()
@@ -53,14 +57,18 @@ namespace Graphic_Renderer.Neo
 
             while (true)
             {
+                //Thread.Sleep(1000);
                 RenderChess(this.GeraBoard);
+
+                
+                MakeMove();
             }
             
         }
 
-        public ChessGame RenderFrame(ChessGame previousGameObj) //only accepts GERA //Call this every frame
+        public ChessGame RenderFrame(ChessGame previousGameObj) //Call this every frame
         {
-            Console.WriteLine("GetGameObj called"); //works but cant test so well
+            //Console.WriteLine("GetGameObj called"); //works but cant test so well
             //Console.WriteLine(GeraBoard.ToPgn());
 
             if (this.Equals(previousGameObj))
@@ -71,17 +79,18 @@ namespace Graphic_Renderer.Neo
             else
             {
                 GeraBoard = previousGameObj.GeraBoard;
-                CurrentPlayer = CurrentPlayer == CurrentPlayerEnum.white ? CurrentPlayerEnum.black : CurrentPlayerEnum.white; //invert current player color
                 
-                MakeMove(); //make the move from input boardstate and also from client here
+                
+                //MakeMove(); //make the move from input boardstate and also from client here
 
-                RenderChess(this.GeraBoard);
+                //RenderChess(this.GeraBoard);
                 return this;
             }
         }
 
         //client exclusive logic here
         //make move, check validity, update board state, etc
+        
         public void MakeMove() //take start and end pos from cursor tracking method (yet to omplement) //make stateless 
         {
             if (!GeraBoard.IsEndGame) //if game isnt done
@@ -92,21 +101,145 @@ namespace Graphic_Renderer.Neo
                 //update board state
                 string boardState = GeraBoard.ToFen();
 
+                int startPosX = 18;
+                int startPosY = 0;
+                int squareSize = 3;
+
+                int xpos = 0 + startPosX;
+                int ypos = 0 + startPosY;
+                string color = "#FF6961";
+
+
+                int[] mousePos = reader.getMousePos(); // 2 index int array
+
+                int col = (mousePos[0] - startPosX) / (squareSize); //works
+                int row = (mousePos[1] - startPosY) / squareSize; //works
+                int z = 0;
+
+                painter.writeText(Convert.ToString(mousePos[0]) + " " + Convert.ToString(mousePos[1]), 0, 3);
+                painter.writeText(Convert.ToString(col) + " " + Convert.ToString(row), 0, 4);
+
+                //whole mouse capturing works, now do the square selection logic 
+
+                if (reader.IsLeftMouseButtonDown() && col >= 0 && col < 8 && row >= 0 && row < 8 && originSelectionMade == false)
+                {
+                    this.SelectedOriginC = col;
+                    this.SelectedOriginR = row;
+                    this.originSelectionMade = true;
+                    this.DebugMsg = "origin selected";
+                    //painter.writeText(this.DebugMsg, 0, 5);
+
+                    /*if (SelectedOriginR != null && SelectedOriginC != null)
+                    {
+                        this.SelectedDestinationC = col;
+                        this.SelectedDestinationR = row;
+                        this.destinationSelectionMade = true;
+                    }*/
+
+                    //painter.writeText("origin Clicked!", 0, 2);
+
+                    //this.originSelectionMade = true;
+                }
+                if (reader.IsLeftMouseButtonDown() && originSelectionMade == true && destinationSelectionMade == false) //implement same out of grid logic
+                {
+                    this.SelectedDestinationC = col;
+                    this.SelectedDestinationR = row;
+                    this.destinationSelectionMade = true;
+                    this.DebugMsg = "destination selected";
+                    //painter.writeText(this.DebugMsg, 0, 2);
+                }
+                if (originSelectionMade == true && destinationSelectionMade == true /*&& this.moveChosen == false*/ && mousePos[0] >= 22 && mousePos[0] <= 38 && mousePos[1] >= 25 && mousePos[1] <= 28 && reader.IsLeftMouseButtonDown())
+                {
+                    //conrmation button & chat box logic
+                    painter.fillRectangle(color, 22, 25, 16, 3); //confirm move
+
+                    painter.writeText("Confirmed", 54, 26, "white");
+                    //make the actual move itself
+                    ConvertMoveInput(
+                         (this.SelectedOriginC, this.SelectedOriginR),
+                         (this.SelectedDestinationC, this.SelectedDestinationR)
+                    );
+                    this.originSelectionMade = false;
+                    this.destinationSelectionMade = false;
+
+                    
+
+                    //Debug
+                    this.DebugMsg = "Confirmation made";
+                    //painter.writeText(this.DebugMsg, 0, 2);
+
+                    //painter.writeText("Clicked!", 0, 2);
+                    //this.moveChosen = true;
+
+                }
+
+                
             }
         }
 
-        public static BoardObj ParseFen(BoardObj boardObj)
+        public void ConvertMoveInput((int x, int y) start, (int x, int y) end)
+        {
+            char[] xCoord = { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h' };
+            char[] yCoord = { '8', '7', '6', '5', '4', '3', '2', '1' };
+            char x = '0';
+            char y = '0';
+            string origin;
+            string destination;
+            
+            //origin coord
+            for (int i = 0; i <= start.x; i++)
+            {
+                x = xCoord[i];
+            }
+            for (int i = 0; i <= start.y; i++)
+            {
+                y = yCoord[i];
+            }
+            origin = $"{x}{y}";
+            x = '0';
+            y = '0';
+
+            //destination coord
+            for (int i = 0; i <= end.x; i++)
+            {
+                x = xCoord[i];
+            }
+            for (int i = 0; i <= end.y; i++)
+            {
+                y = yCoord[i];
+            }
+            destination = $"{x}{y}";
+
+
+            
+            bool moveCheck = GeraBoard.Move(new Move(origin, destination));
+            if (moveCheck == false) { this.DebugMsg = "Illegal move"; }
+            
+            string check = GeraBoard.ToFen();
+            ParseFen(BoardObj);
+            
+            //Console.WriteLine("ConvertMoveInput called");
+
+        } //not done
+
+        public void SelectSquare()
+        {
+
+        }
+
+        public BoardObj ParseFen(BoardObj boardObj)
         {
             char[,] boardState = new char[8, 8];
             //string fen = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"; //starting pos placeholder
-            string fen = "r1bqkb1r/pppppppp/n4n2/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"; //for TESTING
+            //string fen = "r1bqkb1r/pppppppp/n4n2/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"; //for TESTING
             //string fen = "r1bk3r/p2pBpNp/n4n2/1p1NP2P/6P1/3P4/P1P1K3/q5b1 test"; //For TESTING
+            string fen = GeraBoard.ToFen(); //get FEN from boardObj
             string fenBoard = fen.Split(' ')[0];
             //string meta = fen.Split(" ")[1];
 
             int colIndex = 0;
             int rowIndex = 0;
-            foreach (char c in fen)
+            foreach (char c in fenBoard)
             {
                 if (c != '/' && Char.IsLetter(c))
                 {
@@ -138,12 +271,6 @@ namespace Graphic_Renderer.Neo
             return boardObj;
         }
 
-        public string ConvertMoveInput((int x, int y) start, (int x, int y) end)
-        {
-            return "e2e4"; //placeholder
-        } //not done
-
-
         public override bool Equals(object obj) //only checks boardstate, change this when chat object comes in too
         {
             var thisBoard = this.GeraBoard.ToFen(); //updates FEN string
@@ -155,6 +282,7 @@ namespace Graphic_Renderer.Neo
         
         public void RenderChess(ChessBoard GeraBoard)
         {
+            //Board with pieces rendering
             // dark green #4E7837
             // light green #69923e
             // cream #eeeed2
@@ -167,7 +295,7 @@ namespace Graphic_Renderer.Neo
             int squareSize = 3;
 
             var Board = GeraBoard.ToFen();
-            painter.writeText("Current Board State (FEN): " + Board, 15, 30);
+            painter.writeText("Current Board State (FEN): " + Board, 0, 30);
 
             //now render the board
             painter.fillRectangle("#eeeed2", startPosX, startPosY, squareSize * 8, squareSize * 8); //background
@@ -205,7 +333,7 @@ namespace Graphic_Renderer.Neo
             row = row + startPosY;
             foreach (char c in boardState)
             {
-                painter.writeText(c.ToString(), col, row, "#FF6961"); //watch out here row col reversed
+                painter.writeText(c.ToString(), col, row, color); //watch out here row col reversed
                 counter++;
                 if (col < (7 * (squareSize * 2)) + startPosX) 
                 { 
@@ -220,6 +348,20 @@ namespace Graphic_Renderer.Neo
                     }
                 }
             }
+            //confirm button and chat rendering
+
+            //confirmation
+            painter.fillRectangle("white", 22, 25, 16, 3); //confirm move
+            painter.writeText("Confirm Move", 54, 26, "red");
+
+            //chat
+            painter.fillRectangle("white", 45, 19, 10, 5); //chat
+
+            //rendering infos and 
+            painter.writeText("Current Turn: " + BoardObj.currentPlayerTurn, 0, 0);
+            painter.writeText("Num Halfmoves: " + BoardObj.halfMove, 0, 1);
+            painter.writeText("Num Fullmoves: " + BoardObj.fullMove, 0, 2);
+            painter.writeText(this.DebugMsg, 0, 5);
         }
     }
     record BoardObj //for parsing FEN

@@ -2,11 +2,16 @@
   "pixels": [
     [
       {
+<<<<<<< HEAD
         "color": "#fc1e05",
+=======
+        "color": "#e0c29b",
+>>>>>>> chess added V1
         "letter": "█",
         "letterColor": "White"
       },
       {
+<<<<<<< HEAD
         "color": "#fc1e05",
         "letter": "█",
         "letterColor": "White"
@@ -68,6 +73,78 @@
       },
       {
         "color": "none",
+        "letter": "█",
+        "letterColor": "White"
+      }
+    ],
+    [
+      {
+        "color": "#fc1e05",
+        "letter": "█",
+        "letterColor": "White"
+      },
+      {
+        "color": "#fc1e05",
+        "letter": "█",
+        "letterColor": "White"
+      },
+      {
+        "color": "#fc1e05",
+        "letter": "█",
+        "letterColor": "White"
+      },
+      {
+        "color": "#fc1e05",
+        "letter": "█",
+        "letterColor": "White"
+      },
+      {
+        "color": "#fc1e05",
+        "letter": "█",
+        "letterColor": "White"
+      },
+      {
+        "color": "#fc1e05",
+        "letter": "█",
+        "letterColor": "White"
+      },
+      {
+        "color": "#ccccff\r",
+        "letter": "█",
+        "letterColor": "White"
+      },
+      {
+        "color": "#ccccff\r",
+        "letter": "█",
+        "letterColor": "White"
+      },
+      {
+        "color": "#ccccff\r",
+        "letter": "█",
+        "letterColor": "White"
+      },
+      {
+        "color": "#ccccff\r",
+        "letter": "█",
+        "letterColor": "White"
+      },
+      {
+        "color": "#ccccff\r",
+        "letter": "█",
+        "letterColor": "White"
+      },
+      {
+        "color": "#ccccff\r",
+        "letter": "█",
+        "letterColor": "White"
+      },
+      {
+        "color": "#ccccff\r",
+        "letter": "█",
+        "letterColor": "White"
+      },
+      {
+        "color": "#ccccff\r",
         "letter": "█",
         "letterColor": "White"
       }
@@ -248,78 +325,6 @@
         "letterColor": "White"
       },
       {
-        "color": "#ccccff\r",
-        "letter": "█",
-        "letterColor": "White"
-      },
-      {
-        "color": "#ccccff\r",
-        "letter": "█",
-        "letterColor": "White"
-      },
-      {
-        "color": "#ccccff\r",
-        "letter": "█",
-        "letterColor": "White"
-      },
-      {
-        "color": "#ccccff\r",
-        "letter": "█",
-        "letterColor": "White"
-      },
-      {
-        "color": "#ccccff\r",
-        "letter": "█",
-        "letterColor": "White"
-      },
-      {
-        "color": "#ccccff\r",
-        "letter": "█",
-        "letterColor": "White"
-      },
-      {
-        "color": "#ccccff\r",
-        "letter": "█",
-        "letterColor": "White"
-      },
-      {
-        "color": "#ccccff\r",
-        "letter": "█",
-        "letterColor": "White"
-      }
-    ],
-    [
-      {
-        "color": "#fc1e05",
-        "letter": "█",
-        "letterColor": "White"
-      },
-      {
-        "color": "#fc1e05",
-        "letter": "█",
-        "letterColor": "White"
-      },
-      {
-        "color": "#fc1e05",
-        "letter": "█",
-        "letterColor": "White"
-      },
-      {
-        "color": "#fc1e05",
-        "letter": "█",
-        "letterColor": "White"
-      },
-      {
-        "color": "#fc1e05",
-        "letter": "█",
-        "letterColor": "White"
-      },
-      {
-        "color": "#fc1e05",
-        "letter": "█",
-        "letterColor": "White"
-      },
-      {
         "color": "#fc1e05",
         "letter": "█",
         "letterColor": "White"
@@ -644,6 +649,9 @@
       },
       {
         "color": "none",
+=======
+        "color": "#e0c29b",
+>>>>>>> chess added V1
         "letter": "█",
         "letterColor": "White"
       }

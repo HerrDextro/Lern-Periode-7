@@ -23,5 +23,15 @@
     "C:\\Users\\alex\\.nuget\\packages\\youtubeexplode\\6.5.5\\youtubeexplode.6.5.5.nupkg.sha512",
     "C:\\Users\\alex\\.nuget\\packages\\youtubeexplode.converter\\6.5.5\\youtubeexplode.converter.6.5.5.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "NU1900",
+      "level": "Warning",
+      "message": "Error occurred while getting package vulnerability data: Unable to load the service index for source https://api.nuget.org/v3/index.json.",
+      "projectPath": "C:\\Users\\Neo\\Source\\Repos\\HerrDextro\\Lern-Periode-7\\Graphic-Renderer\\Graphic-Renderer\\Graphic-Renderer.csproj",
+      "warningLevel": 1,
+      "filePath": "C:\\Users\\Neo\\Source\\Repos\\HerrDextro\\Lern-Periode-7\\Graphic-Renderer\\Graphic-Renderer\\Graphic-Renderer.csproj",
+      "targetGraphs": []
+    }
+  ]
 }

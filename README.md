@@ -187,4 +187,4 @@ https://github.com/user-attachments/assets/f2387d79-01f0-47c7-a019-e1ce9c8e30e7
 
 # Zusammenfassung 17.10.2025
 (Neo) Ich habe heute das RenderChess() fertig gemacht und eine Methode erstellt die es erlaubt Squares vom Chessboard mit Maus zu selektieren. 
-(Alex) Heute konnte ich nicht so viel machen, da Neo noch nicht mit seinem Teil fertig war. Jeoch konnte ich in der Zwischenzeit seit dem letzten mal noch einiges Neues implementieren. Über die Ferien schrieb ich eine komplett neue Version von SPainter umd weil mir langeweilig war implementierte ich Kreise mit AntiAliasing heute.
+(Alex) Heute konnte ich nicht so viel machen, da Neo noch nicht mit seinem Teil fertig war. Jedoch konnte ich in der Zwischenzeit seit dem letzten mal noch einiges Neues implementieren. Über die Ferien schrieb ich eine komplett neue Version von SPainter umd weil mir langeweilig war implementierte ich Kreise mit AntiAliasing heute.
