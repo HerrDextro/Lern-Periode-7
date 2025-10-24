@@ -2,18 +2,21 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using static Graphic_Renderer.SmartPainterFiles.DataObjects.Point;
 using System.Drawing;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Runtime.InteropServices;
-using System.Runtime.InteropServices.Marshalling;
-using System.Text;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using TextCopy;
 using static Graphic_Renderer.SmartPainterFiles.DataObjects.Image;
 using static System.Runtime.InteropServices.JavaScript.JSType;
+
+using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.PixelFormats;
+using SixLabors.ImageSharp.Processing;
+using System.Numerics;
+using System.Runtime.InteropServices.Marshalling;
 
 namespace Graphic_Renderer.SmartPainterFiles
 {
@@ -38,6 +41,7 @@ namespace Graphic_Renderer.SmartPainterFiles
             public uint chartype;
         }
 
+
         // Constructors and fields
         private int _consoleWidth;
         private int _consoleHeight;
@@ -58,6 +62,7 @@ namespace Graphic_Renderer.SmartPainterFiles
             _physicalPixels = Populate2DArrayWithPixels(_physicalPixels);
 
             InstanceRuntimePixelArray(_consoleWidth, _consoleHeight);
+
 
         }
 
@@ -82,6 +87,10 @@ namespace Graphic_Renderer.SmartPainterFiles
         {
             var singleDimensionalPixels = Flatten(_physicalPixels);
 
+            double msSinceLastUpdate = (DateTime.Now - _frameTime).TotalMilliseconds;
+            _frameTime = DateTime.Now;
+            FPS = (int)(1000 / msSinceLastUpdate);
+
             ProcessArray(singleDimensionalPixels, _consoleWidth, _consoleHeight);
         }
 
@@ -90,6 +99,8 @@ namespace Graphic_Renderer.SmartPainterFiles
         /// </summary>
         private Task? _updateTask;
         private readonly object _lock = new();
+        private DateTime _frameTime = DateTime.Now;
+        public int FPS = 0;
 
         public void UpdateFrameAsync()
         {
@@ -98,6 +109,9 @@ namespace Graphic_Renderer.SmartPainterFiles
                 if( _updateTask == null  || _updateTask.IsCompleted)
                 {
                     _updateTask = Task.Run(UpdateFrameAsyncBacker);
+                    double msSinceLastUpdate = (DateTime.Now - _frameTime).TotalMilliseconds;
+                    _frameTime = DateTime.Now;
+                    FPS = (int)(1000 / msSinceLastUpdate);
                 }
                 else
                 {
@@ -128,6 +142,8 @@ namespace Graphic_Renderer.SmartPainterFiles
             int actualY = (int)Math.Floor(decimalY);
             bool isForeground = !(y % 2 == 0);
 
+
+
             // Calculate true color
             if (checkNecessary)
             {
@@ -136,6 +152,12 @@ namespace Graphic_Renderer.SmartPainterFiles
 
             bool colorHasTransparencyValue = HasTransparencyValue(color);
             
+;
+
+            if (x < 0 || x > _consoleWidth - 1 || actualY < 0 || actualY > _consoleHeight - 1)
+            {
+                return;
+            }
 
 
             if (isForeground)
@@ -164,6 +186,24 @@ namespace Graphic_Renderer.SmartPainterFiles
             if (overrideText)
             {
                 _physicalPixels[x, actualY].chartype = (uint)char.ConvertToUtf32(" ", 0);
+            }
+        }
+
+        public void WriteText(int x, int y, string text, string color)
+        {
+            ValidateRGB(color);
+            decimal decimalY = y / 2;
+            int actualY = (int)Math.Floor(decimalY);
+
+
+
+            for (int i = 0; i < text.Length; i++)
+            {
+                if (text[i] != ' ')
+                {
+                    _physicalPixels[x + i, actualY].chartype = text[i];
+                    _physicalPixels[x + i, actualY].foregroundColor = color;
+                }
             }
         }
 
@@ -206,9 +246,60 @@ namespace Graphic_Renderer.SmartPainterFiles
             }
         }
 
-        public void FillCircle(int xCenter, int yCenter, int radius, string color, bool overrideText = false)
+        public void FillCircle(int xCenter, int yCenter, double radius, string color, bool overrideText = false)
         {
             ValidateRGB(color);
+
+            for (int x = (xCenter - (int)radius); x < (xCenter + radius + 1); x++)
+            {
+                for (int y = (yCenter - (int)radius); y < (yCenter + radius + 1); y++)
+                {
+
+                    
+                    if (AntiAliasing)
+                    {
+                        int samplesTotal = AntiAliasingSamples * AntiAliasingSamples;
+                        int samplesSucess = 0;
+                        for (int xA = 0; xA < AntiAliasingSamples; xA++)
+                        {
+                            for (int yA = 0; yA < AntiAliasingSamples; yA++)
+                            {
+                                int distanceX = ((x * AntiAliasingSamples) - (xCenter * AntiAliasingSamples));
+                                int distanceY = ((y * AntiAliasingSamples) - (yCenter * AntiAliasingSamples));
+
+                                distanceX += distanceX >= 0 ? xA : xA * -1 ;
+                                distanceY += distanceY >= 0 ? yA : yA * -1;
+
+                                double distanceT = Math.Sqrt((distanceX * distanceX + distanceY * distanceY));
+
+                                if (distanceT <= radius*AntiAliasingSamples)
+                                {
+                                    samplesSucess++;
+                                }
+                            }
+                        }
+                        int alpha = (int)((samplesSucess / (float)samplesTotal) * 255f);
+
+                        if (alpha != 0 && alpha != 255)
+                        {
+                            int aaa = 0;
+                        }
+                        ChangePixel(x, y, MergeColorWithAlpha(color,alpha), overrideText, false);
+                    }
+                    else
+                    {
+                        int distanceX = (x - xCenter);
+                        int distanceY = (y - yCenter);
+
+                        double distanceT = Math.Sqrt((distanceX * distanceX + distanceY * distanceY));
+
+                        if(distanceT <= radius)
+                        {
+                            ChangePixel(x,y,color, overrideText, false);
+                        }
+                    }
+                }
+            }
         }
 
         /// <summary>
@@ -254,7 +345,7 @@ namespace Graphic_Renderer.SmartPainterFiles
         /// <param name="x">X Position for the file to be loaded in</param>
         /// <param name="y">Y Position for the file to be loaded in</param>
         /// <param name="path">Path where the .spt file is located</param>
-        public void LoadImage(int x, int y, string path)
+        public void LoadImageSpt(int x, int y, string path)
         {
             string spt = File.ReadAllText(path);
 
@@ -288,12 +379,44 @@ namespace Graphic_Renderer.SmartPainterFiles
             }
         }
 
+        public void LoadImage(int xStart, int yStart, string path, double scaling = 1)
+        {
+            using (Image<Rgba32> image = Image.Load<Rgba32>(path))
+            {
+
+
+                if (Math.Abs(scaling - 1.0) > double.Epsilon)
+                {
+                    int newWidth = (int)(image.Width * scaling);
+                    int newHeight = (int)(image.Height * scaling);
+
+                    image.Mutate(ctx => ctx.Resize(newWidth, newHeight));
+                }
+
+                int xSize = image.Width;
+                int ySize = image.Height;
+
+                for (int x = 0; x < xSize; x++)
+                {
+                    for (int y = 0; y < ySize; y++)
+                    {
+                        Rgba32 pixel = image[x, y];
+
+                        string rgbHex = $"#{pixel.R:X2}{pixel.G:X2}{pixel.B:X2}{pixel.A:X2}";
+                        ChangePixel(x+xStart, y+yStart, rgbHex);
+                    }
+                }
+            }
+        }
+
+        
+
         /// <summary>
         /// Fill a polygon using a Collection of points. TODO: Fix transparent anti aliasing
         /// </summary>
         /// <param name="polygon">A collection of points</param>
         /// <param name="color">The color of the shape</param>
-        public void FillPolygon(IEnumerable<Point> polygon, string color, bool overrideText = false)
+        public void FillPolygon(IEnumerable<DataObjects.Point> polygon, string color, bool overrideText = false)
         {
             ValidateRGB(color);
             
@@ -315,13 +438,13 @@ namespace Graphic_Renderer.SmartPainterFiles
             maxX = Math.Min(_consoleWidth - 1, maxX);
             maxY = Math.Min(_consoleHeight*2 - 1, maxY);
 
-            Point[] aliasingPolygon = new Point[polygon.Count()];
+            DataObjects.Point[] aliasingPolygon = new DataObjects.Point[polygon.Count()];
             if (AntiAliasing)
             {
                 int idx = 0;
-                foreach (Point point in polygon)
+                foreach (DataObjects.Point point in polygon)
                 {
-                    aliasingPolygon[idx] = new Point(point.X * AntiAliasingSamples, point.Y * AntiAliasingSamples) ;
+                    aliasingPolygon[idx] = new DataObjects.Point(point.X * AntiAliasingSamples, point.Y * AntiAliasingSamples) ;
                     idx++;
                 }
             }
@@ -371,10 +494,10 @@ namespace Graphic_Renderer.SmartPainterFiles
         /// <summary>
         /// I aint a mathematician so i do not have any clue as to what is going on here
         /// </summary>
-        public bool IsPointInPolygon(int pixelX, int pixelY, IEnumerable<Point> polygon)
+        public bool IsPointInPolygon(int pixelX, int pixelY, IEnumerable<DataObjects.Point> polygon)
         {
             // Get the vertices into an array for easier indexing
-            Point[] vertices = polygon.ToArray();
+            DataObjects.Point[] vertices = polygon.ToArray();
             int n = vertices.Length;
             if (n < 3) return false; // A polygon must have at least 3 vertices
 
@@ -383,8 +506,8 @@ namespace Graphic_Renderer.SmartPainterFiles
             // Iterate through all edges (i to i+1, including n-1 to 0)
             for (int i = 0; i < n; i++)
             {
-                Point p1 = vertices[i];
-                Point p2 = vertices[(i + 1) % n]; // Gets the next vertex, wraps back to 0 for the last edge
+                DataObjects.Point p1 = vertices[i];
+                DataObjects.Point p2 = vertices[(i + 1) % n]; // Gets the next vertex, wraps back to 0 for the last edge
 
                 // 1. Check if the horizontal ray at pixelY intersects the vertical span of the edge (p1 to p2)
                 // Note: The check must be strict on one side (e.g., p1.Y <= pixelY) to ensure

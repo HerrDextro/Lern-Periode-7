@@ -37,12 +37,17 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="FFMpegCore" Version="5.3.0" />
     <PackageReference Include="Gera.Chess" Version="1.2.0" />
+    <PackageReference Include="Microsoft.Bcl.AsyncInterfaces" Version="9.0.10" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
-    <PackageReference Include="System.Windows.Extensions" Version="9.0.9" />
+    <PackageReference Include="SixLabors.ImageSharp" Version="3.1.11" />
+    <PackageReference Include="System.Windows.Extensions" Version="9.0.10" />
     <PackageReference Include="TextCopy" Version="6.2.1" />
+    <PackageReference Include="YoutubeExplode" Version="6.5.5" />
+    <PackageReference Include="YoutubeExplode.Converter" Version="6.5.5" />
   </ItemGroup>
 
-  <ProjectExtensions><VisualStudio><UserProperties test_1json__JsonSchema="Image" /></VisualStudio></ProjectExtensions>
+  <ProjectExtensions><VisualStudio><UserProperties /></VisualStudio></ProjectExtensions>
 
 </Project>

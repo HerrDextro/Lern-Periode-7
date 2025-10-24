@@ -49,3 +49,15 @@ C:\Users\Neo\Source\Repos\HerrDextro\Lern-Periode-7\Graphic-Renderer\Graphic-Ren
 C:\Users\Neo\Source\Repos\HerrDextro\Lern-Periode-7\Graphic-Renderer\Graphic-Renderer\obj\Debug\net8.0\Graphic-Renderer.genruntimeconfig.cache
 C:\Users\Neo\Source\Repos\HerrDextro\Lern-Periode-7\Graphic-Renderer\Graphic-Renderer\obj\Debug\net8.0\ref\Graphic-Renderer.dll
 C:\Users\alex\Source\Repos\HerrDextro\Lern-Periode-7\Graphic-Renderer\Graphic-Renderer\bin\Debug\net8.0\SmartPainterFiles\GraphicRendererNewCPP.dll
+C:\Users\alex\Source\Repos\HerrDextro\Lern-Periode-7\Graphic-Renderer\Graphic-Renderer\bin\Debug\net8.0\SixLabors.ImageSharp.dll
+C:\Users\alex\Source\Repos\HerrDextro\Lern-Periode-7\Graphic-Renderer\Graphic-Renderer\bin\Debug\net8.0\AngleSharp.dll
+C:\Users\alex\Source\Repos\HerrDextro\Lern-Periode-7\Graphic-Renderer\Graphic-Renderer\bin\Debug\net8.0\CliWrap.dll
+C:\Users\alex\Source\Repos\HerrDextro\Lern-Periode-7\Graphic-Renderer\Graphic-Renderer\bin\Debug\net8.0\Microsoft.Bcl.AsyncInterfaces.dll
+C:\Users\alex\Source\Repos\HerrDextro\Lern-Periode-7\Graphic-Renderer\Graphic-Renderer\bin\Debug\net8.0\System.IO.Pipelines.dll
+C:\Users\alex\Source\Repos\HerrDextro\Lern-Periode-7\Graphic-Renderer\Graphic-Renderer\bin\Debug\net8.0\System.Text.Encodings.Web.dll
+C:\Users\alex\Source\Repos\HerrDextro\Lern-Periode-7\Graphic-Renderer\Graphic-Renderer\bin\Debug\net8.0\System.Text.Json.dll
+C:\Users\alex\Source\Repos\HerrDextro\Lern-Periode-7\Graphic-Renderer\Graphic-Renderer\bin\Debug\net8.0\YoutubeExplode.dll
+C:\Users\alex\Source\Repos\HerrDextro\Lern-Periode-7\Graphic-Renderer\Graphic-Renderer\bin\Debug\net8.0\YoutubeExplode.Converter.dll
+C:\Users\alex\Source\Repos\HerrDextro\Lern-Periode-7\Graphic-Renderer\Graphic-Renderer\bin\Debug\net8.0\runtimes\browser\lib\net8.0\System.Text.Encodings.Web.dll
+C:\Users\alex\Source\Repos\HerrDextro\Lern-Periode-7\Graphic-Renderer\Graphic-Renderer\bin\Debug\net8.0\FFMpegCore.dll
+C:\Users\alex\Source\Repos\HerrDextro\Lern-Periode-7\Graphic-Renderer\Graphic-Renderer\bin\Debug\net8.0\Instances.dll

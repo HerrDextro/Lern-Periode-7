@@ -50,21 +50,41 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "FFMpegCore": {
+              "target": "Package",
+              "version": "[5.3.0, )"
+            },
             "Gera.Chess": {
               "target": "Package",
               "version": "[1.2.0, )"
+            },
+            "Microsoft.Bcl.AsyncInterfaces": {
+              "target": "Package",
+              "version": "[9.0.10, )"
             },
             "Newtonsoft.Json": {
               "target": "Package",
               "version": "[13.0.4, )"
             },
+            "SixLabors.ImageSharp": {
+              "target": "Package",
+              "version": "[3.1.11, )"
+            },
             "System.Windows.Extensions": {
               "target": "Package",
-              "version": "[9.0.9, )"
+              "version": "[9.0.10, )"
             },
             "TextCopy": {
               "target": "Package",
               "version": "[6.2.1, )"
+            },
+            "YoutubeExplode": {
+              "target": "Package",
+              "version": "[6.5.5, )"
+            },
+            "YoutubeExplode.Converter": {
+              "target": "Package",
+              "version": "[6.5.5, )"
             }
           },
           "imports": [

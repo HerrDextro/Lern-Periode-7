@@ -65,10 +65,6 @@ namespace Graphic_Renderer
                 painter.fillRectangle("#b0918f", 1,cursorheight,10,1);
                 program.ShowText(painter, gamelist);
 
-                // TEMP TEST!!!!
-                reader.StartKeyCapture();
-                painter.writeText(reader.ReadKeyCapture(), 20, 3,"#ff99cc");
-            
 
                 if (cursorcool > 0)
                 {
