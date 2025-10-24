@@ -20,11 +20,16 @@ namespace Graphic_Renderer.Chess
         public string BlackUID { get; set; }
         public string WhiteUID { get; set; }
 
-        public GameState(Guid player1, ChessLogic l)
+        public GameState(Guid player1)
         {
             WhiteUID = player1.ToString();
-            l.ParseFen();
         }
+
+        public GameState()
+        {
+
+        }
+
         public void JoinPlayer(Guid player)
         {
             BlackUID = player.ToString();

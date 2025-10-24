@@ -315,8 +315,9 @@ namespace Graphic_Renderer.Chess
 
 
             //_chessLogic = new ChessLogic(painter, reader, null);
-            GameState emptyGame = new GameState(yourID, _chessLogic);
+            GameState emptyGame = new GameState(yourID);
             _chessLogic = new ChessLogic(painter, reader, emptyGame);
+            _chessLogic.ParseFen();
 
            
 
