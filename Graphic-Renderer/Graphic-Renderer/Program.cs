@@ -1,5 +1,4 @@
 ﻿using Graphic_Renderer.Chess;
-using Graphic_Renderer.Neo;
 using Graphic_Renderer.SmartPainterFiles;
 using HyperPaint;
 using System;
@@ -136,9 +135,9 @@ namespace Graphic_Renderer
                             painter.updateFrame();
                             break;
                         case 10:
-                            ChessGame chessGame = new ChessGame(painter, reader);
+                            /*ChessGame chessGame = new ChessGame(painter, reader);
                             chessGame.StartChessGame();
-                            painter.updateFrame();
+                            painter.updateFrame();*/
                             break;
                         case 11:
                             NewPainterTesting newTest = new(painter, reader);

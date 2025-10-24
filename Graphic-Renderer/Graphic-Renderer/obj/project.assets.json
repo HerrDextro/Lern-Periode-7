@@ -839,13 +839,5 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.304/PortableRuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problem reading the cache file C:\\Users\\Neo\\Source\\Repos\\HerrDextro\\Lern-Periode-7\\Graphic-Renderer\\Graphic-Renderer\\obj\\project.nuget.cache : '<' is an invalid start of a value. Path: $ | LineNumber: 0 | BytePositionInLine: 0."
-    }
-  ]
+  }
 }
