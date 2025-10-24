@@ -53,7 +53,7 @@ namespace Graphic_Renderer
 
 
             Program program = new Program();
-            program.PlayMusic();
+            //program.PlayMusic();
 
             program.ShowText(painter, gamelist);
 
