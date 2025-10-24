@@ -19,6 +19,8 @@ namespace Graphic_Renderer.Chess
 
         private int _pushTimeSlot;
 
+        private ChessLogic _chessLogic;
+
         record SecretData
         {
             public string API_key { get; set; }
@@ -93,9 +95,11 @@ namespace Graphic_Renderer.Chess
 
         public void StartGame()
         {
-            /*
-             User Interface
-             */
+            //ChessLogic.ParseFen(GameState.BoardObj);
+
+            painter.clear();
+
+            painter.clear();
             painter.clear();
             painter.loadImage(15, 1, @"..\..\..\Chess\Assets\title.json");
             painter.updateFrame();
@@ -310,7 +314,11 @@ namespace Graphic_Renderer.Chess
             string trelloDue = dueDateTime.ToString("yyyy-MM-ddTHH:mm:ss.fffZ", System.Globalization.CultureInfo.InvariantCulture);
 
 
-            GameState emptyGame = new GameState(yourID);
+            //_chessLogic = new ChessLogic(painter, reader, null);
+            GameState emptyGame = new GameState(yourID, _chessLogic);
+            _chessLogic = new ChessLogic(painter, reader, emptyGame);
+
+           
 
 
             Request createCard = new Request()
@@ -371,19 +379,7 @@ namespace Graphic_Renderer.Chess
         }
 
 
-        public GameState? RenderChess(GameState gameState)
-        {
-            if (gameState.BoardState == currentGame.BoardState)
-            {
-                return null; // No changes detected
-            }
-            else
-            {
-                currentGame = gameState;
-                return currentGame;
-            }
-                
-        }
+        
     }
     /*public class Chess
     {
