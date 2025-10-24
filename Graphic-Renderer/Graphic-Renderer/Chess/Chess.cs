@@ -161,7 +161,12 @@ namespace Graphic_Renderer.Chess
 
                 // Imitate Neo stuff
                 painter.clear();
-                painter.writeText("I am a very good chess", 10, 10);
+                if(currentStatePoint == null)
+                {
+                    continue;
+                }
+
+                _chessLogic.RenderFrame(currentStatePoint);
                 painter.updateFrame();
                 GameState? newStatePoint = null;
 
@@ -348,6 +353,12 @@ namespace Graphic_Renderer.Chess
 
         private bool LogIntoGame(string gameId)
         {
+            GameState emptyGame = new GameState(yourID);
+            _chessLogic = new ChessLogic(painter, reader, emptyGame);
+            _chessLogic.ParseFen();
+
+
+
             string url = $"https://api.trello.com/1/cards/{gameId}?key={secrets.API_key}&token={secrets.API_token}&fields=desc";
             var response = APIRequestHelper.GetCard(url).GetAwaiter().GetResult();
 
@@ -355,6 +366,8 @@ namespace Graphic_Renderer.Chess
             {
                 return false;
             }
+
+
 
             string stringified = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
 
