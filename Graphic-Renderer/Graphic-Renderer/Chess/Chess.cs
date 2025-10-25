@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.Json;
+using Newtonsoft.Json;
 using System.Threading.Tasks;
 
 namespace Graphic_Renderer.Chess
@@ -37,8 +38,8 @@ namespace Graphic_Renderer.Chess
             yourID = Guid.NewGuid();
 
             string jsonString = File.ReadAllText(@"..\..\..\Chess\chess_secret_config.json");
-            secrets = JsonSerializer.Deserialize<SecretData>(jsonString);
-
+            secrets = JsonConvert.DeserializeObject<SecretData>(jsonString);
+           
             this.reader = reader;
             this.painter = painter;
         }
@@ -72,7 +73,7 @@ namespace Graphic_Renderer.Chess
                 using JsonDocument doc = JsonDocument.Parse(stringified);
                 string gameStateJson = doc.RootElement.GetProperty("desc").GetString();
 
-                GameState gameState = JsonSerializer.Deserialize<GameState>(gameStateJson);
+                GameState gameState = JsonConvert.DeserializeObject<GameState>(gameStateJson);
 
                 lock (_getterLock)
                 {
@@ -89,7 +90,7 @@ namespace Graphic_Renderer.Chess
             {
                 // Busy waiting
             }
-            string gameStateJson = JsonSerializer.Serialize(state);
+            string gameStateJson = JsonConvert.SerializeObject(state);
             string url = $"https://api.trello.com/1/cards/{_gameId}?key={secrets.API_key}&token={secrets.API_token}&desc={gameStateJson}";
         }
 
@@ -160,7 +161,7 @@ namespace Graphic_Renderer.Chess
                 }
 
                 // Imitate Neo stuff
-                painter.clear();
+                //painter.clear(); //removed to fix pulsating render
                 if(currentStatePoint == null)
                 {
                     continue;
@@ -296,7 +297,7 @@ namespace Graphic_Renderer.Chess
                 using JsonDocument doc = JsonDocument.Parse(stringified);
                 string gameStateJson = doc.RootElement.GetProperty("desc").GetString();
 
-                GameState gameState = JsonSerializer.Deserialize<GameState>(gameStateJson);
+                GameState gameState = JsonConvert.DeserializeObject<GameState>(gameStateJson);
 
                 if(gameState.BlackUID != null)
                 {
@@ -333,7 +334,7 @@ namespace Graphic_Renderer.Chess
                 token = secrets.API_token,
 
                 name = Guid.NewGuid().ToString(),
-                desc = JsonSerializer.Serialize(_chessLogic.BoardObj),
+                desc = JsonConvert.SerializeObject(_chessLogic.BoardObj),
                 due = trelloDue
             };
 
@@ -373,10 +374,10 @@ namespace Graphic_Renderer.Chess
             using JsonDocument doc = JsonDocument.Parse(stringified);
             string gameStateJson = doc.RootElement.GetProperty("desc").GetString();
 
-            GameState gameState = JsonSerializer.Deserialize<GameState>(gameStateJson);
+            GameState gameState = JsonConvert.DeserializeObject<GameState>(gameStateJson);
             gameState.JoinPlayer(yourID);
 
-            string gameStateJsonNew = JsonSerializer.Serialize(gameState);
+            string gameStateJsonNew = JsonConvert.SerializeObject(gameState);
 
             string putUrl = $"https://api.trello.com/1/cards/{gameId}?key={secrets.API_key}&token={secrets.API_token}&desc={gameStateJsonNew}";
             var getGesponse = APIRequestHelper.UpdateCard(putUrl).GetAwaiter().GetResult();

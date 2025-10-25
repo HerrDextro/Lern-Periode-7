@@ -207,7 +207,13 @@ namespace Graphic_Renderer.Chess
 
         public GameState ParseFen()
         {
-            char[,] boardState = new char[8, 8];
+            char[][] boardState = new char[8][];
+
+            for (int i = 0; i < boardState.Length; i++)
+            {
+                boardState[i] = new char[8];
+            }
+
             //string fen = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"; //starting pos placeholder
             //string fen = "r1bqkb1r/pppppppp/n4n2/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"; //for TESTING
             //string fen = "r1bk3r/p2pBpNp/n4n2/1p1NP2P/6P1/3P4/P1P1K3/q5b1 test"; //For TESTING
@@ -221,7 +227,7 @@ namespace Graphic_Renderer.Chess
             {
                 if (c != '/' && Char.IsLetter(c))
                 {
-                    boardState[rowIndex, colIndex] = c;
+                    boardState[rowIndex][colIndex] = c;
                     if (colIndex < 7) { colIndex++; } else { colIndex = 0; if (rowIndex < 7) rowIndex++; }
 
                 }
@@ -232,7 +238,7 @@ namespace Graphic_Renderer.Chess
                     for (int i = 0; i < spaces; i++)
                     {
 
-                        boardState[rowIndex, colIndex] = '-';
+                        boardState[rowIndex][colIndex] = '-';
                         if (colIndex < 7) { colIndex++; } else { colIndex = 0; if (rowIndex < 7) rowIndex++; }
 
                     }
@@ -302,30 +308,36 @@ namespace Graphic_Renderer.Chess
             string color;
             if (BoardObj.currentPlayerTurn == 'w') { color = "#ffffff"; } else { color = "#000000"; }
 
-            char[,] boardState = BoardObj.boardState;
+            char[][] boardState = BoardObj.boardState;
             int counter = 0;
             int row = 0;
             int col = 0;
             //start at board start
             col = col + startPosX;
             row = row + startPosY;
-            foreach (char c in boardState)
+            foreach (var x in boardState)
             {
-                painter.writeText(c.ToString(), col, row, color); //watch out here row col reversed
-                counter++;
-                if (col < (7 * (squareSize * 2)) + startPosX)
+                foreach (var y in x)
                 {
-                    col = col + (squareSize * 2);
-                }
-                else
-                {
-                    col = 0 + startPosX;
-                    if (row < (7 * squareSize) + startPosY)
+                    painter.writeText(y.ToString(), col, row, color); //watch out here row col reversed
+                    counter++;
+                    if (col < (7 * (squareSize * 2)) + startPosX)
                     {
-                        row = row + squareSize;
+                        col = col + (squareSize * 2);
+                    }
+                    else
+                    {
+                        col = 0 + startPosX;
+                        if (row < (7 * squareSize) + startPosY)
+                        {
+                            row = row + squareSize;
+                        }
                     }
                 }
             }
+
+            
+            
             //confirm button and chat rendering
 
             //confirmation

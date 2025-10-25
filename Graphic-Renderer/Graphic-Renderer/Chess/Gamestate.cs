@@ -8,7 +8,7 @@ namespace Graphic_Renderer.Chess
 {
     public class GameState //for parsing FEN
     {
-        public char[,] boardState;
+        public char[][] boardState;
         public char currentPlayerTurn { get; set; }
         public string castleMove { get; set; }
         public string enPassantMove { get; set; }
