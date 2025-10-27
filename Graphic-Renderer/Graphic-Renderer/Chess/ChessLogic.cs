@@ -73,91 +73,76 @@ namespace Graphic_Renderer.Chess
         //client exclusive logic here
         //make move, check validity, update board state, etc
 
-        public void MakeMove() //take start and end pos from cursor tracking method (yet to omplement) //make stateless 
+        bool lastMouseDown = false; // put this as a class-level field, not inside the function
+
+        public void MakeMove()
         {
-            if (!GeraBoard.IsEndGame) //if game isnt done
+            if (GeraBoard.IsEndGame) return;
+
+            int startPosX = 18;
+            int startPosY = 0;
+            int squareSize = 3;
+
+            int[] mousePos = reader.getMousePos();
+            int col = (mousePos[0] - startPosX) / squareSize;
+            int row = (mousePos[1] - startPosY) / squareSize;
+
+            // detect actual click transition
+            bool currentMouseDown = reader.IsLeftMouseButtonDown();
+            bool justClicked = currentMouseDown && !lastMouseDown;
+            lastMouseDown = currentMouseDown;
+
+            // quick display debug
+            painter.writeText($"Mouse: {mousePos[0]}, {mousePos[1]}", 0, 3);
+            painter.writeText($"Col/Row: {col}, {row}", 0, 4);
+
+            // Board bounds
+            bool withinBoard =
+                mousePos[0] >= startPosX &&
+                mousePos[0] < startPosX + squareSize * 8 &&
+                mousePos[1] >= startPosY &&
+                mousePos[1] < startPosY + squareSize * 8;
+
+            if (justClicked && withinBoard)
             {
-                //check if piece selected/belongs to current player
-                //check if destination seletced/valid
-                //check if confirmation given
-                //update board state
-                string boardState = GeraBoard.ToFen();
-
-                int startPosX = 18;
-                int startPosY = 0;
-                int squareSize = 3;
-
-                int xpos = 0 + startPosX;
-                int ypos = 0 + startPosY;
-                string color = "#FF6961";
-
-
-                int[] mousePos = reader.getMousePos(); // 2 index int array
-
-                int col = (mousePos[0] - startPosX) / (squareSize); //works
-                int row = (mousePos[1] - startPosY) / squareSize; //works
-                int z = 0;
-
-                painter.writeText(Convert.ToString(mousePos[0]) + " " + Convert.ToString(mousePos[1]), 0, 3);
-                painter.writeText(Convert.ToString(col) + " " + Convert.ToString(row), 0, 4);
-
-                //whole mouse capturing works, now do the square selection logic 
-
-                if (reader.IsLeftMouseButtonDown() && col >= 0 && col < 8 && row >= 0 && row < 8 && originSelectionMade == false)
+                if (!originSelectionMade)
                 {
-                    this.SelectedOriginC = col;
-                    this.SelectedOriginR = row;
-                    this.originSelectionMade = true;
-                    this.DebugMsg = "origin selected";
-                    //painter.writeText(this.DebugMsg, 0, 5);
-
-                    /*if (SelectedOriginR != null && SelectedOriginC != null)
-                    {
-                        this.SelectedDestinationC = col;
-                        this.SelectedDestinationR = row;
-                        this.destinationSelectionMade = true;
-                    }*/
-
-                    //painter.writeText("origin Clicked!", 0, 2);
-
-                    //this.originSelectionMade = true;
+                    SelectedOriginC = col;
+                    SelectedOriginR = row;
+                    originSelectionMade = true;
+                    DebugMsg = "Origin selected";
                 }
-                if (reader.IsLeftMouseButtonDown() && originSelectionMade == true && destinationSelectionMade == false && col != SelectedOriginC && row != SelectedOriginR) //implement same out of grid logic
+                else if (!destinationSelectionMade && (col != SelectedOriginC || row != SelectedOriginR))
                 {
-                    this.SelectedDestinationC = col;
-                    this.SelectedDestinationR = row;
-                    this.destinationSelectionMade = true;
-                    this.DebugMsg = "destination selected";
-                    //painter.writeText(this.DebugMsg, 0, 2);
+                    SelectedDestinationC = col;
+                    SelectedDestinationR = row;
+                    destinationSelectionMade = true;
+                    DebugMsg = "Destination selected";
                 }
-                if (originSelectionMade == true && destinationSelectionMade == true /*&& this.moveChosen == false*/ && mousePos[0] >= 22 && mousePos[0] <= 38 && mousePos[1] >= 25 && mousePos[1] <= 28 && reader.IsLeftMouseButtonDown())
-                {
-                    //conrmation button & chat box logic
-                    painter.fillRectangle(color, 22, 25, 16, 3); //confirm move
-
-                    painter.writeText("Confirmed", 54, 26, "white");
-                    //make the actual move itself
-                    ConvertMoveInput(
-                         (this.SelectedOriginC, this.SelectedOriginR),
-                         (this.SelectedDestinationC, this.SelectedDestinationR)
-                    );
-                    this.originSelectionMade = false;
-                    this.destinationSelectionMade = false;
-
-
-
-                    //Debug
-                    this.DebugMsg = "Confirmation made";
-                    //painter.writeText(this.DebugMsg, 0, 2);
-
-                    //painter.writeText("Clicked!", 0, 2);
-                    //this.moveChosen = true;
-
-                }
-
-
             }
-        }
+
+            // confirmation button click
+            bool inConfirmButton =
+                mousePos[0] >= 22 && mousePos[0] <= 38 &&
+                mousePos[1] >= 25 && mousePos[1] <= 28;
+
+            if (justClicked && originSelectionMade && destinationSelectionMade && inConfirmButton)
+            {
+                painter.fillRectangle("#FF6961", 22, 25, 16, 3);
+                painter.writeText("Confirmed", 54, 26, "white");
+
+                ConvertMoveInput(
+                    (SelectedOriginC, SelectedOriginR),
+                    (SelectedDestinationC, SelectedDestinationR)
+                );
+
+                originSelectionMade = false;
+                destinationSelectionMade = false;
+
+                DebugMsg = "Move confirmed";
+            }
+        }//revamped
+
 
         public void ConvertMoveInput((int x, int y) start, (int x, int y) end)
         {
