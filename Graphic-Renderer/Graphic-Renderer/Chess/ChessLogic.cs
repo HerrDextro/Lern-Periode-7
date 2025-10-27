@@ -47,12 +47,16 @@ namespace Graphic_Renderer.Chess
             BoardObj = emptyGame;
         }
 
-        public GameState RenderFrame(GameState previousBoardObj) //Call this every frame
+        public GameState RenderFrame(GameState previousBoardObj, bool isYourTurn) //Call this every frame
         {
             //Console.WriteLine("GetGameObj called"); //works but cant test so well
             //Console.WriteLine(GeraBoard.ToPgn());
-            MakeMove(); //make the move from input boardstate and also from client here
-            RenderChess(); //change from gera board to boardstate
+            if (isYourTurn)
+            {
+                MakeMove(); //make the move from input boardstate and also from client here
+            }
+            
+            RenderChess(isYourTurn); //change from gera board to boardstate
 
             if (BoardObj.Equals(previousBoardObj))
             {
@@ -118,7 +122,7 @@ namespace Graphic_Renderer.Chess
 
                     //this.originSelectionMade = true;
                 }
-                if (reader.IsLeftMouseButtonDown() && originSelectionMade == true && destinationSelectionMade == false) //implement same out of grid logic
+                if (reader.IsLeftMouseButtonDown() && originSelectionMade == true && destinationSelectionMade == false && col != SelectedOriginC && row != SelectedOriginR) //implement same out of grid logic
                 {
                     this.SelectedDestinationC = col;
                     this.SelectedDestinationR = row;
@@ -264,7 +268,7 @@ namespace Graphic_Renderer.Chess
         } //compares this object to the incoming one from alex call
 
 
-        public void RenderChess()
+        public void RenderChess(bool isYourTurn)
         {
             //Board with pieces rendering
             // dark green #4E7837
@@ -306,7 +310,9 @@ namespace Graphic_Renderer.Chess
             startPosY = 0;
             //now render the pieces
             string color;
-            if (BoardObj.currentPlayerTurn == 'w') { color = "#ffffff"; } else { color = "#000000"; }
+            
+            //if (BoardObj.currentPlayerTurn == 'w') { color = "#ffffff"; } else { color = "#000000"; }
+            //if (isYourTurn) { color = "#ff0000"; } else
 
             char[][] boardState = BoardObj.boardState;
             int counter = 0;
@@ -319,6 +325,7 @@ namespace Graphic_Renderer.Chess
             {
                 foreach (var y in x)
                 {
+                    if (Char.IsUpper(y)) { color = "#ffffff"; } else if (y == '-') { color = "#ff0000"; } else { color = "#000000"; }
                     painter.writeText(y.ToString(), col, row, color); //watch out here row col reversed
                     counter++;
                     if (col < (7 * (squareSize * 2)) + startPosX)
@@ -349,6 +356,7 @@ namespace Graphic_Renderer.Chess
 
             //rendering infos and 
             painter.writeText("Current Turn: " + BoardObj.currentPlayerTurn, 0, 0);
+            painter.writeText("Your color: " + (isYourTurn ? "White" : "Black"), 0, 10);
             painter.writeText("Num Halfmoves: " + BoardObj.halfMove, 0, 1);
             painter.writeText("Num Fullmoves: " + BoardObj.fullMove, 0, 2);
             painter.writeText(this.DebugMsg, 0, 5);

@@ -155,19 +155,22 @@ namespace Graphic_Renderer.Chess
                     currentStatePoint = _gameState;
                 }
 
+                GameState? newStatePoint = null;
                 if (currentStatePoint != null)
                 {
                     bool isYourTurn = currentStatePoint.CurrentPlayerID == yourID.ToString();
+
+                    newStatePoint = _chessLogic.RenderFrame(currentStatePoint, isYourTurn);
                 }
 
                 // Imitate Neo stuff
                 //painter.clear(); //removed to fix pulsating render
-                if(currentStatePoint == null)
+                if (currentStatePoint == null)
                 {
                     continue;
                 }
 
-                GameState? newStatePoint = _chessLogic.RenderFrame(currentStatePoint);
+                
                 painter.updateFrame();
 
                 // Push new GameState to board
