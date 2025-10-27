@@ -23,6 +23,7 @@ namespace Graphic_Renderer.Chess
         public GameState(Guid player1)
         {
             WhiteUID = player1.ToString();
+            CurrentPlayerID = WhiteUID;
         }
 
         public GameState()

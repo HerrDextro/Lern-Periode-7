@@ -176,6 +176,7 @@ namespace Graphic_Renderer.Chess
                 // Push new GameState to board
                 if(newStatePoint != null && (_gameStatePusherTask != null && !_gameStatePusherTask.IsCompleted))
                 {
+                    newStatePoint.CurrentPlayerID = yourID.ToString(); //ensures turn is correct
                     _gameStatePusherTask = Task.Run(() => PushGameStateParralel(newStatePoint));
                 }
                 
