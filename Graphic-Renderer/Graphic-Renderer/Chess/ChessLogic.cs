@@ -51,6 +51,7 @@ namespace Graphic_Renderer.Chess
         {
             //Console.WriteLine("GetGameObj called"); //works but cant test so well
             //Console.WriteLine(GeraBoard.ToPgn());
+            BoardObj = previousBoardObj;
             if (isYourTurn)
             {
                 MakeMove(); //make the move from input boardstate and also from client here
@@ -58,13 +59,12 @@ namespace Graphic_Renderer.Chess
             
             RenderChess(isYourTurn); //change from gera board to boardstate
 
-            if (BoardObj.Equals(previousBoardObj))
+            if (BoardObj.Equals(previousBoardObj))//seems to mess up here but idk how what where when doesnt make sense (literal biden makes more sense in a speech)
             {
                 return null;
             }
             else
             {
-                BoardObj.boardState = previousBoardObj.boardState;
 
                 return BoardObj;
             }
@@ -143,7 +143,6 @@ namespace Graphic_Renderer.Chess
             }
         }//revamped
 
-
         public void ConvertMoveInput((int x, int y) start, (int x, int y) end)
         {
             char[] xCoord = { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h' };
@@ -188,11 +187,6 @@ namespace Graphic_Renderer.Chess
             //Console.WriteLine("ConvertMoveInput called");
 
         } //not done
-
-        public void SelectSquare()
-        {
-
-        }
 
         public GameState ParseFen()
         {
@@ -244,7 +238,7 @@ namespace Graphic_Renderer.Chess
             return BoardObj;
         }
 
-        public override bool Equals(object obj) //only checks boardstate, change this when chat object comes in too
+        public bool CheckChange(object obj) //only checks boardstate, change this when chat object comes in too
         {
             var thisBoard = this.GeraBoard.ToFen(); //updates FEN string
             var otherBoard = ((ChessLogic)obj).GeraBoard.ToFen();
