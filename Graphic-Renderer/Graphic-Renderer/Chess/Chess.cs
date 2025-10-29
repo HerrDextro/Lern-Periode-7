@@ -88,10 +88,14 @@ namespace Graphic_Renderer.Chess
             int second = DateTime.Now.Second;
             while (!(second % 4 == _pushTimeSlot))
             {
+                second = DateTime.Now.Second;
                 // Busy waiting
             }
             string gameStateJson = JsonConvert.SerializeObject(state);
             string url = $"https://api.trello.com/1/cards/{_gameId}?key={secrets.API_key}&token={secrets.API_token}&desc={gameStateJson}";
+
+            var getGesponse = APIRequestHelper.UpdateCard(url).GetAwaiter().GetResult();
+            getGesponse.EnsureSuccessStatusCode();
         }
 
         public void StartGame()
@@ -174,7 +178,7 @@ namespace Graphic_Renderer.Chess
                 painter.updateFrame();
 
                 // Push new GameState to board
-                if(newStatePoint != null && (_gameStatePusherTask != null && !_gameStatePusherTask.IsCompleted))
+                if(newStatePoint != null && (_gameStatePusherTask == null || _gameStatePusherTask.IsCompleted))
                 {
                     newStatePoint.CurrentPlayerID = yourID.ToString(); //ensures turn is correct
                     _gameStatePusherTask = Task.Run(() => PushGameStateParralel(newStatePoint));

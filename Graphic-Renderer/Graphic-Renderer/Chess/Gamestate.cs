@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Graphic_Renderer.SmartPainterFiles.DataObjects.Image;
 
 namespace Graphic_Renderer.Chess
 {
@@ -29,6 +30,24 @@ namespace Graphic_Renderer.Chess
         public GameState()
         {
 
+        }
+
+        public GameState Copy()
+        {
+
+            return new GameState()
+            {
+                boardState = boardState.Clone() as char[][],
+                currentPlayerTurn = currentPlayerTurn,
+                castleMove = castleMove,
+                enPassantMove = enPassantMove,
+                halfMove = halfMove,
+                fullMove = fullMove,
+
+                CurrentPlayerID = CurrentPlayerID,
+                BlackUID = BlackUID,
+                WhiteUID = WhiteUID
+            };
         }
 
         public void JoinPlayer(Guid player)

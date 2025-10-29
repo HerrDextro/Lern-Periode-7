@@ -51,7 +51,8 @@ namespace Graphic_Renderer.Chess
         {
             //Console.WriteLine("GetGameObj called"); //works but cant test so well
             //Console.WriteLine(GeraBoard.ToPgn());
-            BoardObj = previousBoardObj;
+            BoardObj = previousBoardObj.Copy();
+
             if (isYourTurn)
             {
                 MakeMove(); //make the move from input boardstate and also from client here
