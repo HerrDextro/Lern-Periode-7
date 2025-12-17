@@ -22,11 +22,12 @@ namespace Graphic_Renderer
     internal class NewPainterTesting
     {
         NewPainter painter;
-        
+        NewReader reader;
         
         public NewPainterTesting(SPainter painter, SReader reader)
         {
             this.painter = new NewPainter(painter);
+            this.reader = new NewReader(reader);
         }
 
         public void Test1()
@@ -198,7 +199,36 @@ namespace Graphic_Renderer
 
         public async void Test5()
         {
+            painter.FillRectangle(0, 0, 120, 60, "#ffffff", true);
+            painter.UpdateFrame();
 
+            bool running = true;
+
+            while (running)
+            {
+                //painter.FillRectangle(0, 0, 120, 60, "#ffffff");
+
+                reader.GetKey(reader.C, () =>
+                {
+                    painter.FillRectangle(0, 0, 120, 60, "#ffffff", true);
+                });
+
+                reader.GetKey(reader.Escape, () =>
+                {
+                    running = false;
+                });
+
+                var pos = reader.GetMousePosition();
+
+                reader.GetKey(reader.MouseRight, () =>
+                {
+                    painter.ChangePixel(pos.X, pos.Y, "#0000ff");
+                });
+                
+                painter.UpdateFrame();
+            }
+            painter.FillCircle(10, 10, 8, "#ff0000");
+            painter.UpdateFrame();
         }
 
         public void Start()
@@ -212,7 +242,7 @@ namespace Graphic_Renderer
                 Test5,
             };
 
-            tests[3]();
+            tests[4]();
 
 
 

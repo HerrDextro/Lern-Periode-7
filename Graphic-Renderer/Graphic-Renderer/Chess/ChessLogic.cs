@@ -127,6 +127,12 @@ namespace Graphic_Renderer.Chess
                 mousePos[0] >= 22 && mousePos[0] <= 38 &&
                 mousePos[1] >= 25 && mousePos[1] <= 28;
 
+            if (inConfirmButton)
+            {
+                painter.fillRectangle("#9f9f9f", 22, 25, 16, 3); //confirm move
+                painter.writeText("Confirm Move", 54, 26, "#ff0000");
+            }
+
             if (justClicked && originSelectionMade && destinationSelectionMade && inConfirmButton)
             {
                 painter.fillRectangle("#FF6961", 22, 25, 16, 3);
@@ -328,15 +334,15 @@ namespace Graphic_Renderer.Chess
             //confirm button and chat rendering
 
             //confirmation
-            painter.fillRectangle("white", 22, 25, 16, 3); //confirm move
-            painter.writeText("Confirm Move", 54, 26, "red");
+            painter.fillRectangle("#ffffff", 22, 25, 16, 3); //confirm move
+            painter.writeText("Confirm Move", 54, 26, "#ff0000");
 
             //chat
-            painter.fillRectangle("white", 45, 19, 10, 5); //chat
+            painter.fillRectangle("#ffffff", 45, 19, 10, 5); //chat
 
             //rendering infos and 
             painter.writeText("Current Turn: " + BoardObj.currentPlayerTurn, 0, 0);
-            painter.writeText("Your color: " + (isYourTurn ? "White" : "Black"), 0, 10);
+            painter.writeText("Your color: " + (isYourTurn ? "#ffffff" : "#000000"), 0, 10);
             painter.writeText("Num Halfmoves: " + BoardObj.halfMove, 0, 1);
             painter.writeText("Num Fullmoves: " + BoardObj.fullMove, 0, 2);
             painter.writeText(this.DebugMsg, 0, 5);

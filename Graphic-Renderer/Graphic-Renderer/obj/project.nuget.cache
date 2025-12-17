@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "ZfVaQQV7SNY=",
+  "dgSpecHash": "qVEOVD2/n9o=",
   "success": true,
   "projectFilePath": "C:\\Users\\alex\\Source\\Repos\\HerrDextro\\Lern-Periode-7\\Graphic-Renderer\\Graphic-Renderer\\Graphic-Renderer.csproj",
   "expectedPackageFiles": [
@@ -17,7 +17,6 @@
     "C:\\Users\\alex\\.nuget\\packages\\system.io.pipelines\\9.0.10\\system.io.pipelines.9.0.10.nupkg.sha512",
     "C:\\Users\\alex\\.nuget\\packages\\system.text.encodings.web\\9.0.10\\system.text.encodings.web.9.0.10.nupkg.sha512",
     "C:\\Users\\alex\\.nuget\\packages\\system.text.json\\9.0.10\\system.text.json.9.0.10.nupkg.sha512",
-    "C:\\Users\\alex\\.nuget\\packages\\system.threading.tasks.extensions\\4.6.0\\system.threading.tasks.extensions.4.6.0.nupkg.sha512",
     "C:\\Users\\alex\\.nuget\\packages\\system.windows.extensions\\9.0.10\\system.windows.extensions.9.0.10.nupkg.sha512",
     "C:\\Users\\alex\\.nuget\\packages\\textcopy\\6.2.1\\textcopy.6.2.1.nupkg.sha512",
     "C:\\Users\\alex\\.nuget\\packages\\youtubeexplode\\6.5.5\\youtubeexplode.6.5.5.nupkg.sha512",

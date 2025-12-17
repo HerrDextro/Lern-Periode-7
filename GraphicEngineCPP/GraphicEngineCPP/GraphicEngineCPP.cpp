@@ -1,4 +1,4 @@
-
+//#include "pch.h"
 /*------------------------------------------------------------------ Imports */
 #include <string>
 #include <iostream>
@@ -200,7 +200,8 @@ std::u32string GetColorEscapeCode(int r, int g, int b, int br, int bg, int bb) {
 
 
 HANDLE hConsole;
-
+int expectedCols;
+int expectedRows;
 
 
 
@@ -230,12 +231,46 @@ void InstanceRuntimePixelArray(int cols, int rows) { // cols -> x, rows -> y
 
     // Remove stdio compatibility (aka fuck up printf)
     std::ios::sync_with_stdio(false);
+
+    expectedCols = cols;
+    expectedRows = rows;
 }
 
 
 
 extern "C" __declspec(dllexport)
 void ProcessArray(PhysicalPixel* newPixels, int xAmt, int yAmt) { // cols -> x, rows -> y
+    if (xAmt != expectedCols || yAmt != expectedRows) {
+        PhysicalPixel* updatedOld = new PhysicalPixel[xAmt * yAmt];
+
+
+        for (int y = 0; y < yAmt; y++) {
+            for (int x = 0; x < xAmt; x++) {
+                // If position not exists in old grid => update to placeholder
+
+                // If position not exists in new grid => ignore
+
+                // Calculate supposed index (IN THE NEW GRID!!!)
+                int indexNew = (y * xAmt) + x;
+                int indexOld = (y * expectedCols) + x;
+
+                if (x <= expectedCols || y <= expectedRows) {
+                    updatedOld[indexNew] = oldPixels[indexOld];
+                }
+
+            }
+        }
+
+        delete[] oldPixels;
+
+        oldPixels = updatedOld; // Bad but basically the override i need (maybe not!)
+
+
+    }
+
+
+
+
     // Displays content of array
     try {
         for (int y = 0; y < yAmt; y++) {
@@ -275,14 +310,14 @@ void ProcessArray(PhysicalPixel* newPixels, int xAmt, int yAmt) { // cols -> x, 
                     WritePixel(hConsole, character, r, g, b, br, bg, bb);
                     */
                 }
-                if ((pixelsEqual || x == xAmt-1) && streak > 0) {
-                    
+                if ((pixelsEqual || x == xAmt - 1) && streak > 0) {
+
                     if (x == xAmt - 1) { streak--; }
 
 
                     std::u32string line = U"";
 
-                    set_cursor(x - (streak-1), y);
+                    set_cursor(x - (streak - 1), y);
                     for (int i = 0; i < streak; i++) {
                         int actualIndex = index - (streak - 0) + i;
 
@@ -318,10 +353,25 @@ int main() {
     // Initialize a 10x10 pixel array
     const int xAmt = 40;
     const int yAmt = 20;
+
+    const int newXamt = 60;
+    const int newYamt = 30;
     InstanceRuntimePixelArray(xAmt, yAmt);
 
     // Create a new pixel array for testing
     PhysicalPixel* testPixels = new PhysicalPixel[xAmt * yAmt];
+    PhysicalPixel* newTestPixels = new PhysicalPixel[newXamt * newYamt];
+
+    for (int y = 0; y < newYamt; y++) {
+        for (int x = 0; x < newXamt; x++) {
+            int index = y * newXamt + x;  // correct
+
+            strcpy_s(newTestPixels[index].foregroundColor, "#FF0000"); // red
+            strcpy_s(newTestPixels[index].backgroundColor, "#000000"); // black
+
+            newTestPixels[index].chartype = U' ';
+        }
+    }
 
     int xpos = 10;
     int ypos = 10;
@@ -339,16 +389,13 @@ int main() {
 
                 strcpy_s(testPixels[index].foregroundColor, "#0000FF"); // red
                 strcpy_s(testPixels[index].backgroundColor, "#000000"); // black
-                if (iteration % 2 == 0) {
-                    strcpy_s(testPixels[index].foregroundColor, "#000000");
-                }
 
 
                 testPixels[index].chartype = U' ';
             }
         }
         int index = ypos * xAmt + xpos;
-        
+
         strcpy_s(testPixels[index].foregroundColor, "#ff0000"); // red
         strcpy_s(testPixels[index].backgroundColor, "#ff0000"); // black
         testPixels[index].chartype = U' ';
@@ -365,8 +412,17 @@ int main() {
         xpos += xvel;
         ypos += yvel;
 
-        ProcessArray(testPixels, xAmt, yAmt);
-        //std::this_thread::sleep_for(std::chrono::milliseconds(10));
+        if (iteration < 500 || iteration > 1000) {
+            ProcessArray(testPixels, xAmt, yAmt);
+        }
+        else {
+            ProcessArray(newTestPixels, newXamt, newYamt);
+        }
+
+
+
+
+        std::this_thread::sleep_for(std::chrono::milliseconds(10));
         // Todo fix start print ????????????????
 
 

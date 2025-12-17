@@ -80,6 +80,8 @@ namespace Graphic_Renderer.Chess
                     _gameState = gameState;
                 }
 
+                Thread.Sleep(500);
+
             }
         }
 

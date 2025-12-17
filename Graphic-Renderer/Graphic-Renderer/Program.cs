@@ -44,11 +44,10 @@ namespace Graphic_Renderer
             StartUp startUp = new StartUp();
             startUp.StartUpAnim(painter, reader);
             painter.updateFrame();
-            
+
 
             //Main Loop
-
-
+            
 
 
             Program program = new Program();

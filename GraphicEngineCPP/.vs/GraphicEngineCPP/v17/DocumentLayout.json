@@ -27,7 +27,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 8,
           "Children": [
             {
               "$type": "Bookmark",
@@ -35,11 +35,15 @@
             },
             {
               "$type": "Bookmark",
-              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+              "Name": "ST:2:0:{fabf9319-47eb-497e-b8f6-d9f73fba5f55}"
             },
             {
               "$type": "Bookmark",
-              "Name": "ST:2:0:{fabf9319-47eb-497e-b8f6-d9f73fba5f55}"
+              "Name": "ST:0:0:{e1b7d1f8-9b3c-49b1-8f4f-bfc63a88835d}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{6ce47eec-3296-48f5-9dec-8883a276a7c8}"
             },
             {
               "$type": "Document",
@@ -51,8 +55,7 @@
               "RelativeToolTip": "..\\..\\..\\..\\..\\..\\..\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\crt\\src\\vcruntime\\delete_scalar.cpp",
               "ViewState": "AgIAABEAAAAAAAAAAAAMwCEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-10-14T07:41:20.198Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-14T07:41:20.198Z"
             },
             {
               "$type": "Document",
@@ -98,7 +101,7 @@
               "RelativeDocumentMoniker": "GraphicEngineCPP\\GraphicEngineCPP.cpp",
               "ToolTip": "C:\\Users\\alex\\source\\repos\\HerrDextro\\Lern-Periode-7\\GraphicEngineCPP\\GraphicEngineCPP\\GraphicEngineCPP.cpp",
               "RelativeToolTip": "GraphicEngineCPP\\GraphicEngineCPP.cpp",
-              "ViewState": "AgIAAHwBAAAAAAAAAAAswIsBAAAWAAAAAAAAAA==",
+              "ViewState": "AgIAAJMBAAAAAAAAAAAiwKUBAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-09-22T07:21:15.207Z",
               "EditorCaption": ""

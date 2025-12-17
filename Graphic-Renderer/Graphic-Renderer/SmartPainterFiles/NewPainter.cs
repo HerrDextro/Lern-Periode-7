@@ -22,12 +22,20 @@ namespace Graphic_Renderer.SmartPainterFiles
 {
     internal class NewPainter
     {
+        private static readonly bool IsWindows = RuntimeInformation.IsOSPlatform(OSPlatform.Windows);
+        private static readonly bool IsLinux = RuntimeInformation.IsOSPlatform(OSPlatform.Linux);
+
+
         // C++ code imports
         [DllImport("GraphicRendererNewCPP.dll", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
         private static extern void ProcessArray([In]  PhysicalPixel[] pixel, int x, int y);
 
         [DllImport("GraphicRendererNewCPP.dll", CallingConvention = CallingConvention.Cdecl)]
         private static extern void InstanceRuntimePixelArray(int x, int y);
+
+        [DllImport("GraphicRendererNewCPP.dll", CallingConvention = CallingConvention.Cdecl)]
+        private static extern void InvokeTerminalSizeUpdate(int newX, int newY);
+
 
         [StructLayout(LayoutKind.Sequential, Pack = 1, CharSet = CharSet.Ansi)]
         private struct PhysicalPixel
@@ -48,7 +56,7 @@ namespace Graphic_Renderer.SmartPainterFiles
 
         private PhysicalPixel[,] _physicalPixels;
 
-        public bool AntiAliasing = false;
+        public bool AntiAliasing = true;
         public int AntiAliasingSamples = 3;
         public NewPainter(SPainter oldPainter)
         {
@@ -125,6 +133,22 @@ namespace Graphic_Renderer.SmartPainterFiles
             var singleDimensionalPixels = Flatten(_physicalPixels);
 
             ProcessArray(singleDimensionalPixels, _consoleWidth, _consoleHeight);
+        }
+
+        private void CheckWindowChange()
+        {
+            if (!IsWindows)
+            {
+                return;
+            }
+
+            if (_consoleWidth != Console.WindowWidth || _consoleHeight != Console.WindowHeight)
+            {
+                _consoleWidth = Console.WindowWidth;
+                _consoleHeight = Console.WindowHeight;
+
+                //InvokeTerminalSizeUpdate
+            }
         }
 
         /// <summary>

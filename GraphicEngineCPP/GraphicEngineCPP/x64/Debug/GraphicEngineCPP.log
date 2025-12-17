@@ -1,5 +1,5 @@
 ﻿  GraphicEngineCPP.cpp
-LINK : warning LNK4075: /INCREMENTAL wird aufgrund der Angabe von /PROFILE ignoriert.
-GraphicEngineCPP.obj : warning LNK4075: /EDITANDCONTINUE wird aufgrund der Angabe von /OPT:REF ignoriert.
-     Bibliothek "C:\Users\alex\source\repos\HerrDextro\Lern-Periode-7\GraphicEngineCPP\x64\Debug\GraphicEngineCPP.lib" und Objekt "C:\Users\alex\source\repos\HerrDextro\Lern-Periode-7\GraphicEngineCPP\x64\Debug\GraphicEngineCPP.exp" werden erstellt.
+LINK : warning LNK4075: ignoring '/INCREMENTAL' due to '/PROFILE' specification
+GraphicEngineCPP.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/OPT:REF' specification
+     Creating library C:\Users\alex\source\repos\HerrDextro\Lern-Periode-7\GraphicEngineCPP\x64\Debug\GraphicEngineCPP.lib and object C:\Users\alex\source\repos\HerrDextro\Lern-Periode-7\GraphicEngineCPP\x64\Debug\GraphicEngineCPP.exp
   GraphicEngineCPP.vcxproj -> C:\Users\alex\source\repos\HerrDextro\Lern-Periode-7\GraphicEngineCPP\x64\Debug\GraphicEngineCPP.exe

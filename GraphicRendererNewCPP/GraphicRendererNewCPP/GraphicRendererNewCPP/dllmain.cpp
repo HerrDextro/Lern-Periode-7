@@ -200,7 +200,8 @@ std::u32string GetColorEscapeCode(int r, int g, int b, int br, int bg, int bb) {
 
 
 HANDLE hConsole;
-
+int expectedCols;
+int expectedRows;
 
 
 
@@ -230,6 +231,9 @@ void InstanceRuntimePixelArray(int cols, int rows) { // cols -> x, rows -> y
 
     // Remove stdio compatibility (aka fuck up printf)
     std::ios::sync_with_stdio(false);
+
+    expectedCols = cols;
+    expectedRows = rows;
 }
 
 

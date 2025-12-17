@@ -21,6 +21,8 @@ namespace Graphic_Renderer.Chess
         public string BlackUID { get; set; }
         public string WhiteUID { get; set; }
 
+        public List<string> chat = new List<string>();
+
         public GameState(Guid player1)
         {
             WhiteUID = player1.ToString();
@@ -34,7 +36,6 @@ namespace Graphic_Renderer.Chess
 
         public GameState Copy()
         {
-
             return new GameState()
             {
                 boardState = boardState.Clone() as char[][],
@@ -46,7 +47,9 @@ namespace Graphic_Renderer.Chess
 
                 CurrentPlayerID = CurrentPlayerID,
                 BlackUID = BlackUID,
-                WhiteUID = WhiteUID
+                WhiteUID = WhiteUID,
+
+                chat = chat
             };
         }
 
